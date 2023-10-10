@@ -13,7 +13,7 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-primary' });
 
 export const metadata: Metadata = {
   title: 'Home page',
-  description: ''
+  description: 'works'
 };
 
 interface RootLayoutProps {
