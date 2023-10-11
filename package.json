@@ -16,7 +16,7 @@
     "test:watch": "jest --watch",
     "test:ci": "jest --ci",
     "storybook": "storybook dev -p 6006",
-    "storybook:build": "storybook build",
+    "storybook:build": "storybook build"
   },
   "dependencies": {
     "@t3-oss/env-nextjs": "0.7.0",
