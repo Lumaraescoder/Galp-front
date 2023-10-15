@@ -1,7 +1,9 @@
 import React from 'react';
 
+import LoginPage from '@/components/Login/Login';
+
 const Login: React.FC = () => {
-  return <h1>Login</h1>;
+  return <LoginPage />;
 };
 
 export default Login;
