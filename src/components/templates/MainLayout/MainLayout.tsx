@@ -9,10 +9,6 @@ interface MainLayoutProps {
   className?: string;
 }
 
-const links = [{ slug: '/', label: 'Home' }];
-
-// This is the place responsible for wrapping your app.
-// Add here components like Footer, Nav etc.
 export const MainLayout = ({ children, className }: MainLayoutProps) => {
   const wrapperStyles = cn('flex flex-col min-h-screen', className);
 
