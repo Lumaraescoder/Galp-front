@@ -16,7 +16,17 @@ export const OrangeElement = styled.span`
   margin-left: 10px;
 `;
 
-export const TextEnter = styled.span``;
+export const TextEnter = styled.span`
+  font-size: 23px;
+  font-weight: 610;
+`;
+
+export const Icon = styled.span`
+  background: url('path-to-azure-icon.svg') no-repeat center;
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+`;
 
 export const ImageContainer = styled.div`
   display: none;
@@ -60,10 +70,25 @@ export const InputLabel = styled.label`
 `;
 
 export const Input = styled.input`
-  width: 100%;
+  width: 80%;
   border-radius: 0.25rem;
   border: 1px solid #d1d1d1;
   padding: 0.5rem 0.75rem;
+  font-size: 16px;
+  font-weight: 505;
+
+  // Estilos para dispositivos móveis
+  @media (max-width: 768px) {
+    // 768px é um ponto de interrupção comum para dispositivos móveis
+    width: 100%;
+  }
+
+  // Estilos opcionais para tablets e telas médias
+  @media (min-width: 769px) and (max-width: 1024px) {
+    // pontos de interrupção para tablets e monitores menores
+    width: 80%;
+  }
+
   &:focus {
     border-color: #3b82f6;
     outline: none;
@@ -119,6 +144,7 @@ export const InputIconWrapper = styled.div`
     font-size: 16px;
   }
 `;
+
 export const SubmitButton = styled.button`
   width: 100%;
   border-radius: 0.25rem;
@@ -126,7 +152,47 @@ export const SubmitButton = styled.button`
   padding: 0.5rem 0.75rem;
   color: white;
   font-weight: 600;
+  @media (min-width: 769px) {
+    width: 80%;
+  }
+
   &:hover {
-    background-color: #fa551d;
+    background-color: #d44611;
+  }
+`;
+
+export const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0078d7;
+  color: white;
+  border-radius: 4px;
+  padding: 10px 20px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  i {
+    font-size: 24px;
+  }
+  transition: background-color 0.3s;
+  width: 100%;
+
+  @media (min-width: 769px) {
+    width: 80%;
+  }
+
+  &:hover {
+    background-color: #005a9e;
+  }
+`;
+
+export const Or = styled.div`
+  width: 100%;
+  p {
+    color: grey;
+  }
+  @media (min-width: 769px) {
+    width: 80%;
   }
 `;
