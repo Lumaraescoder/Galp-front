@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { InputHTMLAttributes } from 'react';
 import styled from 'styled-components';
 
 const FieldWrapper = styled.div`
@@ -21,7 +21,13 @@ const StyledInput = styled.input`
   }
 `;
 
-const InputField = ({ type, id, label, ...props }) => (
+interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
+  type: string;
+  id: string;
+  label: string;
+}
+
+const InputField: React.FC<InputFieldProps> = ({ type, id, label, ...props }) => (
   <FieldWrapper>
     <StyledLabel htmlFor={id}>{label}</StyledLabel>
     <StyledInput type={type} id={id} name={id} {...props} />
