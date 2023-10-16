@@ -1,16 +1,21 @@
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import { Logo, MenuIcon, MenuLinks, NavbarContainer, StyledLink } from './NavigationStyled';
 
-const Navigation = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [activeLink, setActiveLink] = useState('Home');
+type ActiveLink = 'Home' | 'BackOffice';
 
-  // Esta função será usada para atualizar o link ativo
-  const handleSetActiveLink = (link) => {
+const Navigation = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [activeLink, setActiveLink] = useState<ActiveLink>('Home');
+
+  const handleSetActiveLink = useCallback((link: ActiveLink) => {
     setActiveLink(link);
-  };
+  }, []);
+
+  const toggleMenu = useCallback(() => {
+    setIsOpen((prevIsOpen) => !prevIsOpen);
+  }, []);
 
   return (
     <NavbarContainer>
@@ -18,10 +23,9 @@ const Navigation = () => {
         <div className="flex items-center space-x-4">
           <Logo src="images/Galp.png" alt="Galp logo" />
           <div className="hidden items-center space-x-4 md:flex">
-            {/* Use a função handleSetActiveLink para mudar o estado do link ativo */}
             <StyledLink
               href="/#"
-              active={activeLink === 'Home'} // true se este é o link ativo
+              active={activeLink === 'Home'}
               onClick={() => handleSetActiveLink('Home')}
               className="hover:text-white"
             >
@@ -29,13 +33,12 @@ const Navigation = () => {
             </StyledLink>
             <StyledLink
               href="/backoffice"
-              active={activeLink === 'BackOffice'} // true se este é o link ativo
+              active={activeLink === 'BackOffice'}
               onClick={() => handleSetActiveLink('BackOffice')}
               className="hover:text-white"
             >
               BackOffice
             </StyledLink>
-            {/* ... outros links ... */}
           </div>
         </div>
 
@@ -48,19 +51,13 @@ const Navigation = () => {
           </div>
         </MenuLinks>
 
-        {/* Container direito para o logo (em dispositivos móveis) e ícone do hambúrguer */}
         <div className="flex items-center">
-          <MenuIcon
-            open={isOpen}
-            onClick={() => setIsOpen(!isOpen)}
-            className="mr-4 block cursor-pointer md:hidden" // Adicionado margem à direita
-          >
+          <MenuIcon onClick={toggleMenu} className="mr-4 block cursor-pointer md:hidden">
             <i className="fa fa-bars" aria-hidden="true"></i>
           </MenuIcon>
 
-          {/* Logo visível apenas em dispositivos móveis */}
           <div className="block md:hidden">
-            <Logo src="" alt="Galp logo" /> {/* Insira o caminho correto no src */}
+            <Logo src="" alt="Galp logo" />
           </div>
         </div>
       </div>
