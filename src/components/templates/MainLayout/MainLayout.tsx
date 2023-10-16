@@ -1,5 +1,6 @@
-import Link from 'next/link';
 import { ReactNode } from 'react';
+
+import Navigation from '@/components/Navigation/Navigation';
 
 import { cn } from '@/lib/utils';
 
@@ -17,16 +18,8 @@ export const MainLayout = ({ children, className }: MainLayoutProps) => {
 
   return (
     <div className={wrapperStyles}>
-      <header className="bg-slate-900 p-4">
-        <ul className="flex items-center gap-10 text-gray-50">
-          {links.map(({ slug, label }) => (
-            <li key={slug}>
-              <Link href={slug} className="inline-block p-2 transition-colors hover:text-green-300">
-                {label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+      <header className="bg-[#ea5b0b] p-4">
+        <Navigation />
       </header>
       <main className="flex-1">{children}</main>
       <footer className="flex items-center justify-center p-4">Footer</footer>
