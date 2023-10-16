@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 
+import Footer from '@/components/Footer/Footer';
 import Navigation from '@/components/Navigation/Navigation';
 
 import { cn } from '@/lib/utils';
@@ -17,8 +18,8 @@ export const MainLayout = ({ children, className }: MainLayoutProps) => {
       <header className="bg-[#ea5b0b] p-4">
         <Navigation />
       </header>
-      <main className="flex-1">{children}</main>
-      <footer className="flex items-center justify-center p-4">Footer</footer>
+      <main className="flex-1 bg-[#ebebeb]">{children}</main>
+      <Footer />
     </div>
   );
 };

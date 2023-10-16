@@ -23,8 +23,9 @@ const LoginPage: React.FC = () => {
       <FormContainer>
         <div>
           <OrangeElement> </OrangeElement>
-          <TextEnter className="mb-4 mt-1 text-2xl font-semibold">Entrar</TextEnter>
+          <TextEnter className="mb-4 mt-1 text-2xl font-semibold">Registar</TextEnter>
         </div>
+        <p className="mt-3"> Ainda não tem acesso?</p>
         <form action="#" method="POST">
           <div className="mb-4 mt-5">
             <InputLabel htmlFor="username"></InputLabel>
@@ -37,7 +38,7 @@ const LoginPage: React.FC = () => {
               autoComplete="off"
             />
           </div>
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <InputLabel htmlFor="password"></InputLabel>
             <Input
               type="password"
@@ -47,10 +48,10 @@ const LoginPage: React.FC = () => {
               className="password-input"
               autoComplete="off"
             />
-          </div>
+          </div> */}
 
           <SubmitButton type="submit" className="mt-5">
-            Entrar
+            Registar
           </SubmitButton>
         </form>
 
@@ -61,7 +62,7 @@ const LoginPage: React.FC = () => {
         <div className="mt-6 text-center">
           <Button>
             <i className="fa fa-windows" aria-hidden="true"></i>
-            &nbsp; Microsoft Azure
+            &nbsp; Login with Microsoft
           </Button>
         </div>
       </FormContainer>
