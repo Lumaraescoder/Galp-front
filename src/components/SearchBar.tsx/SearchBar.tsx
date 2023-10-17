@@ -31,7 +31,7 @@ const SearchBar: React.FC<{ onSearch: (query: string) => void }> = ({ onSearch }
           <SearchInput
             type="search"
             id="default-search"
-            placeholder="Procurar stackholders ou outra informação."
+            placeholder="Procurar stackholders."
             required
             onChange={handleInputChange}
           />

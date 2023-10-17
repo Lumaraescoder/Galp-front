@@ -17,8 +17,8 @@ import {
 
 const LoginPage: React.FC = () => {
   const router = useRouter();
-  const handleNavigation = (e) => {
-    e.preventDefault(); // Isso é importante para prevenir a recarga da página ou o comportamento de envio do formulário
+  const handleNavigation = (e: any) => {
+    e.preventDefault();
     router.push('/stackholders');
   };
 
