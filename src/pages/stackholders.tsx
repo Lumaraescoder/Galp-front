@@ -5,20 +5,16 @@ import SearchBar from '@/components/SearchBar.tsx/SearchBar';
 import { MainLayout } from '@/components/templates/MainLayout';
 
 const StackHolders: React.FC = () => {
-  const [searchInitiated, setSearchInitiated] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const onSearch = (query) => {
-    if (query.trim() !== '') {
-      setSearchInitiated(true);
-    } else {
-      setSearchInitiated(false);
-    }
+  const onSearch = (query: string) => {
+    setSearchQuery(query);
   };
 
   return (
     <MainLayout>
       <SearchBar onSearch={onSearch} />
-      {searchInitiated && <CardInfo />}
+      <CardInfo searchQuery={searchQuery} />
     </MainLayout>
   );
 };

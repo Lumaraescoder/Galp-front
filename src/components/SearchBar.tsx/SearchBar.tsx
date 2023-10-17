@@ -1,58 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
 
-const Form = styled.form`
-  margin: 80px 0px;
-  width: 70%;
-  float: center;
-`;
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-`;
-const Label = styled.label`
-  &.sr-only {
-  }
-`;
-const IconContainer = styled.div`
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  margin-left: 15px;
-`;
-const SearchInput = styled.input`
-  display: block;
-  width: 100%;
-  padding: 1rem;
-  font-size: 0.875rem;
-  color: #1f2937;
-  background-color: #eaeaea;
-  border-radius: 32px;
-  border: none;
-  padding-left: 3rem;
-  font-size: 22px;
-  &:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
-    outline: none;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    border-color: #374151;
-    background-color: #f3f4f6;
-    color: #f3f4f6;
-    &::placeholder {
-      color: #9ca3af;
-    }
-
-    &:focus {
-      border-color: #3b82f6;
-      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
-    }
-  }
-`;
+import { Container, Form, IconContainer, Label, SearchInput } from './SearchBarStyled';
 
 const SearchBar: React.FC<{ onSearch: (query: string) => void }> = ({ onSearch }) => {
   const [inputValue, setInputValue] = React.useState('');
