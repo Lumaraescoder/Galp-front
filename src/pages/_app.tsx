@@ -1,5 +1,4 @@
 import type { AppProps } from 'next/app';
-
 import '../styles/globals.css';
 import 'font-awesome/css/font-awesome.min.css';
 import { useRouter } from 'next/router';
