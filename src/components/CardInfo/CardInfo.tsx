@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import React from 'react';
 import { CardInfoProps, Stack } from 'src/types/types';
 import useSWR from 'swr';
@@ -14,13 +15,21 @@ const fetcher = (url: string) =>
   }).then((res) => res.json());
 
 const CardInfo: React.FC<Stack> = ({ stakeholder }) => {
+  const router = useRouter();
+
+  const showMoreDetails = () => {
+    router.push(`/strackholderinfo/${stakeholder._id}`);
+  };
+
   return (
     <CardContainer>
       <CardTitle>{stakeholder.business}</CardTitle>
       <CardText>{stakeholder.description}</CardText>
       <CardText>{stakeholder.stakeholder}</CardText>
       <CardText>{stakeholder.email}</CardText>
-      <CardButton type="button">More Details</CardButton>
+      <CardButton type="button" onClick={showMoreDetails}>
+        More Details
+      </CardButton>
     </CardContainer>
   );
 };
@@ -34,7 +43,7 @@ const CardList: React.FC<Props> = ({ searchQuery }) => {
     fetcher
   );
   if (error) return <div>Failed to load</div>;
-  if (!stakeholders) return <div>Loading...</div>; // This line ensures that the following code will only run if 'stakeholders' is not undefined.
+  if (!stakeholders) return <div>Loading...</div>;
 
   const displayedStakeholders = searchQuery.trim()
     ? stakeholders.filter((stakeholder) =>
