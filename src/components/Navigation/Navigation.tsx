@@ -22,7 +22,7 @@ const Navigation = () => {
     <NavbarContainer>
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-4">
-          <Logo src="images/Galp.png" alt="Galp logo" />
+          <Logo src="/images/Galp.png" alt="Galp logo" />
           <div className="hidden items-center space-x-4 md:flex">
             <StyledLink
               href="/#"

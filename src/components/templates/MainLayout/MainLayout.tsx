@@ -1,7 +1,5 @@
 import { ReactNode } from 'react';
 
-import Navigation from '@/components/Navigation/Navigation';
-
 import { cn } from '@/lib/utils';
 
 interface MainLayoutProps {
@@ -14,11 +12,8 @@ export const MainLayout = ({ children, className }: MainLayoutProps) => {
 
   return (
     <div className={wrapperStyles}>
-      <header className="bg-[#ea5b0b] p-4">
-        <Navigation />
-      </header>
-      <main className="flex-1">{children}</main>
-      <footer className="flex items-center justify-center p-4">Footer</footer>
+      <header className="bg-[#ea5b0b] p-4">{/* <Navigation /> */}</header>
+      <main className="flex-1 bg-[#ebebeb]">{children}</main>
     </div>
   );
 };

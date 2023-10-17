@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import React from 'react';
 
 import {
@@ -10,21 +11,33 @@ import {
   OrangeElement,
   TextEnter,
   Button,
-  Or
+  Or,
+  MobileLogoContainer
 } from './LoginStyled';
 
 const LoginPage: React.FC = () => {
+  const router = useRouter();
+  const handleNavigation = (e: any) => {
+    e.preventDefault();
+    router.push('/stackholders');
+  };
+
   return (
     <Container>
       <ImageContainer>
         <img src="/images/Galp.png" alt="Placeholder Image" width={500} height={500} />
         <span>galp</span>
       </ImageContainer>
+
       <FormContainer>
+        <MobileLogoContainer>
+          <img src="/images/Galp.png" alt="Galp Logo" />
+        </MobileLogoContainer>
         <div>
           <OrangeElement> </OrangeElement>
-          <TextEnter className="mb-4 mt-1 text-2xl font-semibold">Entrar</TextEnter>
+          <TextEnter className="mb-4 mt-1 text-2xl font-semibold">Registar</TextEnter>
         </div>
+        <p className="mt-3"> Ainda não tem acesso?</p>
         <form action="#" method="POST">
           <div className="mb-4 mt-5">
             <InputLabel htmlFor="username"></InputLabel>
@@ -37,7 +50,7 @@ const LoginPage: React.FC = () => {
               autoComplete="off"
             />
           </div>
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <InputLabel htmlFor="password"></InputLabel>
             <Input
               type="password"
@@ -47,10 +60,10 @@ const LoginPage: React.FC = () => {
               className="password-input"
               autoComplete="off"
             />
-          </div>
+          </div> */}
 
-          <SubmitButton type="submit" className="mt-5">
-            Entrar
+          <SubmitButton type="submit" className="mt-5" onClick={handleNavigation}>
+            Registar
           </SubmitButton>
         </form>
 
@@ -59,9 +72,9 @@ const LoginPage: React.FC = () => {
         </Or>
 
         <div className="mt-6 text-center">
-          <Button>
+          <Button onClick={handleNavigation}>
             <i className="fa fa-windows" aria-hidden="true"></i>
-            &nbsp; Microsoft Azure
+            &nbsp; Login with Microsoft
           </Button>
         </div>
       </FormContainer>
