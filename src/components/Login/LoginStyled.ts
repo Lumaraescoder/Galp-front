@@ -1,5 +1,30 @@
 import styled from 'styled-components';
 
+export const MobileLogoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color: transparent;
+  margin: 10px 31px;
+  @media (min-width: 769px) {
+    display: none;
+  }
+
+  img {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+  }
+
+  span {
+    display: block;
+    color: #333;
+    font-size: 20px;
+    margin-top: 5px;
+  }
+`;
 export const Container = styled.div`
   display: flex;
   height: 100vh;
@@ -77,15 +102,10 @@ export const Input = styled.input`
   font-size: 16px;
   font-weight: 505;
 
-  // Estilos para dispositivos móveis
   @media (max-width: 768px) {
-    // 768px é um ponto de interrupção comum para dispositivos móveis
     width: 100%;
   }
-
-  // Estilos opcionais para tablets e telas médias
   @media (min-width: 769px) and (max-width: 1024px) {
-    // pontos de interrupção para tablets e monitores menores
     width: 80%;
   }
 

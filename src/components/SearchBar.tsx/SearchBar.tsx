@@ -54,10 +54,21 @@ const SearchInput = styled.input`
   }
 `;
 
-const SearchBar: React.FC = () => {
+const SearchBar: React.FC<{ onSearch: (query: string) => void }> = ({ onSearch }) => {
+  const [inputValue, setInputValue] = React.useState('');
+
+  const handleInputChange = (e: any) => {
+    setInputValue(e.target.value);
+  };
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    onSearch(inputValue);
+  };
+
   return (
     <Container>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Label className="sr-only mb-2  text-sm font-medium text-gray-900 dark:text-white">
           Search
         </Label>
@@ -73,6 +84,7 @@ const SearchBar: React.FC = () => {
             id="default-search"
             placeholder="Procurar stackholders ou outra informação."
             required
+            onChange={handleInputChange}
           />
         </div>
       </Form>
