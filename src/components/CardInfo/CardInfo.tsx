@@ -1,6 +1,5 @@
 import React from 'react';
 import { CardInfoProps, Stack } from 'src/types/types';
-import useSWR from 'swr';
 
 import { CardButton, CardContainer, CardText, CardTitle, Container } from './CardInfoStyled';
 
