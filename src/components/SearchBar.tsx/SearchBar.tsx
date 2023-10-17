@@ -5,10 +5,11 @@ import { Container, Form, IconContainer, Label, SearchInput } from './SearchBarS
 const SearchBar: React.FC<{ onSearch: (query: string) => void }> = ({ onSearch }) => {
   const [inputValue, setInputValue] = React.useState('');
 
-  const handleInputChange = (e: any) => {
-    setInputValue(e.target.value);
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    setInputValue(newValue);
+    onSearch(newValue);
   };
-
   const handleSubmit = (e: any) => {
     e.preventDefault();
     onSearch(inputValue);

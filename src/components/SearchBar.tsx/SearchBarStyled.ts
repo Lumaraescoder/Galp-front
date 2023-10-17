@@ -25,12 +25,13 @@ export const SearchInput = styled.input`
   width: 100%;
   padding: 1rem;
   font-size: 0.875rem;
-  color: #1f2937;
+  color: black !important;
   background-color: #eaeaea;
   border-radius: 32px;
   border: none;
   padding-left: 3rem;
   font-size: 22px;
+
   &:focus {
     border-color: #3b82f6;
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);

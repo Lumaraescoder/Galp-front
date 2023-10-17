@@ -6,15 +6,17 @@ import { MainLayout } from '@/components/templates/MainLayout';
 
 const StackHolders: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
+  const [searchInitiated, setSearchInitiated] = useState(false);
 
   const onSearch = (query: string) => {
     setSearchQuery(query);
+    setSearchInitiated(query.trim().length > 0); // if query is not empty, search is initiated
   };
 
   return (
     <MainLayout>
       <SearchBar onSearch={onSearch} />
-      <CardInfo searchQuery={searchQuery} />
+      {searchInitiated && <CardInfo searchQuery={searchQuery} />} {/* Conditional rendering */}
     </MainLayout>
   );
 };
