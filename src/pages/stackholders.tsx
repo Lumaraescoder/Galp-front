@@ -10,13 +10,13 @@ const StackHolders: React.FC = () => {
 
   const onSearch = (query: string) => {
     setSearchQuery(query);
-    setSearchInitiated(query.trim().length > 0); // if query is not empty, search is initiated
+    setSearchInitiated(query.trim().length > 0);
   };
 
   return (
     <MainLayout>
       <SearchBar onSearch={onSearch} />
-      {searchInitiated && <CardInfo searchQuery={searchQuery} />} {/* Conditional rendering */}
+      {searchInitiated && <CardInfo searchQuery={searchQuery} />}
     </MainLayout>
   );
 };
