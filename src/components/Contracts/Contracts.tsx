@@ -1,44 +1,13 @@
 import React from 'react';
-import styled from 'styled-components';
 
-const ContractsContainer = styled.div`
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 20px;
-  width: 50%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  p {
-    font-weight: 600;
-  }
-`;
-
-const ContractItem = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #ccc;
-  margin: 20px 0;
-  &:last-child {
-    border-bottom: none;
-  }
-`;
-
-const DownloadIcon = styled.i`
-  font-size: 24px;
-  color: #ea5b0b;
-`;
-
-const ContractsHeader = styled.div`
-  display: flex;
-  align-items: center;
-  font-size: 24px;
-  margin-bottom: 20px;
-`;
-
-const ContractName = styled.span`
-  font-size: 18px;
-  color: #000;
-`;
+import {
+  ContractItem,
+  ContractName,
+  ContractsContainer,
+  ContractsHeader,
+  DownloadIcon,
+  Title
+} from './ContractsStyled';
 
 const Contracts = () => {
   const staticContracts = [
@@ -51,7 +20,7 @@ const Contracts = () => {
     <ContractsContainer>
       <ContractsHeader>
         <DownloadIcon className="fa fa-download" />
-        &nbsp;&nbsp; <p>Contracts</p>
+        &nbsp;&nbsp; <Title>Contracts</Title>
       </ContractsHeader>
       {staticContracts.map((contract, index) => (
         <ContractItem key={index}>

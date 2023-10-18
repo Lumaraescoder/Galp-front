@@ -4,17 +4,16 @@ export const CardContainers = styled.div`
   width: 300px;
   border: 1px solid #e0e0e0;
   border-radius: 10px;
-  padding: 17px 22px 10px 21px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
   flex: 1;
-  padding: 3px 14px;
+  padding: 17px 22px;
 `;
 
 export const CardHeader = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 `;
 
 export const CardTitle = styled.h2`
@@ -26,9 +25,8 @@ export const CardTitle = styled.h2`
 `;
 
 export const CardItem = styled.div`
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 `;
-
 export const CardLabel = styled.label`
   font-weight: bold;
   color: #555;

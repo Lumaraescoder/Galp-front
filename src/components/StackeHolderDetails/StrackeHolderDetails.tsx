@@ -5,7 +5,7 @@ import CardLineChart from '../Graph/Graph';
 import InfoCard from '../InfoCard/InfoCard';
 import StacekHolder from '../Stracekholder/Stacekholder';
 import Table from '../Table/Table';
-import { CenteredContainer, CenteredItem, ColumnContainer } from './StrackeHolcerStyled';
+import { CenteredContainer, CenteredItem, ColumnContainer } from './StrackeHolderDetaisls.Styled';
 
 const StakeholderDetails: React.FC = () => {
   return (
