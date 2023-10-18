@@ -1,397 +1,157 @@
 import React from 'react';
 
+import {
+  AvatarWrapper,
+  FlexDiv,
+  OnlineIndicator,
+  RoundSpan,
+  StatusBadge,
+  StatusIndicator,
+  StyledImg,
+  StyledLink,
+  StyledSvg,
+  StyledTD,
+  StyledTH,
+  StyledTableCell,
+  TableCell,
+  TableHeaderCell,
+  TableHeaderRow,
+  UserEmail,
+  UserInfo,
+  UserName
+} from './TableStyled';
+
+// Array de dados representando usuários
+const userData = [
+  {
+    name: 'Steven Jobs',
+    email: 'jobs@sailboatui.com',
+    avatar:
+      'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    state: 'Active',
+    role: 'Product Designer',
+    teams: ['Design', 'Product', 'Develop']
+  },
+  // Adicionando mais usuários
+  {
+    name: 'Susan Calvin',
+    email: 'susan@irobottech.com',
+    avatar:
+      'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    state: 'Offline',
+    role: 'Robot Psychologist',
+    teams: ['Robotics', 'AI']
+  },
+  {
+    name: 'Tony Stark',
+    email: 'stark@avengers.com',
+    avatar:
+      'https://images.unsplash.com/photo-1517849845537-4d257902454a?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    state: 'Busy',
+    role: 'Inventor',
+    teams: ['Innovations', 'Avengers']
+  },
+  {
+    name: 'Ada Lovelace',
+    email: 'ada@firstprogrammer.com',
+    avatar:
+      'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    state: 'In a meeting',
+    role: 'Computer Scientist',
+    teams: ['Algorithm', 'Computation']
+  }
+  // ... mais usuários conforme necessário
+];
+
 const Table = () => {
+  // Renderiza as equipes para cada usuário
+  const renderTeams = (teams: any[]) => {
+    return teams.map(
+      (
+        team:
+          | string
+          | number
+          | boolean
+          | React.ReactElement<any, string | React.JSXElementConstructor<any>>
+          | Iterable<React.ReactNode>
+          | React.ReactPortal
+          | React.PromiseLikeOfReactNode
+          | null
+          | undefined,
+        index: React.Key | null | undefined
+      ) => (
+        <RoundSpan key={index} bgColor="#EBF8FF" textColor="#3182CE">
+          {team}
+        </RoundSpan>
+      )
+    );
+  };
+
+  // Renderiza as linhas da tabela para cada usuário
+  const renderTableRows = userData.map((user, index) => (
+    <tr key={index} className="hover:bg-gray-50">
+      <StyledTH>
+        <AvatarWrapper>
+          <StyledImg src={user.avatar} alt="User Avatar" />
+          <OnlineIndicator />
+        </AvatarWrapper>
+        <UserInfo>
+          <UserName>{user.name}</UserName>
+          <UserEmail>{user.email}</UserEmail>
+        </UserInfo>
+      </StyledTH>
+      <StyledTD>
+        <StatusBadge>
+          <StatusIndicator />
+          {user.state}
+        </StatusBadge>
+      </StyledTD>
+      <StyledTableCell>{user.role}</StyledTableCell>
+      <TableCell>
+        <FlexDiv>{renderTeams(user.teams)}</FlexDiv>
+      </TableCell>
+      <TableCell>
+        <FlexDiv></FlexDiv>
+      </TableCell>
+      <TableCell>
+        <FlexDiv>
+          <StyledLink href="#" title="Editar">
+            <StyledSvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
+              />
+            </StyledSvg>
+          </StyledLink>
+          <StyledLink href="#" title="Excluir">
+            <StyledSvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18V9a1 1 0 011-1h10a1 1 0 011 1v9m-1 4a2 2 0 01-2 2H8a2 2 0 01-2-2v-2a2 2 0 012-2h6a2 2 0 012 2v2zM9 9h6M9 9a3 3 0 110-6 3 3 0 010 6zm6 0a3 3 0 110-6 3 3 0 010 6zm-6 0h6"
+              />
+            </StyledSvg>
+          </StyledLink>
+        </FlexDiv>
+      </TableCell>
+    </tr>
+  ));
+
   return (
     <div className="m-5 overflow-hidden rounded-lg border border-gray-200 shadow-md">
       <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
         <thead className="bg-gray-50">
-          <tr>
-            <th scope="col" className="px-6 py-4 font-medium text-gray-900">
-              Name
-            </th>
-            <th scope="col" className="px-6 py-4 font-medium text-gray-900">
-              State
-            </th>
-            <th scope="col" className="px-6 py-4 font-medium text-gray-900">
-              Role
-            </th>
-            <th scope="col" className="px-6 py-4 font-medium text-gray-900">
-              Team
-            </th>
-            <th scope="col" className="px-6 py-4 font-medium text-gray-900"></th>
-          </tr>
+          <TableHeaderRow>
+            <TableHeaderCell>Name</TableHeaderCell>
+            <TableHeaderCell>State</TableHeaderCell>
+            <TableHeaderCell>Role</TableHeaderCell>
+            <TableHeaderCell>Team</TableHeaderCell>
+            <TableHeaderCell></TableHeaderCell>
+          </TableHeaderRow>
         </thead>
         <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-          <tr className="hover:bg-gray-50">
-            <th className="flex gap-3 px-6 py-4 font-normal text-gray-900">
-              <div className="relative h-10 w-10">
-                <img
-                  className="h-full w-full rounded-full object-cover object-center"
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                  alt=""
-                />
-                <span className="absolute bottom-0 right-0 h-2 w-2 rounded-full bg-green-400 ring ring-white"></span>
-              </div>
-              <div className="text-sm">
-                <div className="font-medium text-gray-700">Steven Jobs</div>
-                <div className="text-gray-400">jobs@sailboatui.com</div>
-              </div>
-            </th>
-            <td className="px-6 py-4">
-              <span className="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
-                <span className="h-1.5 w-1.5 rounded-full bg-green-600"></span>
-                Active
-              </span>
-            </td>
-            <td className="px-6 py-4">Product Designer</td>
-            <td className="px-6 py-4">
-              <div className="flex gap-2">
-                <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600">
-                  Design
-                </span>
-                <span className="inline-flex items-center gap-1 rounded-full bg-indigo-50 px-2 py-1 text-xs font-semibold text-indigo-600">
-                  Product
-                </span>
-                <span className="inline-flex items-center gap-1 rounded-full bg-violet-50 px-2 py-1 text-xs font-semibold text-violet-600">
-                  Develop
-                </span>
-              </div>
-            </td>
-            <td className="px-6 py-4">
-              <div className="flex justify-end gap-4">
-                <a x-data="{ tooltip: 'Delete' }" href="#">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="h-6 w-6"
-                    x-tooltip="tooltip"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
-                    />
-                  </svg>
-                </a>
-                <a x-data="{ tooltip: 'Edite' }" href="#">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="h-6 w-6"
-                    x-tooltip="tooltip"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </td>
-          </tr>
-          <tr className="hover:bg-gray-50">
-            <th className="flex gap-3 px-6 py-4 font-normal text-gray-900">
-              <div className="relative h-10 w-10">
-                <img
-                  className="h-full w-full rounded-full object-cover object-center"
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                  alt=""
-                />
-                <span className="absolute bottom-0 right-0 h-2 w-2 rounded-full bg-green-400 ring ring-white"></span>
-              </div>
-              <div className="text-sm">
-                <div className="font-medium text-gray-700">Steven Jobs</div>
-                <div className="text-gray-400">jobs@sailboatui.com</div>
-              </div>
-            </th>
-            <td className="px-6 py-4">
-              <span className="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
-                <span className="h-1.5 w-1.5 rounded-full bg-green-600"></span>
-                Active
-              </span>
-            </td>
-            <td className="px-6 py-4">Product Designer</td>
-            <td className="px-6 py-4">
-              <div className="flex gap-2">
-                <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600">
-                  Design
-                </span>
-                <span className="inline-flex items-center gap-1 rounded-full bg-indigo-50 px-2 py-1 text-xs font-semibold text-indigo-600">
-                  Product
-                </span>
-                <span className="inline-flex items-center gap-1 rounded-full bg-violet-50 px-2 py-1 text-xs font-semibold text-violet-600">
-                  Develop
-                </span>
-              </div>
-            </td>
-            <td className="px-6 py-4">
-              <div className="flex justify-end gap-4">
-                <a x-data="{ tooltip: 'Delete' }" href="#">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="h-6 w-6"
-                    x-tooltip="tooltip"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
-                    />
-                  </svg>
-                </a>
-                <a x-data="{ tooltip: 'Edite' }" href="#">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="h-6 w-6"
-                    x-tooltip="tooltip"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </td>
-          </tr>
-          <tr className="hover:bg-gray-50">
-            <th className="flex gap-3 px-6 py-4 font-normal text-gray-900">
-              <div className="relative h-10 w-10">
-                <img
-                  className="h-full w-full rounded-full object-cover object-center"
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                  alt=""
-                />
-                <span className="absolute bottom-0 right-0 h-2 w-2 rounded-full bg-green-400 ring ring-white"></span>
-              </div>
-              <div className="text-sm">
-                <div className="font-medium text-gray-700">Steven Jobs</div>
-                <div className="text-gray-400">jobs@sailboatui.com</div>
-              </div>
-            </th>
-            <td className="px-6 py-4">
-              <span className="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
-                <span className="h-1.5 w-1.5 rounded-full bg-green-600"></span>
-                Active
-              </span>
-            </td>
-            <td className="px-6 py-4">Product Designer</td>
-            <td className="px-6 py-4">
-              <div className="flex gap-2">
-                <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600">
-                  Design
-                </span>
-                <span className="inline-flex items-center gap-1 rounded-full bg-indigo-50 px-2 py-1 text-xs font-semibold text-indigo-600">
-                  Product
-                </span>
-                <span className="inline-flex items-center gap-1 rounded-full bg-violet-50 px-2 py-1 text-xs font-semibold text-violet-600">
-                  Develop
-                </span>
-              </div>
-            </td>
-            <td className="px-6 py-4">
-              <div className="flex justify-end gap-4">
-                <a x-data="{ tooltip: 'Delete' }" href="#">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="h-6 w-6"
-                    x-tooltip="tooltip"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
-                    />
-                  </svg>
-                </a>
-                <a x-data="{ tooltip: 'Edite' }" href="#">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="h-6 w-6"
-                    x-tooltip="tooltip"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </td>
-          </tr>
-          <tr className="hover:bg-gray-50">
-            <th className="flex gap-3 px-6 py-4 font-normal text-gray-900">
-              <div className="relative h-10 w-10">
-                <img
-                  className="h-full w-full rounded-full object-cover object-center"
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                  alt=""
-                />
-                <span className="absolute bottom-0 right-0 h-2 w-2 rounded-full bg-green-400 ring ring-white"></span>
-              </div>
-              <div className="text-sm">
-                <div className="font-medium text-gray-700">Steven Jobs</div>
-                <div className="text-gray-400">jobs@sailboatui.com</div>
-              </div>
-            </th>
-            <td className="px-6 py-4">
-              <span className="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
-                <span className="h-1.5 w-1.5 rounded-full bg-green-600"></span>
-                Active
-              </span>
-            </td>
-            <td className="px-6 py-4">Product Designer</td>
-            <td className="px-6 py-4">
-              <div className="flex gap-2">
-                <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600">
-                  Design
-                </span>
-                <span className="inline-flex items-center gap-1 rounded-full bg-indigo-50 px-2 py-1 text-xs font-semibold text-indigo-600">
-                  Product
-                </span>
-                <span className="inline-flex items-center gap-1 rounded-full bg-violet-50 px-2 py-1 text-xs font-semibold text-violet-600">
-                  Develop
-                </span>
-              </div>
-            </td>
-            <td className="px-6 py-4">
-              <div className="flex justify-end gap-4">
-                <a x-data="{ tooltip: 'Delete' }" href="#">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="h-6 w-6"
-                    x-tooltip="tooltip"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
-                    />
-                  </svg>
-                </a>
-                <a x-data="{ tooltip: 'Edite' }" href="#">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="h-6 w-6"
-                    x-tooltip="tooltip"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </td>
-          </tr>
-          <tr className="hover:bg-gray-50">
-            <th className="flex gap-3 px-6 py-4 font-normal text-gray-900">
-              <div className="relative h-10 w-10">
-                <img
-                  className="h-full w-full rounded-full object-cover object-center"
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                  alt=""
-                />
-                <span className="absolute bottom-0 right-0 h-2 w-2 rounded-full bg-green-400 ring ring-white"></span>
-              </div>
-              <div className="text-sm">
-                <div className="font-medium text-gray-700">Steven Jobs</div>
-                <div className="text-gray-400">jobs@sailboatui.com</div>
-              </div>
-            </th>
-            <td className="px-6 py-4">
-              <span className="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
-                <span className="h-1.5 w-1.5 rounded-full bg-green-600"></span>
-                Active
-              </span>
-            </td>
-            <td className="px-6 py-4">Product Designer</td>
-            <td className="px-6 py-4">
-              <div className="flex gap-2">
-                <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600">
-                  Design
-                </span>
-                <span className="inline-flex items-center gap-1 rounded-full bg-indigo-50 px-2 py-1 text-xs font-semibold text-indigo-600">
-                  Product
-                </span>
-                <span className="inline-flex items-center gap-1 rounded-full bg-violet-50 px-2 py-1 text-xs font-semibold text-violet-600">
-                  Develop
-                </span>
-              </div>
-            </td>
-            <td className="px-6 py-4">
-              <div className="flex justify-end gap-4">
-                <a x-data="{ tooltip: 'Delete' }" href="#">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="h-6 w-6"
-                    x-tooltip="tooltip"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
-                    />
-                  </svg>
-                </a>
-                <a x-data="{ tooltip: 'Edite' }" href="#">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="h-6 w-6"
-                    x-tooltip="tooltip"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </td>
-          </tr>
+          {renderTableRows}
         </tbody>
       </table>
     </div>
