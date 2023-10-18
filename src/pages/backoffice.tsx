@@ -1,6 +1,17 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 import Form from '@/components/Form/Form';
+
+const appearFromLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
 
 const StyledInput = styled.input`
   width: 100%;
@@ -32,6 +43,7 @@ const Container = styled.div`
 
 const LeftSection = styled.div`
   flex: 1;
+  animation: ${appearFromLeft} 1s ease;
 
   @media (max-width: 768px) {
     max-width: 100%;
