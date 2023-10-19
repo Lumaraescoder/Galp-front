@@ -3,6 +3,7 @@ import React from 'react';
 import { CardInfoProps, Stack } from 'src/types/types';
 import useSWR from 'swr';
 
+import Spinner from '../Spinner/Spinner';
 import { CardButton, CardContainer, CardText, CardTitle, Container } from './CardInfoStyled';
 
 const fetcher = (url: string) =>
@@ -43,7 +44,7 @@ const CardList: React.FC<Props> = ({ searchQuery }) => {
     fetcher
   );
   if (error) return <div>Failed to load</div>;
-  if (!stakeholders) return <div>Loading...</div>;
+  if (!stakeholders) return <Spinner />;
 
   const displayedStakeholders = searchQuery.trim()
     ? stakeholders.filter((stakeholder) =>
