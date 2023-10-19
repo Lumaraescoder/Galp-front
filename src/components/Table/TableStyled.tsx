@@ -86,6 +86,11 @@ export const StyledTableCell = styled.td`
 export const TableCell = styled.td`
   padding: 24px;
 `;
+export const TableContainer = styled.td`
+  &:hover {
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
+  }
+`;
 
 export const FlexDiv = styled.div`
   display: flex;
@@ -116,4 +121,8 @@ export const StyledSvg = styled.svg`
   fill: none;
   stroke-width: 1.5;
   stroke: currentColor;
+`;
+export const Container = styled.div`
+  margin-top: 30px;
+  width: 100%;
 `;

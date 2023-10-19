@@ -1,4 +1,5 @@
 import React from 'react';
+import { StacekHolderProps } from 'src/types/types';
 
 import {
   CardContainers,
@@ -10,7 +11,7 @@ import {
   IconUser
 } from './StrackeholderStyled';
 
-const StacekHolder = () => {
+const StacekHolder: React.FC<StacekHolderProps> = ({ company, stakeholder, address }) => {
   return (
     <CardContainers>
       <CardHeader>
@@ -20,18 +21,19 @@ const StacekHolder = () => {
         </CardTitle>
       </CardHeader>
       <CardItem>
-        <CardLabel>Company</CardLabel>
-        <CardValue>LNG producing company</CardValue>
+        <CardLabel>Company: </CardLabel>
+        <CardValue>{company}</CardValue> {/* Dynamically set value */}
       </CardItem>
       <CardItem>
-        <CardLabel>Stakeholder</CardLabel>
-        <CardValue>John Doe</CardValue>
+        <CardLabel>Stakeholder:</CardLabel>
+        <CardValue>{stakeholder}</CardValue> {/* Dynamically set value */}
       </CardItem>
       <CardItem>
         <CardLabel>Address:</CardLabel>
-        <CardValue>123 Main Street, Cityville, Country</CardValue>
+        <CardValue>{address}</CardValue> {/* Dynamically set value */}
       </CardItem>
     </CardContainers>
   );
 };
+
 export default StacekHolder;

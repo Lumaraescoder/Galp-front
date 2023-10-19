@@ -19,7 +19,7 @@ const Contracts = () => {
   return (
     <ContractsContainer>
       <ContractsHeader>
-        <DownloadIcon className="fa fa-download" />
+        <DownloadIcon className=" fa fa-pencil" />
         &nbsp;&nbsp; <Title>Contracts</Title>
       </ContractsHeader>
       {staticContracts.map((contract, index) => (

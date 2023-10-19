@@ -1,6 +1,11 @@
 import Chart from 'chart.js';
 import React from 'react';
-
+import styled from 'styled-components';
+const Container = styled.div`
+  &:hover {
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
+  }
+`;
 function CardLineChart() {
   React.useEffect(() => {
     const config = {
@@ -101,7 +106,7 @@ function CardLineChart() {
 
   return (
     <>
-      <div className="bg-blueGray-700 relative mb-6 flex w-full min-w-0 flex-col break-words rounded shadow-lg">
+      <Container className="bg-blueGray-700 relative mb-6 flex w-full min-w-0 flex-col break-words rounded shadow-lg">
         <div className="mb-0 rounded-t bg-transparent px-4 py-3">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-1 flex-grow">
@@ -116,7 +121,7 @@ function CardLineChart() {
             <canvas id="line-chart"></canvas>
           </div>
         </div>
-      </div>
+      </Container>
     </>
   );
 }

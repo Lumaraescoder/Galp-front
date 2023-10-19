@@ -2,6 +2,7 @@ import React from 'react';
 
 import {
   AvatarWrapper,
+  Container,
   FlexDiv,
   OnlineIndicator,
   RoundSpan,
@@ -139,22 +140,24 @@ const Table = () => {
   ));
 
   return (
-    <div className="m-5 overflow-hidden rounded-lg border border-gray-200 shadow-md">
-      <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
-        <thead className="bg-gray-50">
-          <TableHeaderRow>
-            <TableHeaderCell>Name</TableHeaderCell>
-            <TableHeaderCell>State</TableHeaderCell>
-            <TableHeaderCell>Role</TableHeaderCell>
-            <TableHeaderCell>Team</TableHeaderCell>
-            <TableHeaderCell></TableHeaderCell>
-          </TableHeaderRow>
-        </thead>
-        <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-          {renderTableRows}
-        </tbody>
-      </table>
-    </div>
+    <Container>
+      <div className="m-0 mt-5 overflow-hidden rounded-lg border border-gray-200 shadow-md">
+        <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
+          <thead className="bg-gray-50">
+            <TableHeaderRow>
+              <TableHeaderCell>Name</TableHeaderCell>
+              <TableHeaderCell>State</TableHeaderCell>
+              <TableHeaderCell>Role</TableHeaderCell>
+              <TableHeaderCell>Team</TableHeaderCell>
+              <TableHeaderCell></TableHeaderCell>
+            </TableHeaderRow>
+          </thead>
+          <tbody className="divide-y divide-gray-100 border-t border-gray-100">
+            {renderTableRows}
+          </tbody>
+        </table>
+      </div>
+    </Container>
   );
 };
 

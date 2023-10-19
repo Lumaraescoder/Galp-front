@@ -16,6 +16,9 @@ export const ContractsContainer = styled.div`
   @media (min-width: 768px) {
     width: 50%;
   }
+  &:hover {
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
+  }
 `;
 
 export const ContractItem = styled.div`
@@ -44,10 +47,10 @@ export const ContractsHeader = styled.div`
 `;
 
 export const ContractName = styled.span`
-  font-size: 18px;
-  color: #000;
+  font-size: 17px;
+  color: grey;
 `;
 export const Title = styled.p`
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
 `;

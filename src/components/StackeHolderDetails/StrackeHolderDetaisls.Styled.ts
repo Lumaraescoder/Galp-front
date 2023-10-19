@@ -13,10 +13,10 @@ export const CenteredContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 1300px;
+  height: 1500px;
   padding: 50px;
 
-  margin-top: 100px;
+  margin-top: 30px;
 `;
 
 export const CenteredItem = styled.div`
