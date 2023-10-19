@@ -24,7 +24,7 @@ export const SearchInput = styled.input`
   display: block;
   width: 100%;
   padding: 1rem;
-  font-size: 1rem; /* default font size for large screens */
+  font-size: 1rem;
   color: black !important;
   background-color: #eaeaea;
   border-radius: 32px;
@@ -37,13 +37,12 @@ export const SearchInput = styled.input`
     outline: none;
   }
 
-  /* Lower the font size on smaller screens */
   @media (max-width: 768px) {
-    font-size: 0.875rem; /* smaller font size for tablets and below */
+    font-size: 0.875rem;
   }
 
   @media (max-width: 480px) {
-    font-size: 0.75rem; /* even smaller font size for mobile phones */
+    font-size: 0.75rem;
   }
 
   @media (prefers-color-scheme: dark) {
