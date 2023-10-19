@@ -1,4 +1,4 @@
-import Chart from 'chart.js';
+import { Chart, ChartConfiguration, PositionType } from 'chart.js';
 import React from 'react';
 import styled from 'styled-components';
 const Container = styled.div`
@@ -6,22 +6,27 @@ const Container = styled.div`
     box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
   }
 `;
+declare global {
+  interface Window {
+    myLine?: Chart;
+  }
+}
 function CardLineChart() {
   React.useEffect(() => {
-    const config = {
+    const config: ChartConfiguration = {
       type: 'line',
       data: {
         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
         datasets: [
           {
-            label: new Date().getFullYear(),
+            label: String(new Date().getFullYear()),
             backgroundColor: '#3182ce',
             borderColor: '#3182ce',
             data: [65, 78, 66, 44, 56, 67, 75],
             fill: false
           },
           {
-            label: new Date().getFullYear() - 1,
+            label: String(new Date().getFullYear() - 1),
             fill: false,
             backgroundColor: '#ed64a6',
             borderColor: '#ed64a6',
@@ -41,8 +46,8 @@ function CardLineChart() {
           labels: {
             fontColor: 'white'
           },
-          align: 'end',
-          position: 'bottom'
+          align: 'end' as const, // Specify the correct type
+          position: 'bottom' as PositionType
         },
         tooltips: {
           mode: 'index',
@@ -67,11 +72,11 @@ function CardLineChart() {
               gridLines: {
                 display: false,
                 borderDash: [2],
-                borderDashOffset: [2],
+                // borderDashOffset: [2],
                 color: 'rgba(33, 37, 41, 0.3)',
                 zeroLineColor: 'rgba(0, 0, 0, 0)',
-                zeroLineBorderDash: [2],
-                zeroLineBorderDashOffset: [2]
+                zeroLineBorderDash: [2]
+                // zeroLineBorderDashOffset: [2]
               }
             }
           ],
@@ -88,20 +93,24 @@ function CardLineChart() {
               },
               gridLines: {
                 borderDash: [3],
-                borderDashOffset: [3],
+                // borderDashOffset: [3],
                 drawBorder: false,
                 color: 'rgba(255, 255, 255, 0.15)',
                 zeroLineColor: 'rgba(33, 37, 41, 0)',
-                zeroLineBorderDash: [2],
-                zeroLineBorderDashOffset: [2]
+                zeroLineBorderDash: [2]
+                // zeroLineBorderDashOffset: [2]
               }
             }
           ]
         }
       }
     };
-    const ctx = document.getElementById('line-chart').getContext('2d');
-    window.myLine = new Chart(ctx, config);
+    const canvas = document.getElementById('line-chart') as HTMLCanvasElement;
+    const ctx = canvas?.getContext('2d');
+
+    if (ctx) {
+      window.myLine = new Chart(ctx, config);
+    }
   }, []);
 
   return (

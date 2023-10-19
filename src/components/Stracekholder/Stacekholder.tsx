@@ -22,15 +22,15 @@ const StacekHolder: React.FC<StacekHolderProps> = ({ company, stakeholder, addre
       </CardHeader>
       <CardItem>
         <CardLabel>Company: </CardLabel>
-        <CardValue>{company}</CardValue> {/* Dynamically set value */}
+        <CardValue>{company}</CardValue>
       </CardItem>
       <CardItem>
         <CardLabel>Stakeholder:</CardLabel>
-        <CardValue>{stakeholder}</CardValue> {/* Dynamically set value */}
+        <CardValue>{stakeholder}</CardValue>
       </CardItem>
       <CardItem>
         <CardLabel>Address:</CardLabel>
-        <CardValue>{address}</CardValue> {/* Dynamically set value */}
+        <CardValue>{address}</CardValue>
       </CardItem>
     </CardContainers>
   );

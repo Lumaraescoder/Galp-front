@@ -10,12 +10,12 @@ const InfoCard: React.FC<InfoCardProps> = ({ company }) => {
     <CardContainer>
       <InfoContainer>
         <Title>
-          <strong>{company.name}</strong> {/* Use dynamic data */}
+          <strong>{company.name}</strong>
         </Title>
-        <Subtitle>{company.description}</Subtitle> {/* Use dynamic data */}
-        <Subtitle>{company.location}</Subtitle> {/* Use dynamic data */}
-        <Subtitle>{company.contactNumber}</Subtitle> {/* Use dynamic data */}
-        <Subtitle>{company.email}</Subtitle> {/* Use dynamic data */}
+        <Subtitle>{company.description}</Subtitle>
+        <Subtitle>{company.location}</Subtitle>
+        <Subtitle>{company.contactNumber}</Subtitle>
+        <Subtitle>{company.email}</Subtitle>
       </InfoContainer>
 
       <LogoContainer>
