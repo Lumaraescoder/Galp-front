@@ -21,6 +21,9 @@ const CardInfo: React.FC<Stack> = ({ stakeholder }) => {
   const showMoreDetails = () => {
     router.push(`/strackholderinfo/${stakeholder._id}`);
   };
+  if (!stakeholder) {
+    return <div>Loading or error... (appropriate message based on context)</div>;
+  }
 
   return (
     <CardContainer>
@@ -43,20 +46,31 @@ const CardList: React.FC<Props> = ({ searchQuery }) => {
     'https://galp-api.vercel.app/stakeholders',
     fetcher
   );
+  // eslint-disable-next-line no-console
+  console.log(stakeholders);
   if (error) return <div>Failed to load</div>;
   if (!stakeholders) return <Spinner />;
 
-  const displayedStakeholders = searchQuery.trim()
-    ? stakeholders.filter((stakeholder) =>
-        stakeholder.business.toLowerCase().includes(searchQuery.toLowerCase())
-      )
-    : stakeholders;
+  const displayedStakeholders = stakeholders
+    ? stakeholders.filter((stakeholder) => {
+        // Check if 'stakeholder' and 'stakeholder.business' exist before accessing them
+        return (
+          stakeholder &&
+          stakeholder.business &&
+          stakeholder.business.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+      })
+    : [];
 
   return (
     <Container>
-      {displayedStakeholders.map((stakeholder) => (
-        <CardInfo key={stakeholder._id} stakeholder={stakeholder} />
-      ))}
+      {Array.isArray(displayedStakeholders) ? (
+        displayedStakeholders.map((stakeholder) => (
+          <CardInfo key={stakeholder._id} stakeholder={stakeholder} />
+        ))
+      ) : (
+        <div>Error or no stakeholders.</div>
+      )}
     </Container>
   );
 };
