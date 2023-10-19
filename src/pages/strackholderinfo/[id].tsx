@@ -1,6 +1,6 @@
 import React from 'react';
 
-import StakeholderDetails from '@/components/StackeHolder/StrackeHolder';
+import StakeholderDetails from '@/components/StackeHolderDetails/StrackeHolderDetails';
 
 const StrackeHolder: React.FC = () => {
   return <StakeholderDetails />;

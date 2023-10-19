@@ -36,3 +36,17 @@ export type Stakeholder = {
   name: string;
   focalPoint: string;
 };
+export interface CompanyInfo {
+  name: string;
+  description: string;
+  location: string;
+  contactNumber: string;
+  email: string;
+  logoUrl: string;
+}
+
+export interface StacekHolderProps {
+  company: string;
+  stakeholder: string;
+  address: string;
+}

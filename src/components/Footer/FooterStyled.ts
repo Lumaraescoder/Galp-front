@@ -4,7 +4,7 @@ export const FooterContainer = styled.footer`
   width: 100%;
   background-color: #f5f5f5;
   color: black;
-
+  margin-top: 90px;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 `;
 
