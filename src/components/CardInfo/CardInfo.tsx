@@ -46,14 +46,12 @@ const CardList: React.FC<Props> = ({ searchQuery }) => {
     'https://galp-api.vercel.app/stakeholders',
     fetcher
   );
-  // eslint-disable-next-line no-console
-  console.log(stakeholders);
+
   if (error) return <div>Failed to load</div>;
   if (!stakeholders) return <Spinner />;
 
   const displayedStakeholders = stakeholders
     ? stakeholders.filter((stakeholder) => {
-        // Check if 'stakeholder' and 'stakeholder.business' exist before accessing them
         return (
           stakeholder &&
           stakeholder.business &&
