@@ -36,7 +36,14 @@ export const SearchInput = styled.input`
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
     outline: none;
   }
+  &:hover .search-icon {
+    transform: scale(1.2);
+  }
 
+  &:hover .search-input {
+    transform: translateY(0);
+    opacity: 1;
+  }
   @media (max-width: 768px) {
     font-size: 0.875rem;
   }
