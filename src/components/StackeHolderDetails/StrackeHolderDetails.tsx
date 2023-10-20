@@ -8,7 +8,15 @@ import CardLineChart from '../Graph/Graph';
 import InfoCard from '../InfoCard/InfoCard';
 import StacekHolder from '../Stracekholder/Stacekholder';
 import Table from '../Table/Table';
-import { CenteredContainer, CenteredItem, ColumnContainer } from './StrackeHolderDetaisls.Styled';
+import {
+  CenteredContainer,
+  CenteredItem,
+  ChartContainer,
+  ColumnContainer,
+  Money,
+  TableContainer,
+  Users
+} from './StrackeHolderDetaisls.Styled';
 
 const fetcher = (url: string) =>
   fetch(url).then((res) => {
@@ -28,7 +36,6 @@ const StakeholderDetails: React.FC = () => {
     fetcher
   );
 
-  // Handling loading and error states
   if (error) return <div>Failed to load stakeholder</div>;
   if (!stakeholder) return <div>Loading...</div>;
   const companyInfo: CompanyInfo = {
@@ -37,7 +44,7 @@ const StakeholderDetails: React.FC = () => {
     location: stakeholder.location,
     contactNumber: stakeholder.contact,
     email: stakeholder.email,
-    logoUrl: stakeholder.logo
+    logo: stakeholder.logo
   };
 
   return (
@@ -52,10 +59,16 @@ const StakeholderDetails: React.FC = () => {
           />
           <Contracts />
         </ColumnContainer>
-        <ColumnContainer>
+        <ChartContainer>
+          <Money className="fa fa-money" aria-hidden="true"></Money>
+
           <CardLineChart />
-        </ColumnContainer>
-        <Table></Table>
+        </ChartContainer>
+        <TableContainer>
+          <Users className="fa fa-users" aria-hidden="true"></Users>
+
+          <Table></Table>
+        </TableContainer>
       </CenteredItem>
     </CenteredContainer>
   );
