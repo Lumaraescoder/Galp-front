@@ -166,7 +166,7 @@ const LeftSide = () => {
         <ButtonDash>Dashboard</ButtonDash>
         <ButtonStake>Stakeholder</ButtonStake>
       </ButtonsContainers>
-      <StrackeHolderType>Stackeholder Type</StrackeHolderType>
+      {/* <StrackeHolderType>Stackeholder Type</StrackeHolderType> */}
       <Flex>
         <LabelLeft>
           <input type="radio" name="stakeholder" id="company" />

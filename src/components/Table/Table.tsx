@@ -1,5 +1,7 @@
 import React from 'react';
+import useSWR from 'swr';
 
+import StacekHolder from '../Stracekholder/Stacekholder';
 import {
   AvatarWrapper,
   Container,
@@ -21,6 +23,7 @@ import {
   UserInfo,
   UserName
 } from './TableStyled';
+const fetcher = (url) => fetch(url).then((res) => res.json());
 
 // Array de dados representando usuários
 const userData = [
@@ -61,56 +64,52 @@ const userData = [
     role: 'Computer Scientist',
     teams: ['Algorithm', 'Computation']
   }
-  // ... mais usuários conforme necessário
 ];
 
 const Table = () => {
-  // Renderiza as equipes para cada usuário
-  const renderTeams = (teams: any[]) => {
-    return teams.map(
-      (
-        team:
-          | string
-          | number
-          | boolean
-          | React.ReactElement<any, string | React.JSXElementConstructor<any>>
-          | Iterable<React.ReactNode>
-          | React.ReactPortal
-          | React.PromiseLikeOfReactNode
-          | null
-          | undefined,
-        index: React.Key | null | undefined
-      ) => (
-        <RoundSpan key={index} bgColor="#EBF8FF" textColor="#3182CE">
-          {team}
-        </RoundSpan>
-      )
-    );
-  };
+  const { data, error } = useSWR('https://galp-api.vercel.app/stakeholders', fetcher);
+  console.log(data);
+  // const renderTeams = (teams: any[]) => {
+  //   return teams.map(
+  //     (
+  //       team:
+  //         | string
+  //         | number
+  //         | boolean
+  //         | React.ReactElement<any, string | React.JSXElementConstructor<any>>
+  //         | Iterable<React.ReactNode>
+  //         | React.ReactPortal
+  //         | React.PromiseLikeOfReactNode
+  //         | null
+  //         | undefined,
+  //       index: React.Key | null | undefined
+  //     ) => (
+  //       <RoundSpan key={index} bgColor="#EBF8FF" textColor="#3182CE">
+  //         {team}
+  //       </RoundSpan>
+  //     )
+  //   );
+  // };
 
-  // Renderiza as linhas da tabela para cada usuário
-  const renderTableRows = userData.map((user, index) => (
+  const renderTableRows = data.map((user, index) => (
     <tr key={index} className="hover:bg-gray-50">
       <StyledTH>
         <AvatarWrapper>
-          <StyledImg src={user.avatar} alt="User Avatar" />
+          <StyledImg src={user.logo} alt="User Avatar" />
           <OnlineIndicator />
         </AvatarWrapper>
         <UserInfo>
-          <UserName>{user.name}</UserName>
+          <UserName>{user.ceo}</UserName>
           <UserEmail>{user.email}</UserEmail>
         </UserInfo>
       </StyledTH>
-      <StyledTD>
-        <StatusBadge>
-          <StatusIndicator />
-          {user.state}
-        </StatusBadge>
-      </StyledTD>
-      <StyledTableCell>{user.role}</StyledTableCell>
-      <TableCell>
-        <FlexDiv>{renderTeams(user.teams)}</FlexDiv>
-      </TableCell>
+      {/* <StyledTD>StyledTD>
+        <StatusBadge>{user.cellphone}</StatusBadge>
+      </StyledTD */}
+      <StyledTableCell>{user.cellphone}</StyledTableCell>
+      <StyledTableCell>{user.stakeholder}</StyledTableCell>
+      <StyledTableCell>{user.business}</StyledTableCell>
+      <TableCell>{/* <FlexDiv>{renderTeams(user.teams)}</FlexDiv> */}</TableCell>
       <TableCell>
         <FlexDiv></FlexDiv>
       </TableCell>
@@ -141,14 +140,14 @@ const Table = () => {
 
   return (
     <Container>
-      <div className="m-0 mt-5 overflow-hidden rounded-lg border border-gray-200 shadow-md">
-        <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
+      <div className="border-white-200 m-0 mt-5 overflow-hidden  shadow-md">
+        <table className="w-full  text-left text-sm text-gray-500">
           <thead className="bg-gray-50">
             <TableHeaderRow>
               <TableHeaderCell>Name</TableHeaderCell>
-              <TableHeaderCell>State</TableHeaderCell>
-              <TableHeaderCell>Role</TableHeaderCell>
-              <TableHeaderCell>Team</TableHeaderCell>
+              <TableHeaderCell>email</TableHeaderCell>
+              <TableHeaderCell>StacekHolder</TableHeaderCell>
+              <TableHeaderCell>Business</TableHeaderCell>
               <TableHeaderCell></TableHeaderCell>
             </TableHeaderRow>
           </thead>
