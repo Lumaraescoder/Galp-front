@@ -1,8 +1,27 @@
+import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
-import Form from '@/components/Form/Form';
+import {
+  ButtonsContainer,
+  CancelButton,
+  HiddenInput,
+  Icon,
+  IconButton,
+  InputContainer,
+  InputIconContainer,
+  LogoButton,
+  LogoUploads,
+  RightSection,
+  RightSideFormContainer,
+  StyledInputFullRight,
+  StyledInputWithIcon,
+  StyledTextArea,
+  SubmitButton,
+  TwoColumns,
+  UploadedLogo
+} from './AddStackeHolderStyled';
 
-const appearFromLeft = keyframes`
+export const appearFromLeft = keyframes`
   from {
     opacity: 0;
     transform: translateX(-100%);
@@ -13,7 +32,7 @@ const appearFromLeft = keyframes`
   }
 `;
 
-const StyledInput = styled.input`
+export const StyledInput = styled.input`
   width: 100%;
   padding: 12px 15px;
   border: 1px solid #ccc;
@@ -26,7 +45,7 @@ const StyledInput = styled.input`
   }
 `;
 
-const Container = styled.div`
+export const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
@@ -41,7 +60,7 @@ const Container = styled.div`
   }
 `;
 
-const LeftSection = styled.div`
+export const LeftSection = styled.div`
   flex: 1;
   animation: ${appearFromLeft} 1s ease;
 
@@ -56,7 +75,7 @@ const Flex = styled.div`
   gap: 20px;
 `;
 
-const StyledLabel = styled.label`
+export const StyledLabel = styled.label`
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -78,7 +97,7 @@ const ContainerHeader = styled.div`
   }
 `;
 
-const LabelLeft = styled.div`
+export const LabelLeft = styled.div`
   margin: 12px 0px;
 
   @media (max-width: 768px) {
@@ -86,11 +105,11 @@ const LabelLeft = styled.div`
   }
 `;
 
-const LabelRight = styled.div`
+export const LabelRight = styled.div`
   margin: 12px 20px;
 `;
 
-const WelcomeStack = styled.p`
+export const WelcomeStack = styled.p`
   margin: 50px 0px;
   white-space: nowrap;
   font-size: 30px;
@@ -98,8 +117,8 @@ const WelcomeStack = styled.p`
   top: 24px;
 `;
 
-const ContainerLeft = styled.div``;
-const StrackeHolderType = styled.div`
+export const ContainerLeft = styled.div``;
+export const StrackeHolderType = styled.div`
   margin-top: 29px;
 `;
 
@@ -133,8 +152,55 @@ const LeftSide = () => {
     </ContainerLeft>
   );
 };
+const Form = () => {
+  return (
+    <RightSection>
+      <RightSideFormContainer>
+        <TwoColumns>
+          <InputContainer>
+            <StyledLabel>Contract </StyledLabel>
+            <InputIconContainer>
+              <Icon className="fa fa-cloud-upload" aria-hidden="true"></Icon>
+              <StyledInputWithIcon type="text" placeholder="Upload Contract" />
+            </InputIconContainer>
+          </InputContainer>
+          <InputContainer>
+            <StyledLabel>&nbsp;</StyledLabel>
+            <StyledInputFullRight type="text" placeholder="contract.pdf" />
+          </InputContainer>
+        </TwoColumns>
+        <InputContainer>
+          <StyledLabel>Contract Date</StyledLabel>
+          <StyledInput type="text" placeholder="10/10/2021" />
+        </InputContainer>
+        <InputContainer>
+          <StyledLabel>Cashflow</StyledLabel>
+          <StyledInput type="text" placeholder="$5B" />
+        </InputContainer>
+        <InputContainer>
+          <StyledLabel>Description</StyledLabel>
+          <StyledTextArea placeholder="..."></StyledTextArea>
+        </InputContainer>
+        <InputContainer as={LogoUploads}>
+          <StyledLabel as="div">
+            <LogoButton>
+              <IconButton className="fa fa-cloud-upload" aria-hidden="true"></IconButton>
+              &nbsp; Upload Logo
+            </LogoButton>
+            <HiddenInput id="fileInput" type="file" />
+          </StyledLabel>
+          <UploadedLogo src="/images/Galp.png" alt="Uploaded Logo" />
+        </InputContainer>
+        <ButtonsContainer>
+          <CancelButton>Cancel</CancelButton>
+          <SubmitButton>Submit</SubmitButton>
+        </ButtonsContainer>
+      </RightSideFormContainer>
+    </RightSection>
+  );
+};
 
-const BackOffice = () => {
+const AddStackeHolder = () => {
   return (
     <Container>
       <LeftSection>
@@ -144,5 +210,4 @@ const BackOffice = () => {
     </Container>
   );
 };
-
-export default BackOffice;
+export default AddStackeHolder;

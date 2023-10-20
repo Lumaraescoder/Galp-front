@@ -1,17 +1,14 @@
 import React from 'react';
+import useSWR from 'swr';
 
 import {
   AvatarWrapper,
   Container,
   FlexDiv,
   OnlineIndicator,
-  RoundSpan,
-  StatusBadge,
-  StatusIndicator,
   StyledImg,
   StyledLink,
   StyledSvg,
-  StyledTD,
   StyledTH,
   StyledTableCell,
   TableCell,
@@ -21,96 +18,33 @@ import {
   UserInfo,
   UserName
 } from './TableStyled';
-
-// Array de dados representando usuários
-const userData = [
-  {
-    name: 'Steven Jobs',
-    email: 'jobs@sailboatui.com',
-    avatar:
-      'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    state: 'Active',
-    role: 'Product Designer',
-    teams: ['Design', 'Product', 'Develop']
-  },
-  // Adicionando mais usuários
-  {
-    name: 'Susan Calvin',
-    email: 'susan@irobottech.com',
-    avatar:
-      'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    state: 'Offline',
-    role: 'Robot Psychologist',
-    teams: ['Robotics', 'AI']
-  },
-  {
-    name: 'Tony Stark',
-    email: 'stark@avengers.com',
-    avatar:
-      'https://images.unsplash.com/photo-1517849845537-4d257902454a?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    state: 'Busy',
-    role: 'Inventor',
-    teams: ['Innovations', 'Avengers']
-  },
-  {
-    name: 'Ada Lovelace',
-    email: 'ada@firstprogrammer.com',
-    avatar:
-      'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    state: 'In a meeting',
-    role: 'Computer Scientist',
-    teams: ['Algorithm', 'Computation']
-  }
-  // ... mais usuários conforme necessário
-];
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const Table = () => {
-  // Renderiza as equipes para cada usuário
-  const renderTeams = (teams: any[]) => {
-    return teams.map(
-      (
-        team:
-          | string
-          | number
-          | boolean
-          | React.ReactElement<any, string | React.JSXElementConstructor<any>>
-          | Iterable<React.ReactNode>
-          | React.ReactPortal
-          | React.PromiseLikeOfReactNode
-          | null
-          | undefined,
-        index: React.Key | null | undefined
-      ) => (
-        <RoundSpan key={index} bgColor="#EBF8FF" textColor="#3182CE">
-          {team}
-        </RoundSpan>
-      )
-    );
-  };
+  const { data, error } = useSWR('https://galp-api.vercel.app/stakeholders', fetcher);
 
-  // Renderiza as linhas da tabela para cada usuário
-  const renderTableRows = userData.map((user, index) => (
+  if (error) return <div>Failed to load</div>;
+  if (!data) return <div>Loading...</div>;
+
+  const renderTableRows = data.map((user: any, index: any): any => (
     <tr key={index} className="hover:bg-gray-50">
       <StyledTH>
         <AvatarWrapper>
-          <StyledImg src={user.avatar} alt="User Avatar" />
+          <StyledImg src={user.logo} alt="User Avatar" />
           <OnlineIndicator />
         </AvatarWrapper>
         <UserInfo>
-          <UserName>{user.name}</UserName>
+          <UserName>{user.ceo}</UserName>
           <UserEmail>{user.email}</UserEmail>
         </UserInfo>
       </StyledTH>
-      <StyledTD>
-        <StatusBadge>
-          <StatusIndicator />
-          {user.state}
-        </StatusBadge>
-      </StyledTD>
-      <StyledTableCell>{user.role}</StyledTableCell>
-      <TableCell>
-        <FlexDiv>{renderTeams(user.teams)}</FlexDiv>
-      </TableCell>
+      {/* <StyledTD>StyledTD>
+        <StatusBadge>{user.cellphone}</StatusBadge>
+      </StyledTD */}
+      <StyledTableCell>{user.cellphone}</StyledTableCell>
+      <StyledTableCell>{user.stakeholder}</StyledTableCell>
+      <StyledTableCell>{user.business}</StyledTableCell>
+      <TableCell>{/* <FlexDiv>{renderTeams(user.teams)}</FlexDiv> */}</TableCell>
       <TableCell>
         <FlexDiv></FlexDiv>
       </TableCell>
@@ -141,14 +75,14 @@ const Table = () => {
 
   return (
     <Container>
-      <div className="m-0 mt-5 overflow-hidden rounded-lg border border-gray-200 shadow-md">
-        <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
+      <div className="border-white-200 m-0 mt-5 overflow-hidden  shadow-md">
+        <table className="w-full  text-left text-sm text-gray-500">
           <thead className="bg-gray-50">
             <TableHeaderRow>
               <TableHeaderCell>Name</TableHeaderCell>
-              <TableHeaderCell>State</TableHeaderCell>
-              <TableHeaderCell>Role</TableHeaderCell>
-              <TableHeaderCell>Team</TableHeaderCell>
+              <TableHeaderCell>email</TableHeaderCell>
+              <TableHeaderCell>StacekHolder</TableHeaderCell>
+              <TableHeaderCell>Business</TableHeaderCell>
               <TableHeaderCell></TableHeaderCell>
             </TableHeaderRow>
           </thead>
