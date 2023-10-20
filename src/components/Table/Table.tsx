@@ -25,7 +25,7 @@ const Table = () => {
   const { data, error } = useSWR('https://galp-api.vercel.app/stakeholders', fetcher);
 
   if (error) return <div>Failed to load</div>;
-  if (!data) return <Spinner>Loading...</Spinner>;
+  if (!data) return <div>Loading...</div>;
 
   const renderTableRows = data.map((user: any, index: any): any => (
     <tr key={index} className="hover:bg-gray-50">
