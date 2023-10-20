@@ -36,8 +36,8 @@ export const ColumnContainer = styled.div`
 export const ChartContainer = styled.div`
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
   margin-top: 30px;
-  display: flex;
   border-radius: 12px;
+  height: 350px;
 `;
 export const TableContainer = styled.div`
   margin-top: 50px;
