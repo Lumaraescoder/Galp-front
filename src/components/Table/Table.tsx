@@ -1,19 +1,14 @@
 import React from 'react';
 import useSWR from 'swr';
 
-import StacekHolder from '../Stracekholder/Stacekholder';
 import {
   AvatarWrapper,
   Container,
   FlexDiv,
   OnlineIndicator,
-  RoundSpan,
-  StatusBadge,
-  StatusIndicator,
   StyledImg,
   StyledLink,
   StyledSvg,
-  StyledTD,
   StyledTH,
   StyledTableCell,
   TableCell,
@@ -23,75 +18,15 @@ import {
   UserInfo,
   UserName
 } from './TableStyled';
-const fetcher = (url) => fetch(url).then((res) => res.json());
-
-// Array de dados representando usuários
-const userData = [
-  {
-    name: 'Steven Jobs',
-    email: 'jobs@sailboatui.com',
-    avatar:
-      'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    state: 'Active',
-    role: 'Product Designer',
-    teams: ['Design', 'Product', 'Develop']
-  },
-  // Adicionando mais usuários
-  {
-    name: 'Susan Calvin',
-    email: 'susan@irobottech.com',
-    avatar:
-      'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    state: 'Offline',
-    role: 'Robot Psychologist',
-    teams: ['Robotics', 'AI']
-  },
-  {
-    name: 'Tony Stark',
-    email: 'stark@avengers.com',
-    avatar:
-      'https://images.unsplash.com/photo-1517849845537-4d257902454a?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    state: 'Busy',
-    role: 'Inventor',
-    teams: ['Innovations', 'Avengers']
-  },
-  {
-    name: 'Ada Lovelace',
-    email: 'ada@firstprogrammer.com',
-    avatar:
-      'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    state: 'In a meeting',
-    role: 'Computer Scientist',
-    teams: ['Algorithm', 'Computation']
-  }
-];
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const Table = () => {
   const { data, error } = useSWR('https://galp-api.vercel.app/stakeholders', fetcher);
-  console.log(data);
-  // const renderTeams = (teams: any[]) => {
-  //   return teams.map(
-  //     (
-  //       team:
-  //         | string
-  //         | number
-  //         | boolean
-  //         | React.ReactElement<any, string | React.JSXElementConstructor<any>>
-  //         | Iterable<React.ReactNode>
-  //         | React.ReactPortal
-  //         | React.PromiseLikeOfReactNode
-  //         | null
-  //         | undefined,
-  //       index: React.Key | null | undefined
-  //     ) => (
-  //       <RoundSpan key={index} bgColor="#EBF8FF" textColor="#3182CE">
-  //         {team}
-  //       </RoundSpan>
-  //     )
-  //   );
-  // };
 
-  const renderTableRows = data.map((user, index) => (
+  if (error) return <div>Failed to load</div>;
+  if (!data) return <div>Loading...</div>;
+
+  const renderTableRows = data.map((user: any, index): any => (
     <tr key={index} className="hover:bg-gray-50">
       <StyledTH>
         <AvatarWrapper>
