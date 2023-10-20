@@ -1,7 +1,8 @@
-import BackOffice from '@/pages/backoffice';
 import React from 'react';
 
+import AddStackeHolder from '@/components/AddStackeholder/AddStackeHolder';
+
 const StacekHolderAdd = () => {
-  return <BackOffice />;
+  return <AddStackeHolder />;
 };
 export default StacekHolderAdd;
