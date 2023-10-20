@@ -14,7 +14,7 @@ export const RightSection = styled.div`
   flex: 0 0 100%;
   border-radius: 3px;
   margin-left: 60px;
-  margin-top: 240px;
+  margin-top: 207px;
   animation: ${appearFromRight} 1s ease;
   animation-delay: 1.5;
   @media (min-width: 768px) {

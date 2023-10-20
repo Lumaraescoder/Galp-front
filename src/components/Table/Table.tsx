@@ -1,6 +1,7 @@
 import React from 'react';
 import useSWR from 'swr';
 
+import Spinner from '../Spinner/Spinner';
 import {
   AvatarWrapper,
   Container,
@@ -24,9 +25,9 @@ const Table = () => {
   const { data, error } = useSWR('https://galp-api.vercel.app/stakeholders', fetcher);
 
   if (error) return <div>Failed to load</div>;
-  if (!data) return <div>Loading...</div>;
+  if (!data) return <Spinner>Loading...</Spinner>;
 
-  const renderTableRows = data.map((user: any, index): any => (
+  const renderTableRows = data.map((user: any, index: any): any => (
     <tr key={index} className="hover:bg-gray-50">
       <StyledTH>
         <AvatarWrapper>

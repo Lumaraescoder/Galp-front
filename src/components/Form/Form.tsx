@@ -59,7 +59,7 @@ const Form = () => {
             </LogoButton>
             <HiddenInput id="fileInput" type="file" />
           </StyledLabel>
-          <UploadedLogo id="uploadedLogo" src="images/logo-form.png" alt="Uploaded Logo" />
+          <UploadedLogo src="/images/Galp.png" alt="Uploaded Logo" />
         </InputContainer>
         <ButtonsContainer>
           <CancelButton>Cancel</CancelButton>

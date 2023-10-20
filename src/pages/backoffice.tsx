@@ -67,12 +67,6 @@ const StyledLabel = styled.label`
   }
 `;
 
-const Image = styled.img`
-  width: 120px;
-  height: 120px;
-  margin: 3px 0px;
-`;
-
 const ContainerHeader = styled.div`
   display: flex;
   align-items: center;
@@ -82,51 +76,6 @@ const ContainerHeader = styled.div`
     color: #030517;
     font-weight: 799;
   }
-`;
-
-const ButtonStake = styled.button`
-  border: none;
-  background-color: E6E6E6;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-right: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin: 0px 53px;
-  border-radius: 8px;
-  font-weight: 503;
-  width: 50%;
-
-  &:hover {
-    background-color: #f0f0f0;
-  }
-
-  @media (max-width: 768px) {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-`;
-
-const ButtonDash = styled.button`
-  padding: 10px 20px;
-  border: none;
-  height: 50px;
-  background-color: #ffffff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-right: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  border-radius: 8px;
-  font-weight: 503;
-  width: 50%;
-
-  &:hover {
-    background-color: #f0f0f0;
-  }
-`;
-
-const ButtonsContainers = styled.div`
-  display: flex;
-  margin-top: 20px;
 `;
 
 const LabelLeft = styled.div`
@@ -150,7 +99,6 @@ const WelcomeStack = styled.p`
 `;
 
 const ContainerLeft = styled.div``;
-
 const StrackeHolderType = styled.div`
   margin-top: 29px;
 `;
@@ -159,14 +107,9 @@ const LeftSide = () => {
   return (
     <ContainerLeft>
       <ContainerHeader>
-        <Image src="/images/boy.png" alt="Boy" />
-        <WelcomeStack>Welcome, João !</WelcomeStack>
+        <WelcomeStack>Welcome, Stackeholder !</WelcomeStack>
       </ContainerHeader>
-      <ButtonsContainers>
-        <ButtonDash>Dashboard</ButtonDash>
-        <ButtonStake>Stakeholder</ButtonStake>
-      </ButtonsContainers>
-      {/* <StrackeHolderType>Stackeholder Type</StrackeHolderType> */}
+      <StrackeHolderType>Stackeholder Type</StrackeHolderType>
       <Flex>
         <LabelLeft>
           <input type="radio" name="stakeholder" id="company" />
