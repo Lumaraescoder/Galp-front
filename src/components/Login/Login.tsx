@@ -19,7 +19,7 @@ const LoginPage: React.FC = () => {
   const router = useRouter();
   const handleNavigation = (e: any) => {
     e.preventDefault();
-    router.push('/stackholders');
+    router.push('/stackeholders');
   };
 
   return (
