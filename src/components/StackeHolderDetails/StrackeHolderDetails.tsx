@@ -36,7 +36,7 @@ const StakeholderDetails: React.FC = () => {
     location: stakeholder.location,
     contactNumber: stakeholder.contact,
     email: stakeholder.email,
-    logoUrl: stakeholder.logo
+    logo: stakeholder.logo
   };
 
   return (

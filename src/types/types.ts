@@ -42,7 +42,7 @@ export interface CompanyInfo {
   location: string;
   contactNumber: string;
   email: string;
-  logoUrl: string;
+  logo: string;
 }
 
 export interface StacekHolderProps {

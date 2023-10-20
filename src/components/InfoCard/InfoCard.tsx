@@ -19,8 +19,7 @@ const InfoCard: React.FC<InfoCardProps> = ({ company }) => {
       </InfoContainer>
 
       <LogoContainer>
-        {/* Use dynamic logo URL */}
-        <img src="/images/Nigeria-LNG-Limited_NLNG.jpg" alt="Company Logo" />
+        <img src={company.logo} alt="Company Logo" />
       </LogoContainer>
     </CardContainer>
   );
