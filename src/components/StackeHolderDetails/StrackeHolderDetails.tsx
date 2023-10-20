@@ -28,7 +28,6 @@ const StakeholderDetails: React.FC = () => {
     fetcher
   );
 
-  // Handling loading and error states
   if (error) return <div>Failed to load stakeholder</div>;
   if (!stakeholder) return <div>Loading...</div>;
   const companyInfo: CompanyInfo = {

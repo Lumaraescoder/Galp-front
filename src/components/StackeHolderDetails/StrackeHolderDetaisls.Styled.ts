@@ -23,7 +23,6 @@ export const CenteredItem = styled.div`
   width: 85%;
   background-color: #ffffff;
   padding: 20px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 `;
 
 export const ColumnContainer = styled.div`
