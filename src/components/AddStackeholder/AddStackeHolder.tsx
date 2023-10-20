@@ -126,9 +126,9 @@ const LeftSide = () => {
   return (
     <ContainerLeft>
       <ContainerHeader>
-        <WelcomeStack>Welcome, Stackeholder !</WelcomeStack>
+        <WelcomeStack>Welcome, Stakeholder !</WelcomeStack>
       </ContainerHeader>
-      <StrackeHolderType>Stackeholder Type</StrackeHolderType>
+      <StrackeHolderType>Stakeholder Type</StrackeHolderType>
       <Flex>
         <LabelLeft>
           <input type="radio" name="stakeholder" id="company" />

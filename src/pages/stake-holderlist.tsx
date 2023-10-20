@@ -85,7 +85,7 @@ const Container = styled.div`
   }
 `;
 const StacekHolderList: React.FC = () => {
-  const [activeSection, setActiveSection] = useState('table'); // Inicialmente, definimos a tabela como ativa
+  const [activeSection, setActiveSection] = useState('table');
 
   const handleButtonClick = (section: string) => {
     setActiveSection(section);
