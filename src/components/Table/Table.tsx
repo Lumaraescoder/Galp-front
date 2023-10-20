@@ -1,7 +1,6 @@
 import React from 'react';
 import useSWR from 'swr';
 
-import Spinner from '../Spinner/Spinner';
 import {
   AvatarWrapper,
   Container,
