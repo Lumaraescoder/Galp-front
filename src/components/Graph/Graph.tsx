@@ -115,19 +115,21 @@ function CardLineChart() {
 
   return (
     <>
-      <Container className="bg-blueGray-700 relative mb-6 flex w-full min-w-0 flex-col break-words rounded shadow-lg">
+      <Container className="bg-blueGray-700 relative m-6 mb-6 mt-10 flex w-full min-w-0 flex-col break-words rounded shadow-lg">
         <div className="mb-0 rounded-t bg-transparent px-4 py-3">
           <div className="flex flex-wrap items-center">
-            <div className="relative w-full max-w-full flex-1 flex-grow">
-              <h6 className="text-blueGray-100 mb-1 text-xs font-semibold uppercase">Sales View</h6>
+            <div className=" relative w-full max-w-full flex-1 flex-grow">
+              {/* <h6 className="text-blueGray-100 mb-1 text-xs font-semibold uppercase">Sales View</h6> */}
               <h2 className="text-xl font-semibold text-white">Sales value</h2>
             </div>
           </div>
         </div>
         <div className="flex-auto p-4">
           {/* Chart */}
-          <div className="h-350-px relative">
-            <canvas id="line-chart"></canvas>
+          <div className="h-400-px relative ml-auto">
+            {' '}
+            {/* Adicione a classe ml-auto */}
+            <canvas id="line-chart" style={{ height: '140px', width: '801px' }}></canvas>
           </div>
         </div>
       </Container>
