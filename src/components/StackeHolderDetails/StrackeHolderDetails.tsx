@@ -1,10 +1,12 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 import { CompanyInfo, Stakeholder } from 'src/types/types';
+import styled from 'styled-components';
 import useSWR from 'swr';
 
 import Contracts from '../Contracts/Contracts';
-import CardLineChart from '../Graph/Graph';
+import CreditBank from '../CreditBank/CreditBank';
+import CardLineChart, { Steam } from '../Graph/Graph';
 import InfoCard from '../InfoCard/InfoCard';
 import StacekHolder from '../Stracekholder/Stacekholder';
 import Table from '../Table/Table';
@@ -26,6 +28,56 @@ const fetcher = (url: string) =>
 
     return res.json();
   });
+
+const Container = styled.div`
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  gap: 20px;
+`;
+const SmallCards = styled.div`
+  flex-direction: column;
+`;
+const Card = styled.div`
+  width: 283px;
+  height: 142px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  margin: 26px 21px;
+`;
+
+const DarkCard = styled(Card)`
+  background-color: #333;
+  color: #fff;
+`;
+
+const LightCard = styled(Card)`
+  background-color: #f5f5f5;
+  color: #333;
+`;
+
+const Chart = styled.div`
+  width: 220px;
+  height: 120px;
+  background-color: #ffd1d1;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Line = styled.div`
+  width: 190px;
+  height: 3px;
+  background-color: #0077ff;
+  border-radius: 10px;
+`;
 
 const StakeholderDetails: React.FC = () => {
   const router = useRouter();
@@ -60,13 +112,11 @@ const StakeholderDetails: React.FC = () => {
           <Contracts />
         </ColumnContainer>
         <ChartContainer>
-          <Money className="fa fa-money" aria-hidden="true"></Money>
-
-          <CardLineChart />
+          <CreditBank />
         </ChartContainer>
+
         <TableContainer>
           <Users className="fa fa-users" aria-hidden="true"></Users>
-
           <Table></Table>
         </TableContainer>
       </CenteredItem>
