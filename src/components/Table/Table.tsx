@@ -81,7 +81,7 @@ const Table = () => {
             <TableHeaderRow>
               <TableHeaderCell>Name</TableHeaderCell>
               <TableHeaderCell>email</TableHeaderCell>
-              <TableHeaderCell>StacekHolder</TableHeaderCell>
+              <TableHeaderCell>StakekHolder</TableHeaderCell>
               <TableHeaderCell>Business</TableHeaderCell>
               <TableHeaderCell></TableHeaderCell>
             </TableHeaderRow>

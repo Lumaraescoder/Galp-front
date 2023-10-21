@@ -12,6 +12,7 @@ export const Title = styled.h1`
 export const Subtitle = styled.p`
   margin: 5px 0;
   font-size: 18px;
+  color: grey;
 `;
 
 export const LogoContainer = styled.div`
@@ -28,7 +29,7 @@ export const LogoContainer = styled.div`
 export const CardContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 60px;
+  /* margin-top: 60px; */
   justify-content: space-between;
   background-color: #fff;
   padding: 30px;
@@ -36,7 +37,7 @@ export const CardContainer = styled.div`
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s;
   width: 100%;
-
+  /* height: 300px; */
   &:hover {
     box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
   }
@@ -47,6 +48,6 @@ export const CardContainer = styled.div`
   }
 
   @media screen and (max-width: 600px) {
-    padding: 20px; // Increased padding for mobile view
+    padding: 20px;
   }
 `;
