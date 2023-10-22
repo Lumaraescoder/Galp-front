@@ -73,7 +73,6 @@ const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
-  /* display: flex; */
   justify-content: center;
   background-color: #ffffff;
 
@@ -91,23 +90,21 @@ const SearchContainer = styled.div`
   position: relative;
 `;
 
-// Estilizando o próprio input
 const StyledInput = styled.input`
   width: 300px;
   padding: 10px;
   background-color: rgb(240, 240, 240);
-  /* border: 1px solid grey !important; */
-  border-radius: 12px; // Arredondamento das bordas
+  border-radius: 12px;
   outline: none;
   font-size: 16px;
   position: relative;
   top: 15px;
   &:focus {
-    border: 1px solid #b0b0b0; // Altera a cor da borda quando focado
+    border: 1px solid #b0b0b0;
   }
 
   &::placeholder {
-    color: #c0c0c0; // Cor do texto do placeholder
+    color: #c0c0c0;
   }
 `;
 const TableContainer = styled.div`
@@ -117,7 +114,7 @@ const TableContainer = styled.div`
   border-radius: 12px;
 
   @media (max-height: 800px) {
-    height: 70vh; // para telas com altura inferior a 800px, o contêiner ocupará a altura total da tela
+    height: 70vh;
   }
 
   @media (max-width: 768px) {
