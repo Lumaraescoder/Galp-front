@@ -25,18 +25,19 @@ const Card = styled.div`
 `;
 
 const DarkCard = styled(Card)`
-  background-color: #333;
+  background-color: #090d1f;
   color: #fff;
-  height: 150px;
+  height: 174px;
   position: relative;
-  top: -36px;
+  top: -9px;
 `;
 
 const LightCard = styled(Card)`
   background-color: #f6f0f0;
   color: #333;
+  height: 174px;
   position: relative;
-  top: 52px;
+  top: 30px;
 `;
 
 export const Money = styled.i`
@@ -60,7 +61,41 @@ const IconTextContainer = styled.div`
   align-items: center;
   gap: 10px;
 `;
-
+const Image = styled.img`
+  max-width: 100%;
+  height: auto;
+  position: relative;
+  top: 18px !important;
+  left: -74px;
+  width: 49px;
+`;
+const Image2 = styled.img`
+  max-width: 100%;
+  height: auto;
+  position: relative;
+  top: 23px;
+  left: -74px;
+  width: 49px;
+`;
+const Total = styled.p`
+  position: relative !important;
+  top: -29px !important;
+  color: #a5b3cd;
+`;
+const Value = styled.p`
+  position: relative !important;
+  top: -23px !important;
+  color: white;
+`;
+const Total2 = styled.p`
+  position: relative !important;
+  top: -30px !important;
+  color: #a5b3cd;
+`;
+const Value2 = styled.p`
+  position: relative !important;
+  top: -21px !important;
+`;
 const CreditBank = () => {
   return (
     <div>
@@ -72,13 +107,23 @@ const CreditBank = () => {
       <Container>
         <SmallCards>
           <DarkCard>
-            <div>Total Profit</div>
-            <div>$2,360.00</div>
+            <div>
+              <Image src="/images/growth-svgrepo-com.svg"></Image>
+              <Total>Total Profit</Total>
+            </div>
+            <div>
+              <Value>$2,360.00</Value>
+            </div>
           </DarkCard>
 
           <LightCard>
-            <div>Total Income</div>
-            <div>$6,169.00</div>
+            <div>
+              <Image2 src="/images/growth-svgrepo-com.svg"></Image2>
+              <Total2>Total Income</Total2>
+            </div>
+            <div>
+              <Value2>$6,169.00</Value2>
+            </div>
           </LightCard>
         </SmallCards>
         <Steam />

@@ -7,6 +7,7 @@ import useSWR from 'swr';
 import Contracts from '../Contracts/Contracts';
 import CreditBank from '../CreditBank/CreditBank';
 import InfoCard from '../InfoCard/InfoCard';
+import Spinner from '../Spinner/Spinner';
 import StacekHolder from '../Stracekholder/Stacekholder';
 import Table from '../Table/Table';
 import {
@@ -45,7 +46,8 @@ const StakeholderDetails: React.FC = () => {
   );
 
   if (error) return <div>Failed to load stakeholder</div>;
-  if (!stakeholder) return <div>Loading...</div>;
+  if (!stakeholder) return <Spinner />;
+
   const companyInfo: CompanyInfo = {
     name: stakeholder.business,
     description: stakeholder.description,
