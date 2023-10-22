@@ -33,7 +33,7 @@ const Navigation = () => {
               Home
             </StyledLink>
             <StyledLink
-              href="/backoffice"
+              href="/stake-holderlist"
               active={activeLink === 'BackOffice'}
               onClick={() => handleSetActiveLink('BackOffice')}
               className="hover:text-white"

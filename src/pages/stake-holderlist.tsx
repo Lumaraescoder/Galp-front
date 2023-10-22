@@ -11,10 +11,9 @@ const ButtonStake = styled.button`
   margin-right: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  /* margin: 0px 3%;; */
+  width: 266px;
   border-radius: 8px;
   font-weight: 503;
-  width: 30%;
   &:hover {
     background-color: #f0f0f0;
   }
@@ -36,7 +35,7 @@ const ButtonDash = styled.button`
   transition: background-color 0.3s ease;
   border-radius: 8px;
   font-weight: 503;
-  width: 30%;
+  width: 266px;
   color: grey;
   &:hover {
     background-color: #f0f0f0;
@@ -65,7 +64,7 @@ const Image = styled.img`
 const WelcomeStack = styled.p`
   margin: 50px 0px;
   white-space: nowrap;
-  font-size: 30px;
+  font-size: 40px;
   position: relative;
   top: 24px;
 `;
@@ -82,6 +81,68 @@ const Container = styled.div`
     flex-direction: column;
     padding: 20px;
     align-items: stretch;
+  }
+`;
+const SearchContainer = styled.div`
+  width: 100%;
+  padding: 18px 37px;
+  display: flex;
+  align-items: center;
+  position: relative;
+`;
+
+// Estilizando o próprio input
+const StyledInput = styled.input`
+  width: 300px;
+  padding: 10px;
+  background-color: rgb(240, 240, 240);
+  /* border: 1px solid grey !important; */
+  border-radius: 12px; // Arredondamento das bordas
+  outline: none;
+  font-size: 16px;
+  position: relative;
+  top: 15px;
+  &:focus {
+    border: 1px solid #b0b0b0; // Altera a cor da borda quando focado
+  }
+
+  &::placeholder {
+    color: #c0c0c0; // Cor do texto do placeholder
+  }
+`;
+const TableContainer = styled.div`
+  margin-top: 50px;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
+  height: 55vh;
+  border-radius: 12px;
+
+  @media (max-height: 800px) {
+    height: 70vh; // para telas com altura inferior a 800px, o contêiner ocupará a altura total da tela
+  }
+
+  @media (max-width: 768px) {
+    height: 70vh;
+  }
+`;
+const ButtonCreate = styled.button`
+  padding: 10px 20px;
+  border: none;
+  height: 53px;
+  background-color: #ea5b0b;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-right: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 8px;
+  font-weight: 503;
+  /* width: 30%; */
+  color: white;
+  position: absolute;
+  right: 26px;
+  bottom: 10px;
+  top: 38px;
+  &:hover {
+    background-color: #f0f0f0;
   }
 `;
 const StacekHolderList: React.FC = () => {
@@ -114,7 +175,15 @@ const StacekHolderList: React.FC = () => {
         </ButtonDash>
       </ButtonsContainers>
       <div>
-        {activeSection === 'table' ? <Table /> : null}
+        {activeSection === 'table' ? (
+          <TableContainer>
+            <SearchContainer>
+              <StyledInput type="text" placeholder="Search" />
+              <ButtonCreate>Create Stakeholder</ButtonCreate>
+            </SearchContainer>
+            <Table />
+          </TableContainer>
+        ) : null}
         {activeSection === 'other' ? <ChartContainer /> : null}
       </div>
     </Container>
