@@ -14,7 +14,7 @@ export const CardContainer = styled.div`
   margin-right: auto;
   margin-bottom: 3rem;
   margin-top: 40px;
-
+  transition: opacity 0.5s ease-in-out;
   &.dark {
     background-color: #2a2e37;
     color: #d1d5db;
@@ -42,7 +42,8 @@ export const CardText = styled.p`
 `;
 
 export const CardButton = styled.button`
-  background-color: #3b82f6;
+  background-color: #ea5b0b;
+
   color: #ffffff;
   border-radius: 0.375rem;
   padding: 0.625rem 1.5rem;

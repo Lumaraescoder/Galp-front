@@ -19,7 +19,7 @@ const CardInfo: React.FC<Stack> = ({ stakeholder }) => {
   const router = useRouter();
 
   const showMoreDetails = () => {
-    router.push(`/strackholderinfo/${stakeholder._id}`);
+    router.push(`/stakeholderinfo/${stakeholder._id}`);
   };
   if (!stakeholder) {
     return <div>Loading or error... (appropriate message based on context)</div>;

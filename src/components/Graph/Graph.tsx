@@ -1,140 +1,105 @@
-import { Chart, ChartConfiguration, PositionType } from 'chart.js';
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import dynamic from 'next/dynamic';
 import React from 'react';
+import { Props } from 'react-apexcharts';
 import styled from 'styled-components';
-const Container = styled.div`
-  align-items: center;
-  margin-right: 50px;
+const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
+
+const Box = styled.div`
+  box-sizing: border-box;
   width: 90%;
+  z-index: 5;
+  margin-top: 100px;
+  height: auto;
+  background-color: #f6f0f0;
+  border-radius: 12px;
+  position: relative;
+  right: 18px;
 `;
-declare global {
-  interface Window {
-    myLine?: Chart;
+const state: Props['series'] = [
+  {
+    name: 'Series1',
+    data: [31, 40, 28, 51, 42, 109, 100]
+  },
+  {
+    name: 'Series2',
+    data: [11, 32, 45, 32, 34, 52, 41]
   }
-}
-function CardLineChart() {
-  React.useEffect(() => {
-    const config: ChartConfiguration = {
-      type: 'line',
-      data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-        datasets: [
-          {
-            label: String(new Date().getFullYear()),
-            backgroundColor: '#3182ce',
-            borderColor: '#3182ce',
-            data: [65, 78, 66, 44, 56, 67, 75],
-            fill: false
-          },
-          {
-            label: String(new Date().getFullYear() - 1),
-            fill: false,
-            backgroundColor: '#ed64a6',
-            borderColor: '#ed64a6',
-            data: [40, 68, 86, 74, 56, 60, 87]
-          }
-        ]
-      },
-      options: {
-        maintainAspectRatio: false,
-        responsive: true,
-        title: {
-          display: false,
-          text: 'Sales Charts',
-          fontColor: 'white'
-        },
-        legend: {
-          labels: {
-            fontColor: 'white'
-          },
-          align: 'end' as const, // Specify the correct type
-          position: 'bottom' as PositionType
-        },
-        tooltips: {
-          mode: 'index',
-          intersect: false
-        },
-        hover: {
-          mode: 'nearest',
-          intersect: true
-        },
-        scales: {
-          xAxes: [
-            {
-              ticks: {
-                fontColor: 'rgba(255,255,255,.7)'
-              },
-              display: true,
-              scaleLabel: {
-                display: false,
-                labelString: 'Month',
-                fontColor: 'white'
-              },
-              gridLines: {
-                display: false,
-                borderDash: [2],
-                // borderDashOffset: [2],
-                color: 'rgba(33, 37, 41, 0.3)',
-                zeroLineColor: 'rgba(0, 0, 0, 0)',
-                zeroLineBorderDash: [2]
-                // zeroLineBorderDashOffset: [2]
-              }
-            }
-          ],
-          yAxes: [
-            {
-              ticks: {
-                fontColor: 'rgba(255,255,255,.7)'
-              },
-              display: true,
-              scaleLabel: {
-                display: false,
-                labelString: 'Value',
-                fontColor: 'white'
-              },
-              gridLines: {
-                borderDash: [3],
-                // borderDashOffset: [3],
-                drawBorder: false,
-                color: 'rgba(255, 255, 255, 0.15)',
-                zeroLineColor: 'rgba(33, 37, 41, 0)',
-                zeroLineBorderDash: [2]
-                // zeroLineBorderDashOffset: [2]
-              }
-            }
-          ]
-        }
-      }
-    };
-    const canvas = document.getElementById('line-chart') as HTMLCanvasElement;
-    const ctx = canvas?.getContext('2d');
+];
 
-    if (ctx) {
-      window.myLine = new Chart(ctx, config);
+const options: Props['options'] = {
+  chart: {
+    type: 'area',
+    animations: {
+      easing: 'linear',
+      speed: 300
+    },
+    sparkline: {
+      enabled: false
+    },
+    brush: {
+      enabled: false
+    },
+    id: 'basic-bar',
+    fontFamily: 'Inter, sans-serif',
+    foreColor: 'var(--nextui-colors-accents9)',
+    stacked: true,
+    toolbar: {
+      show: false
     }
-  }, []);
+  },
 
+  xaxis: {
+    categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999],
+    labels: {
+      // show: false,
+      style: {
+        colors: 'var(--nextui-colors-accents8)',
+        fontFamily: 'Inter, sans-serif'
+      }
+    },
+    axisBorder: {
+      color: 'var(--nextui-colors-border)'
+    },
+    axisTicks: {
+      color: 'var(--nextui-colors-border)'
+    }
+  },
+  yaxis: {
+    labels: {
+      style: {
+        colors: 'var(--nextui-colors-accents8)',
+        fontFamily: 'Inter, sans-serif'
+      }
+    }
+  },
+  tooltip: {
+    enabled: false
+  },
+  grid: {
+    show: true,
+    borderColor: 'var(--nextui-colors-border)',
+    strokeDashArray: 0,
+    position: 'back'
+  },
+  stroke: {
+    curve: 'smooth',
+    fill: {
+      colors: ['red']
+    }
+  },
+  // @ts-ignore
+  markers: false
+};
+
+export const Steam = () => {
   return (
     <>
-      <Container className="bg-blueGray-700 relative m-6 mb-6 mt-6 flex w-full min-w-0 flex-col break-words rounded shadow-lg">
-        <div className="mb-0 rounded-t bg-transparent px-4 py-3">
-          <div className="flex flex-wrap items-center">
-            <div className=" relative w-full max-w-full flex-1 flex-grow">
-              {/* <h6 className="text-blueGray-100 mb-1 text-xs font-semibold uppercase">Sales View</h6> */}
-              <h2 className="text-xl font-semibold text-white">Sales value</h2>
-            </div>
-          </div>
+      <Box>
+        <div id="chart">
+          <Chart options={options} series={state} type="area" height={400} /* width removido */ />
         </div>
-        <div className="flex-auto p-4">
-          {/* Chart */}
-          <div className="h-400-px relative ml-auto">
-            {' '}
-            {/* Adicione a classe ml-auto */}
-            <canvas id="line-chart" style={{ height: '140px', width: '500px' }}></canvas>
-          </div>
-        </div>
-      </Container>
+      </Box>
     </>
   );
-}
-
-export default CardLineChart;
+};

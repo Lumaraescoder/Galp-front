@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const TableHeaderRow = styled.tr`
-  background-color: #f7fafc;
+  /* background-color: #f7fafc; */
 `;
 
 export const TableHeaderCell = styled.th`
@@ -34,7 +34,7 @@ export const StyledImg = styled.img`
 
 export const OnlineIndicator = styled.span`
   position: absolute;
-  bottom: 0;
+  /* bottom: 0;background-color: rgb(249 250 251 / var(--tw-bg-opacity)); */
   right: 0;
   height: 8px;
   width: 8px;

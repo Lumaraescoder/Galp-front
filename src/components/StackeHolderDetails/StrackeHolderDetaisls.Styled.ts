@@ -13,7 +13,7 @@ export const CenteredContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 1500px;
+  height: 1800px;
   padding: 50px;
 
   margin-top: 100px;
@@ -36,8 +36,8 @@ export const ColumnContainer = styled.div`
 export const ChartContainer = styled.div`
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
   margin-top: 30px;
+  height: 650px;
   border-radius: 12px;
-  height: 350px;
 `;
 export const TableContainer = styled.div`
   margin-top: 50px;
