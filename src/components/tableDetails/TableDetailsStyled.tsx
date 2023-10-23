@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
-export const TableHeaderRow = styled.tr`
-  /* background-color: #f7fafc; */
-`;
+export const TableHeaderRow = styled.tr``;
 
 export const TableHeaderCell = styled.th`
   padding: 1rem;
@@ -34,7 +32,6 @@ export const StyledImg = styled.img`
 
 export const OnlineIndicator = styled.span`
   position: absolute;
-  /* bottom: 0;background-color: rgb(249 250 251 / var(--tw-bg-opacity)); */
   right: 0;
   height: 8px;
   width: 8px;
@@ -123,7 +120,7 @@ export const StyledSvg = styled.svg`
   stroke: currentColor;
 `;
 export const Container = styled.div`
-  margin-top: 45px;
+  margin-top: 82px;
   width: 100%;
   padding: 0px 34px;
   border-radius: 12px;

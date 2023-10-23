@@ -2,10 +2,7 @@ import React from 'react';
 import useSWR from 'swr';
 
 import {
-  AvatarWrapper,
   Container,
-  OnlineIndicator,
-  StyledImg,
   StyledTH,
   StyledTableCell,
   TableHeaderCell,
@@ -18,17 +15,13 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export const TableDetails = () => {
   const { data, error } = useSWR('https://galp-api.vercel.app/stakeholders', fetcher);
-  console.log(data);
+
   if (error) return <div>Failed to load</div>;
   if (!data) return <div>Loading...</div>;
 
   const renderTableRows = data.map((user: any, index: any): any => (
     <tr key={index} className="hover:bg-gray-50">
       <StyledTH>
-        <AvatarWrapper>
-          <StyledImg src={user.logo} alt="User Avatar" />
-          <OnlineIndicator />
-        </AvatarWrapper>
         <UserInfo>
           <UserName>{user.ceo}</UserName>
           <UserEmail>{user.company}</UserEmail>
@@ -50,7 +43,7 @@ export const TableDetails = () => {
             <TableHeaderRow>
               <TableHeaderCell>Name</TableHeaderCell>
               <TableHeaderCell>Role</TableHeaderCell>
-              <TableHeaderCell>StakekHolder</TableHeaderCell>
+              <TableHeaderCell>StakeHolder</TableHeaderCell>
               <TableHeaderCell>Business</TableHeaderCell>
             </TableHeaderRow>
           </thead>
