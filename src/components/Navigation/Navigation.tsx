@@ -1,21 +1,15 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
-import {
-  ActiveLink,
-  Logo,
-  MenuIcon,
-  MenuLinks,
-  NavbarContainer,
-  StyledLink
-} from './NavigationStyled';
+import { Logo, MenuIcon, MenuLinks, NavbarContainer, StyledLink } from './NavigationStyled';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeLink, setActiveLink] = useState<ActiveLink>('Home');
+  const router = useRouter();
 
-  const handleSetActiveLink = (link: ActiveLink) => {
-    setActiveLink(link);
+  const isActive = (href: string) => {
+    return router.pathname === href;
   };
 
   return (
@@ -26,16 +20,14 @@ const Navigation = () => {
           <div className="hidden items-center space-x-4 md:flex">
             <StyledLink
               href="/search"
-              active={activeLink === 'Home'}
-              onClick={() => handleSetActiveLink('Home')}
+              active={isActive('/search')} // rota para "Home"
               className="hover:text-white"
             >
               Home
             </StyledLink>
             <StyledLink
               href="/backoffice"
-              active={activeLink === 'BackOffice'}
-              onClick={() => handleSetActiveLink('BackOffice')}
+              active={isActive('/backoffice')} // rota para "BackOffice"
               className="hover:text-white"
             >
               BackOffice

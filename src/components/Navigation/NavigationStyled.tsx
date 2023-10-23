@@ -34,7 +34,7 @@ export const MenuLinks = styled.div<MenuLinksProps>`
     display: ${(props) => (props.open ? 'block' : 'none')};
   }
 `;
-export const StyledLink = styled.a<StyledLinkProps>`
+export const StyledLink = styled.a<any>`
   border-bottom: 3px solid transparent;
   transition: border-bottom-color 0.3s ease-in;
 
