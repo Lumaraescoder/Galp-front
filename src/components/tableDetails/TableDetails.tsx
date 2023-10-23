@@ -4,23 +4,19 @@ import useSWR from 'swr';
 import {
   AvatarWrapper,
   Container,
-  FlexDiv,
   OnlineIndicator,
   StyledImg,
-  StyledLink,
-  StyledSvg,
   StyledTH,
   StyledTableCell,
-  TableCell,
   TableHeaderCell,
   TableHeaderRow,
   UserEmail,
   UserInfo,
   UserName
-} from './TableStyled';
+} from './TableDetailsStyled';
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-const Table = () => {
+export const TableDetails = () => {
   const { data, error } = useSWR('https://galp-api.vercel.app/stakeholders', fetcher);
 
   if (error) return <div>Failed to load</div>;
@@ -41,38 +37,19 @@ const Table = () => {
       <StyledTableCell>{user.cellphone}</StyledTableCell>
       <StyledTableCell>{user.stakeholder}</StyledTableCell>
       <StyledTableCell>{user.business}</StyledTableCell>
-      <TableCell>{/* <FlexDiv>{renderTeams(user.teams)}</FlexDiv> */}</TableCell>
-      <TableCell>
-        <FlexDiv></FlexDiv>
-      </TableCell>
-      <TableCell>
-        <FlexDiv>
-          <StyledLink href="#" title="Editar">
-            <StyledSvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
-              />
-            </StyledSvg>
-          </StyledLink>
-          <StyledLink href="#" title="Excluir"></StyledLink>
-        </FlexDiv>
-      </TableCell>
     </tr>
   ));
 
   return (
     <Container>
-      <div id="test" className="border-white-200 m-0 mt-5 overflow-hidden">
-        <table className="w-full text-left text-sm text-gray-500 shadow-none">
+      <div className="border-white-200 m-0 mt-5 overflow-hidden">
+        <table className="w-full  text-left text-sm text-gray-500">
           <thead className="">
             <TableHeaderRow>
               <TableHeaderCell>Name</TableHeaderCell>
+              <TableHeaderCell>email</TableHeaderCell>
+              <TableHeaderCell>StakekHolder</TableHeaderCell>
               <TableHeaderCell>Business</TableHeaderCell>
-              <TableHeaderCell>Last Edit</TableHeaderCell>
-              <TableHeaderCell>Edited By</TableHeaderCell>
-              <TableHeaderCell></TableHeaderCell>
             </TableHeaderRow>
           </thead>
           <tbody className="divide-y divide-gray-100 border-t border-gray-100">
@@ -84,4 +61,4 @@ const Table = () => {
   );
 };
 
-export default Table;
+export default TableDetails;

@@ -30,6 +30,19 @@ export const CardTitle = styled.h5`
     color: #f9fafb;
   }
 `;
+export const WrapperSpacing = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  i {
+    font-size: 44px;
+    color: #ea5b0b;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+`;
 
 export const CardText = styled.p`
   margin-bottom: 1rem;

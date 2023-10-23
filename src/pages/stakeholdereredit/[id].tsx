@@ -1,6 +1,6 @@
 import React from 'react';
 
-import BackOffice from '../backoffice';
+import BackOffice from '../stakeholderform';
 
 const StacekHolderEdit = () => {
   return (
