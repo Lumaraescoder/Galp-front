@@ -32,11 +32,11 @@ const Table = () => {
           <StyledImg src={user.logo} alt="User Avatar" />
         </AvatarWrapper>
         <UserInfo>
-          <UserName>{user.ceo}</UserName>
+          <UserName>{user.business}</UserName>
         </UserInfo>
       </StyledTH>
+      <StyledTableCell>{user.businesstype}</StyledTableCell>
       <StyledTableCell>{user.business}</StyledTableCell>
-      <StyledTableCell>12/12/2022</StyledTableCell>
       <StyledTableCell>{user.ceo}</StyledTableCell>
       <TableCell>
         <FlexDiv></FlexDiv>
@@ -67,7 +67,7 @@ const Table = () => {
           <thead className="">
             <TableHeaderRow>
               <TableHeaderCell>&nbsp;Name</TableHeaderCell>
-              <TableHeaderCell>&nbsp;StakeHolders</TableHeaderCell>
+              <TableHeaderCell>&nbsp;Business</TableHeaderCell>
               <TableHeaderCell>&nbsp;Last Edit</TableHeaderCell>
               <TableHeaderCell>&nbsp;Edited By</TableHeaderCell>
             </TableHeaderRow>
