@@ -77,11 +77,11 @@ const Table = () => {
     <Container>
       <div className="border-white-200 m-0 mt-5 overflow-hidden  shadow-md">
         <table className="w-full  text-left text-sm text-gray-500">
-          <thead className="bg-gray-50">
+          <thead className="">
             <TableHeaderRow>
               <TableHeaderCell>Name</TableHeaderCell>
               <TableHeaderCell>email</TableHeaderCell>
-              <TableHeaderCell>StacekHolder</TableHeaderCell>
+              <TableHeaderCell>StakekHolder</TableHeaderCell>
               <TableHeaderCell>Business</TableHeaderCell>
               <TableHeaderCell></TableHeaderCell>
             </TableHeaderRow>

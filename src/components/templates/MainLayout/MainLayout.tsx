@@ -13,7 +13,7 @@ export const MainLayout = ({ children, className }: MainLayoutProps) => {
   return (
     <div className={wrapperStyles}>
       <header className="bg-[#ea5b0b]">{/* <Navigation /> */}</header>
-      <main className="flex-1 bg-[#ebebeb]">{children}</main>
+      <main className="flex-1 bg-[white]">{children}</main>
     </div>
   );
 };

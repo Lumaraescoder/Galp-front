@@ -1,11 +1,13 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 import { CompanyInfo, Stakeholder } from 'src/types/types';
+import styled from 'styled-components';
 import useSWR from 'swr';
 
 import Contracts from '../Contracts/Contracts';
-import CardLineChart from '../Graph/Graph';
+import CreditBank from '../CreditBank/CreditBank';
 import InfoCard from '../InfoCard/InfoCard';
+import Spinner from '../Spinner/Spinner';
 import StacekHolder from '../Stracekholder/Stacekholder';
 import Table from '../Table/Table';
 import {
@@ -13,7 +15,6 @@ import {
   CenteredItem,
   ChartContainer,
   ColumnContainer,
-  Money,
   TableContainer,
   Users
 } from './StrackeHolderDetaisls.Styled';
@@ -26,7 +27,15 @@ const fetcher = (url: string) =>
 
     return res.json();
   });
-
+const IconTextContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 26px;
+  position: relative;
+  top: 10px;
+  font-weight: 600;
+`;
 const StakeholderDetails: React.FC = () => {
   const router = useRouter();
   const { id } = router.query;
@@ -37,7 +46,8 @@ const StakeholderDetails: React.FC = () => {
   );
 
   if (error) return <div>Failed to load stakeholder</div>;
-  if (!stakeholder) return <div>Loading...</div>;
+  if (!stakeholder) return <Spinner />;
+
   const companyInfo: CompanyInfo = {
     name: stakeholder.business,
     description: stakeholder.description,
@@ -60,12 +70,13 @@ const StakeholderDetails: React.FC = () => {
           <Contracts />
         </ColumnContainer>
         <ChartContainer>
-          <Money className="fa fa-money" aria-hidden="true"></Money>
-
-          <CardLineChart />
+          <CreditBank />
         </ChartContainer>
         <TableContainer>
-          <Users className="fa fa-users" aria-hidden="true"></Users>
+          <IconTextContainer>
+            <Users className="fa fa-users" aria-hidden="true"></Users>
+            <h1>Contacts</h1>
+          </IconTextContainer>
 
           <Table></Table>
         </TableContainer>

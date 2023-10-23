@@ -27,7 +27,7 @@ export const ContractItem = styled.div`
   align-items: center;
   border-bottom: 1px solid #ccc;
   margin: 20px 0;
-  padding-bottom: 20px;
+  padding-bottom: 12px;
 
   &:last-child {
     border-bottom: none;
@@ -43,7 +43,9 @@ export const ContractsHeader = styled.div`
   display: flex;
   align-items: center;
   font-size: 24px;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+  position: relative;
+  top: 10px;
 `;
 
 export const ContractName = styled.span`
@@ -53,4 +55,6 @@ export const ContractName = styled.span`
 export const Title = styled.p`
   font-size: 20px;
   font-weight: bold;
+  position: relative;
+  top: -3px;
 `;

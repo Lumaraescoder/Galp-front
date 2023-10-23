@@ -25,7 +25,7 @@ const Navigation = () => {
           <Logo src="/images/Galp.png" alt="Galp logo" />
           <div className="hidden items-center space-x-4 md:flex">
             <StyledLink
-              href="/#"
+              href="/search"
               active={activeLink === 'Home'}
               onClick={() => handleSetActiveLink('Home')}
               className="hover:text-white"
