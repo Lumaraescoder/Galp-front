@@ -42,7 +42,7 @@ const Table = () => {
       </TableCell>
       <TableCell>
         <FlexDiv>
-          <StyledLink href="#" title="Editar">
+          <StyledLink href="" title="Editar">
             <StyledSvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path
                 strokeLinecap="round"

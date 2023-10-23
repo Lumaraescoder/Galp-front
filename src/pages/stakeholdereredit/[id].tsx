@@ -1,11 +1,11 @@
 import React from 'react';
 
-import BackOffice from '../stakeholderform';
+import AddStackeHolder from '@/components/AddStackeholder/AddStackeHolder';
 
 const StacekHolderEdit = () => {
   return (
     <div>
-      <BackOffice />
+      <AddStackeHolder />
     </div>
   );
 };
