@@ -20,7 +20,7 @@ export const CardHeader = styled.div`
 `;
 
 export const CardTitle = styled.h2`
-  font-size: 20px;
+  font-size: 26px;
   color: #333;
   margin: 0;
   font-weight: 700;

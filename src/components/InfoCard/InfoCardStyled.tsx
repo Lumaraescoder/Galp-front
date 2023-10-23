@@ -5,7 +5,7 @@ export const InfoContainer = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: 24px;
+  font-size: 34px;
   margin: 0;
 `;
 

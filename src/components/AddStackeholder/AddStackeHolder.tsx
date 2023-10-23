@@ -126,7 +126,7 @@ const LeftSide = () => {
   return (
     <ContainerLeft>
       <ContainerHeader>
-        <WelcomeStack>Welcome, Stakeholder !</WelcomeStack>
+        <WelcomeStack>Create Stakeholder !</WelcomeStack>
       </ContainerHeader>
       <StrackeHolderType>Stakeholder Type</StrackeHolderType>
       <Flex>

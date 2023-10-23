@@ -38,10 +38,9 @@ const Table = () => {
           <UserEmail>{user.email}</UserEmail>
         </UserInfo>
       </StyledTH>
-      <StyledTableCell>{user.cellphone}</StyledTableCell>
-      <StyledTableCell>{user.stakeholder}</StyledTableCell>
       <StyledTableCell>{user.business}</StyledTableCell>
-      <TableCell>{/* <FlexDiv>{renderTeams(user.teams)}</FlexDiv> */}</TableCell>
+      <StyledTableCell>12/12/2022</StyledTableCell>
+      <StyledTableCell>{user.ceo}</StyledTableCell>
       <TableCell>
         <FlexDiv></FlexDiv>
       </TableCell>
