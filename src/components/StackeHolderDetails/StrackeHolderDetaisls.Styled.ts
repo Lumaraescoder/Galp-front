@@ -34,16 +34,18 @@ export const ColumnContainer = styled.div`
   margin-top: 50px;
 `;
 export const ChartContainer = styled.div`
-  border: 1px solid #e0e0e0;
   margin-top: 30px;
   height: 650px;
   border-radius: 12px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 `;
 export const TableContainer = styled.div`
   margin-top: 50px;
-  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
   height: 600px;
   border-radius: 12px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 `;
 export const Money = styled.i`
   font-size: 30px;

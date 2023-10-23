@@ -56,15 +56,7 @@ const Table = () => {
               />
             </StyledSvg>
           </StyledLink>
-          <StyledLink href="#" title="Excluir">
-            <StyledSvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18V9a1 1 0 011-1h10a1 1 0 011 1v9m-1 4a2 2 0 01-2 2H8a2 2 0 01-2-2v-2a2 2 0 012-2h6a2 2 0 012 2v2zM9 9h6M9 9a3 3 0 110-6 3 3 0 010 6zm6 0a3 3 0 110-6 3 3 0 010 6zm-6 0h6"
-              />
-            </StyledSvg>
-          </StyledLink>
+          <StyledLink href="#" title="Excluir"></StyledLink>
         </FlexDiv>
       </TableCell>
     </tr>
@@ -72,14 +64,14 @@ const Table = () => {
 
   return (
     <Container>
-      <div className="border-white-200 m-0 mt-5 overflow-hidden  shadow-md">
-        <table className="w-full  text-left text-sm text-gray-500">
+      <div id="test" className="border-white-200 m-0 mt-5 overflow-hidden">
+        <table className="w-full text-left text-sm text-gray-500 shadow-none">
           <thead className="">
             <TableHeaderRow>
               <TableHeaderCell>Name</TableHeaderCell>
-              <TableHeaderCell>email</TableHeaderCell>
-              <TableHeaderCell>StakekHolder</TableHeaderCell>
               <TableHeaderCell>Business</TableHeaderCell>
+              <TableHeaderCell>Last Edit</TableHeaderCell>
+              <TableHeaderCell>Edited By</TableHeaderCell>
               <TableHeaderCell></TableHeaderCell>
             </TableHeaderRow>
           </thead>

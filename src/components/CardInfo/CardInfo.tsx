@@ -4,7 +4,14 @@ import { CardInfoProps, Stack } from 'src/types/types';
 import useSWR from 'swr';
 
 import Spinner from '../Spinner/Spinner';
-import { CardButton, CardContainer, CardText, CardTitle, Container } from './CardInfoStyled';
+import {
+  CardButton,
+  CardContainer,
+  CardText,
+  CardTitle,
+  Container,
+  WrapperSpacing
+} from './CardInfoStyled';
 
 const fetcher = (url: string) =>
   fetch(url, {
@@ -19,7 +26,7 @@ const CardInfo: React.FC<Stack> = ({ stakeholder }) => {
   const router = useRouter();
 
   const showMoreDetails = () => {
-    router.push(`/stakeholderinfo/${stakeholder._id}`);
+    router.push(`/stakeholderdetail/${stakeholder._id}`);
   };
   if (!stakeholder) {
     return <div>Loading or error... (appropriate message based on context)</div>;
@@ -27,13 +34,17 @@ const CardInfo: React.FC<Stack> = ({ stakeholder }) => {
 
   return (
     <CardContainer>
-      <CardTitle>{stakeholder.business}</CardTitle>
-      <CardText>{stakeholder.description}</CardText>
-      <CardText>{stakeholder.stakeholder}</CardText>
-      <CardText>{stakeholder.email}</CardText>
-      <CardButton type="button" onClick={showMoreDetails}>
-        More Details
-      </CardButton>
+      <WrapperSpacing>
+        <div>
+          <CardTitle>{stakeholder.business}</CardTitle>
+          <CardText>{stakeholder.description}</CardText>
+          <CardText>{stakeholder.stakeholder}</CardText>
+          <CardText>{stakeholder.email}</CardText>
+        </div>
+        <div>
+          <i className="fa fa-arrow-circle-right" aria-hidden="true" onClick={showMoreDetails}></i>
+        </div>
+      </WrapperSpacing>
     </CardContainer>
   );
 };

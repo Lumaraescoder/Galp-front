@@ -21,6 +21,7 @@ const Card = styled.div`
   padding: 10px;
   font-family: Arial, sans-serif;
   border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin: 26px 21px;
 `;
 

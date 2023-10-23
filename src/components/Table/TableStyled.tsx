@@ -34,7 +34,6 @@ export const StyledImg = styled.img`
 
 export const OnlineIndicator = styled.span`
   position: absolute;
-  /* bottom: 0;background-color: rgb(249 250 251 / var(--tw-bg-opacity)); */
   right: 0;
   height: 8px;
   width: 8px;
@@ -88,7 +87,7 @@ export const TableCell = styled.td`
 `;
 export const TableContainer = styled.td`
   &:hover {
-    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2); */
   }
 `;
 

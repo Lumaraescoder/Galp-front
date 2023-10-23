@@ -176,7 +176,6 @@ const StacekHolderList: React.FC = () => {
         {activeSection === 'table' ? (
           <TableContainer>
             <SearchContainer>
-              <StyledInput type="text" placeholder="Search" />
               <Link href="/stakeholderadd" passHref>
                 <ButtonCreate>Create Stakeholder</ButtonCreate>
               </Link>
