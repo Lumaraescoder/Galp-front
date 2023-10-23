@@ -27,9 +27,7 @@ export const TableDetails = () => {
           <UserEmail>{user.company}</UserEmail>
         </UserInfo>
       </StyledTH>
-      <StyledTableCell>
-        <h1>cto</h1>
-      </StyledTableCell>
+      <StyledTableCell>cto</StyledTableCell>
       <StyledTableCell>{user.stakeholder}</StyledTableCell>
       <StyledTableCell>{user.business}</StyledTableCell>
     </tr>
@@ -41,10 +39,10 @@ export const TableDetails = () => {
         <table className="w-full  text-left text-sm text-gray-500">
           <thead className="">
             <TableHeaderRow>
-              <TableHeaderCell>Name</TableHeaderCell>
-              <TableHeaderCell>Role</TableHeaderCell>
-              <TableHeaderCell>StakeHolder</TableHeaderCell>
-              <TableHeaderCell>Business</TableHeaderCell>
+              <TableHeaderCell>&nbsp;Name</TableHeaderCell>
+              <TableHeaderCell>&nbsp;Role</TableHeaderCell>
+              <TableHeaderCell>&nbsp;StakeHolder</TableHeaderCell>
+              <TableHeaderCell>&nbsp;Business</TableHeaderCell>
             </TableHeaderRow>
           </thead>
           <tbody className="divide-y divide-gray-100 border-t border-gray-100">
