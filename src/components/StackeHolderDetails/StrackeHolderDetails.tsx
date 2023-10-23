@@ -35,9 +35,6 @@ const IconTextContainer = styled.div`
   position: relative;
   top: 10px;
   font-weight: 600;
-  &:hover {
-    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
-  }
 `;
 const StakeholderDetails: React.FC = () => {
   const router = useRouter();
@@ -83,7 +80,6 @@ const StakeholderDetails: React.FC = () => {
             <Users className="fa fa-users" aria-hidden="true"></Users>
             <h1>Contacts</h1>
           </IconTextContainer>
-
           <TableDetails />
         </TableContainer>
       </CenteredItem>

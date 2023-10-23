@@ -1,10 +1,17 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 import { ChartContainer } from '@/components/StackeHolderDetails/StrackeHolderDetaisls.Styled';
 import Table from '@/components/Table/Table';
-
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
 const ButtonStake = styled.button`
   border: none;
   background-color: E6E6E6;
@@ -15,6 +22,7 @@ const ButtonStake = styled.button`
   width: 266px;
   border-radius: 8px;
   font-weight: 503;
+  height: 61px;
   &:hover {
     background-color: #f0f0f0;
   }
@@ -28,7 +36,7 @@ const ButtonStake = styled.button`
 const ButtonDash = styled.button`
   padding: 10px 20px;
   border: none;
-  height: 50px;
+  height: 61px;
   background-color: #ffffff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin-right: 10px;
@@ -58,9 +66,9 @@ const ContainerHeader = styled.div`
   }
 `;
 const Image = styled.img`
-  width: 120px;
-  height: 120px;
-  margin: 3px 0px;
+  width: 154px;
+  height: 140px;
+  margin: 14px 6px;
 `;
 const WelcomeStack = styled.p`
   margin: 50px 0px;
@@ -76,7 +84,7 @@ const Container = styled.div`
   padding: 40px 20px;
   justify-content: center;
   background-color: #ffffff;
-
+  animation: ${fadeIn} 1.5s ease-in-out;
   @media (max-width: 768px) {
     flex-direction: column;
     padding: 20px;
@@ -94,7 +102,7 @@ const SearchContainer = styled.div`
 const TableContainer = styled.div`
   margin-top: 50px;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
-  height: 55vh;
+  height: 62vh;
   border-radius: 12px;
 
   @media (max-height: 800px) {
@@ -108,7 +116,7 @@ const TableContainer = styled.div`
 const ButtonCreate = styled.button`
   padding: 10px 20px;
   border: none;
-  height: 53px;
+  height: 61px;
   background-color: #ea5b0b;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin-right: 10px;
@@ -136,7 +144,7 @@ const StacekHolderList: React.FC = () => {
     <Container>
       <ContainerHeader>
         <Image src="/images/boy.png" alt="Boy" />
-        <WelcomeStack>Edit Stakeholder</WelcomeStack>
+        <WelcomeStack>Welcome, João!</WelcomeStack>
       </ContainerHeader>
       <ButtonsContainers>
         <ButtonStake

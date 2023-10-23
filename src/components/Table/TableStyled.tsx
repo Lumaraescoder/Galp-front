@@ -8,9 +8,12 @@ export const TableHeaderCell = styled.th`
   padding: 1rem;
   font-weight: bold;
   color: #333;
+  font-size: 22px !important;
 `;
 
 export const StyledTH = styled.th`
+  font-size: 22px !important;
+
   display: flex;
   gap: 12px;
   padding: 24px;
@@ -49,6 +52,8 @@ export const UserInfo = styled.div`
 export const UserName = styled.div`
   font-weight: 500;
   color: #374151;
+  font-size: 24px;
+  margin: 9px 3px;
 `;
 
 export const UserEmail = styled.div`
@@ -56,6 +61,8 @@ export const UserEmail = styled.div`
 `;
 
 export const StyledTD = styled.td`
+  font-size: 22px !important;
+
   padding: 24px;
 `;
 
@@ -80,6 +87,7 @@ export const StatusIndicator = styled.span`
 
 export const StyledTableCell = styled.td`
   padding: 24px 24px;
+  font-size: 22px !important;
 `;
 
 export const TableCell = styled.td`
@@ -122,8 +130,9 @@ export const StyledSvg = styled.svg`
   stroke: currentColor;
 `;
 export const Container = styled.div`
-  margin-top: 45px;
+  margin-top: 80px;
   width: 100%;
   padding: 15px 43px;
   border-radius: 12px;
+  font-size: 23px;
 `;

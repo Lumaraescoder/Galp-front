@@ -5,7 +5,6 @@ import {
   AvatarWrapper,
   Container,
   FlexDiv,
-  OnlineIndicator,
   StyledImg,
   StyledLink,
   StyledSvg,
@@ -14,7 +13,6 @@ import {
   TableCell,
   TableHeaderCell,
   TableHeaderRow,
-  UserEmail,
   UserInfo,
   UserName
 } from './TableStyled';
@@ -31,11 +29,9 @@ const Table = () => {
       <StyledTH>
         <AvatarWrapper>
           <StyledImg src={user.logo} alt="User Avatar" />
-          <OnlineIndicator />
         </AvatarWrapper>
         <UserInfo>
           <UserName>{user.ceo}</UserName>
-          <UserEmail>{user.email}</UserEmail>
         </UserInfo>
       </StyledTH>
       <StyledTableCell>{user.business}</StyledTableCell>
@@ -67,11 +63,10 @@ const Table = () => {
         <table className="w-full text-left text-sm text-gray-500 shadow-none">
           <thead className="">
             <TableHeaderRow>
-              <TableHeaderCell>Name</TableHeaderCell>
-              <TableHeaderCell>Business</TableHeaderCell>
-              <TableHeaderCell>Last Edit</TableHeaderCell>
-              <TableHeaderCell>Edited By</TableHeaderCell>
-              <TableHeaderCell></TableHeaderCell>
+              <TableHeaderCell>&nbsp;Name</TableHeaderCell>
+              <TableHeaderCell>&nbsp;StakeHolders</TableHeaderCell>
+              <TableHeaderCell>&nbsp;Last Edit</TableHeaderCell>
+              <TableHeaderCell>&nbsp;Edited By</TableHeaderCell>
             </TableHeaderRow>
           </thead>
           <tbody className="divide-y divide-gray-100 border-t border-gray-100">

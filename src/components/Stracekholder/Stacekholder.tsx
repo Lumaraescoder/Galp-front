@@ -23,7 +23,7 @@ const StacekHolder: React.FC<StacekHolderProps> = ({
       <CardHeader>
         <CardTitle>
           <IconUser className="fa fa-users" aria-hidden="true"></IconUser>
-          &nbsp; Detalhes Stakeholder
+          &nbsp; Stakeholder Details
         </CardTitle>
       </CardHeader>
       <CardItem>

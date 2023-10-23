@@ -32,15 +32,15 @@ export const CardItem = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 14px;
+  font-size: 18px;
 `;
 export const CardLabel = styled.label`
   font-weight: bold;
-  color: #555;
+  color: black;
   width: 100px;
 `;
 export const CardValue = styled.span`
   flex: 1;
-  /* text-align: right; */
   color: #777;
 `;
 export const IconUser = styled.i`
