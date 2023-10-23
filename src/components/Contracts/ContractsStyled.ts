@@ -35,7 +35,7 @@ export const ContractItem = styled.div`
 `;
 
 export const DownloadIcon = styled.i`
-  font-size: 24px;
+  font-size: 30px;
   color: #ea5b0b;
 `;
 
@@ -53,8 +53,8 @@ export const ContractName = styled.span`
   color: grey;
 `;
 export const Title = styled.p`
-  font-size: 20px;
+  font-size: 26px;
   font-weight: bold;
   position: relative;
-  top: -3px;
+  top: -5px;
 `;

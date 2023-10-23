@@ -18,7 +18,7 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export const TableDetails = () => {
   const { data, error } = useSWR('https://galp-api.vercel.app/stakeholders', fetcher);
-
+  console.log(data);
   if (error) return <div>Failed to load</div>;
   if (!data) return <div>Loading...</div>;
 
@@ -31,10 +31,12 @@ export const TableDetails = () => {
         </AvatarWrapper>
         <UserInfo>
           <UserName>{user.ceo}</UserName>
-          <UserEmail>{user.email}</UserEmail>
+          <UserEmail>{user.company}</UserEmail>
         </UserInfo>
       </StyledTH>
-      <StyledTableCell>{user.cellphone}</StyledTableCell>
+      <StyledTableCell>
+        <h1>cto</h1>
+      </StyledTableCell>
       <StyledTableCell>{user.stakeholder}</StyledTableCell>
       <StyledTableCell>{user.business}</StyledTableCell>
     </tr>
@@ -47,7 +49,7 @@ export const TableDetails = () => {
           <thead className="">
             <TableHeaderRow>
               <TableHeaderCell>Name</TableHeaderCell>
-              <TableHeaderCell>email</TableHeaderCell>
+              <TableHeaderCell>Role</TableHeaderCell>
               <TableHeaderCell>StakekHolder</TableHeaderCell>
               <TableHeaderCell>Business</TableHeaderCell>
             </TableHeaderRow>

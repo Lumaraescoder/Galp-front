@@ -13,11 +13,8 @@ const InfoCard: React.FC<InfoCardProps> = ({ company }) => {
           <strong>{company.name}</strong>
         </Title>
         <Subtitle>{company.description}</Subtitle>
-        <Subtitle>{company.location}</Subtitle>
         <Subtitle>{company.contactNumber}</Subtitle>
-        <Subtitle>{company.email}</Subtitle>
       </InfoContainer>
-
       <LogoContainer>
         <img src={company.logo} alt="Company Logo" />
       </LogoContainer>

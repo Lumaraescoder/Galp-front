@@ -124,6 +124,6 @@ export const StyledSvg = styled.svg`
 export const Container = styled.div`
   margin-top: 45px;
   width: 100%;
-  padding: 0px 34px;
+  padding: 15px 43px;
   border-radius: 12px;
 `;

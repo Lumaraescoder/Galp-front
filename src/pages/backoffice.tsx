@@ -116,7 +116,6 @@ const ButtonCreate = styled.button`
   transition: background-color 0.3s ease;
   border-radius: 8px;
   font-weight: 503;
-  /* width: 30%; */
   color: white;
   position: absolute;
   right: 26px;
