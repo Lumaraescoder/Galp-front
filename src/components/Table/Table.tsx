@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 import useSWR from 'swr';
 
@@ -31,26 +32,28 @@ const Table = () => {
           <StyledImg src={user.logo} alt="User Avatar" />
         </AvatarWrapper>
         <UserInfo>
-          <UserName>{user.ceo}</UserName>
+          <UserName>{user.business}</UserName>
         </UserInfo>
       </StyledTH>
+      <StyledTableCell>{user.businesstype}</StyledTableCell>
       <StyledTableCell>{user.business}</StyledTableCell>
-      <StyledTableCell>12/12/2022</StyledTableCell>
       <StyledTableCell>{user.ceo}</StyledTableCell>
       <TableCell>
         <FlexDiv></FlexDiv>
       </TableCell>
       <TableCell>
         <FlexDiv>
-          <StyledLink href="#" title="Editar">
-            <StyledSvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
-              />
-            </StyledSvg>
-          </StyledLink>
+          <Link href={`/stakeholderedit/${user._id}`} passHref>
+            <StyledLink title="Editar">
+              <StyledSvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
+                />
+              </StyledSvg>
+            </StyledLink>
+          </Link>
           <StyledLink href="#" title="Excluir"></StyledLink>
         </FlexDiv>
       </TableCell>
@@ -64,7 +67,7 @@ const Table = () => {
           <thead className="">
             <TableHeaderRow>
               <TableHeaderCell>&nbsp;Name</TableHeaderCell>
-              <TableHeaderCell>&nbsp;StakeHolders</TableHeaderCell>
+              <TableHeaderCell>&nbsp;Business</TableHeaderCell>
               <TableHeaderCell>&nbsp;Last Edit</TableHeaderCell>
               <TableHeaderCell>&nbsp;Edited By</TableHeaderCell>
             </TableHeaderRow>

@@ -13,7 +13,7 @@ export const TableHeaderCell = styled.th`
 
 export const StyledTH = styled.th`
   font-size: 22px !important;
-
+  white-space: nowrap;
   display: flex;
   gap: 12px;
   padding: 24px;
@@ -62,7 +62,7 @@ export const UserEmail = styled.div`
 
 export const StyledTD = styled.td`
   font-size: 22px !important;
-
+  white-space: nowrap;
   padding: 24px;
 `;
 
@@ -87,6 +87,8 @@ export const StatusIndicator = styled.span`
 
 export const StyledTableCell = styled.td`
   padding: 24px 24px;
+  white-space: nowrap;
+
   font-size: 22px !important;
 `;
 
@@ -94,6 +96,8 @@ export const TableCell = styled.td`
   padding: 24px;
 `;
 export const TableContainer = styled.td`
+  white-space: nowrap;
+
   &:hover {
     /* box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2); */
   }
