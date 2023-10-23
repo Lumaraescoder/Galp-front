@@ -9,7 +9,7 @@ import CreditBank from '../CreditBank/CreditBank';
 import InfoCard from '../InfoCard/InfoCard';
 import Spinner from '../Spinner/Spinner';
 import StacekHolder from '../Stracekholder/Stacekholder';
-import Table from '../Table/Table';
+import TableDetails from '../tableDetails/TableDetails';
 import {
   CenteredContainer,
   CenteredItem,
@@ -77,8 +77,7 @@ const StakeholderDetails: React.FC = () => {
             <Users className="fa fa-users" aria-hidden="true"></Users>
             <h1>Contacts</h1>
           </IconTextContainer>
-
-          <Table></Table>
+          <TableDetails />
         </TableContainer>
       </CenteredItem>
     </CenteredContainer>
