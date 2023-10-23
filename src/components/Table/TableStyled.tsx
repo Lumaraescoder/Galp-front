@@ -13,7 +13,7 @@ export const TableHeaderCell = styled.th`
 
 export const StyledTH = styled.th`
   font-size: 22px !important;
-
+  white-space: nowrap;
   display: flex;
   gap: 12px;
   padding: 24px;
@@ -62,7 +62,7 @@ export const UserEmail = styled.div`
 
 export const StyledTD = styled.td`
   font-size: 22px !important;
-
+  white-space: nowrap;
   padding: 24px;
 `;
 
