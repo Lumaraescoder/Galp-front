@@ -50,9 +50,10 @@ export const Container = styled.div`
   margin: 0 auto;
   padding: 40px 20px;
   display: flex;
+  height: 1000px;
   justify-content: center;
   background-color: #ffffff;
-
+  font-size: 22px;
   @media (max-width: 768px) {
     flex-direction: column;
     padding: 20px;
@@ -112,7 +113,7 @@ export const LabelRight = styled.div`
 export const WelcomeStack = styled.p`
   margin: 50px 0px;
   white-space: nowrap;
-  font-size: 30px;
+  font-size: 44px;
   position: relative;
   top: 24px;
 `;
@@ -145,7 +146,7 @@ const LeftSide = () => {
       <StyledInput id="business-name" type="text" />
       <StyledLabel htmlFor="location">Location</StyledLabel>
       <StyledInput id="location" type="text" />
-      <StyledLabel htmlFor="ceo">CEO</StyledLabel>
+      <StyledLabel htmlFor="ceo">Adress</StyledLabel>
       <StyledInput id="ceo" type="text" />
       <StyledLabel htmlFor="contact">Contact</StyledLabel>
       <StyledInput id="contact" type="text" />

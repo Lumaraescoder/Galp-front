@@ -49,12 +49,11 @@ export const ContractsHeader = styled.div`
 `;
 
 export const ContractName = styled.span`
-  font-size: 17px;
+  font-size: 24px;
   color: grey;
 `;
 export const Title = styled.p`
   font-size: 26px;
   font-weight: bold;
   position: relative;
-  top: -5px;
 `;

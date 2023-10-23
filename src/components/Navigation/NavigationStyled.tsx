@@ -14,8 +14,9 @@ export type ActiveLink = 'Home' | 'BackOffice';
 
 export const NavbarContainer = styled.nav`
   background-color: #ea5b0b;
-  padding: 1rem;
+  padding: 2rem;
   color: white;
+  font-size: 22px;
 `;
 
 export const Logo = styled.img`
@@ -33,7 +34,7 @@ export const MenuLinks = styled.div<MenuLinksProps>`
     display: ${(props) => (props.open ? 'block' : 'none')};
   }
 `;
-export const StyledLink = styled.a<StyledLinkProps>`
+export const StyledLink = styled.a<any>`
   border-bottom: 3px solid transparent;
   transition: border-bottom-color 0.3s ease-in;
 

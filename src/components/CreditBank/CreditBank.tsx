@@ -74,35 +74,39 @@ const Image2 = styled.img`
   max-width: 100%;
   height: auto;
   position: relative;
-  top: 23px;
-  left: -74px;
+  top: 31px;
+  left: -67px;
   width: 49px;
 `;
 const Total = styled.p`
   position: relative !important;
   top: -29px !important;
   color: #a5b3cd;
+  font-size: 21px;
 `;
 const Value = styled.p`
   position: relative !important;
   top: -23px !important;
   color: white;
+  font-size: 24px;
 `;
 const Total2 = styled.p`
   position: relative !important;
   top: -30px !important;
   color: #a5b3cd;
+  font-size: 21px;
 `;
 const Value2 = styled.p`
   position: relative !important;
   top: -21px !important;
+  font-size: 24px;
 `;
 const CreditBank = () => {
   return (
     <div>
       <IconTextContainer>
         <Money className="fa fa-money" aria-hidden="true"></Money>
-        <SingleLineText>Crédito bancário</SingleLineText>
+        <SingleLineText>Credit Bank</SingleLineText>
       </IconTextContainer>
 
       <Container>
