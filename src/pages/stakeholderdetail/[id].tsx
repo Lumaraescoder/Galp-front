@@ -1,8 +1,8 @@
 import React from 'react';
 
-import StakeholderDetails from '@/components/StackeHolderDetails/StrackeHolderDetails';
+import BackOffice from '../stakeholderform';
 
 const StrackeHolder: React.FC = () => {
-  return <StakeholderDetails />;
+  return <BackOffice />;
 };
 export default StrackeHolder;

@@ -33,7 +33,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   background-color: #ffffff;
-
+  font-size: 22px;
   @media (max-width: 768px) {
     flex-direction: column;
     padding: 20px;
@@ -93,7 +93,7 @@ const LabelRight = styled.div`
 const WelcomeStack = styled.p`
   margin: 50px 0px;
   white-space: nowrap;
-  font-size: 30px;
+  font-size: 42px;
   position: relative;
   top: 24px;
 `;
@@ -107,7 +107,7 @@ const LeftSide = () => {
   return (
     <ContainerLeft>
       <ContainerHeader>
-        <WelcomeStack>Welcome, Stakeholder !</WelcomeStack>
+        <WelcomeStack>Edit StakeHolder</WelcomeStack>
       </ContainerHeader>
       <StrackeHolderType>Stakeholder Type</StrackeHolderType>
       <Flex>

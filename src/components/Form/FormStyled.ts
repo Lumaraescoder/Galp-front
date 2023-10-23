@@ -17,6 +17,7 @@ export const RightSection = styled.div`
   margin-top: 207px;
   animation: ${appearFromRight} 1s ease;
   animation-delay: 1.5;
+  font-size: 22px;
   @media (min-width: 768px) {
     flex: 0 0 45%;
   }
@@ -122,7 +123,7 @@ export const StyledLabel = styled.label`
   margin-bottom: 10px;
   font-weight: 400;
   color: black;
-  font-size: 16px;
+  font-size: 22px;
 `;
 
 export const StyledInput = styled.input`
