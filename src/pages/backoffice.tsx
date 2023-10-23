@@ -136,7 +136,7 @@ const StacekHolderList: React.FC = () => {
     <Container>
       <ContainerHeader>
         <Image src="/images/boy.png" alt="Boy" />
-        <WelcomeStack>Welcome, user !</WelcomeStack>
+        <WelcomeStack>Edit Stakeholder</WelcomeStack>
       </ContainerHeader>
       <ButtonsContainers>
         <ButtonStake
