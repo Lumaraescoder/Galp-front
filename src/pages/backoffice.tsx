@@ -91,23 +91,6 @@ const SearchContainer = styled.div`
   position: relative;
 `;
 
-const StyledInput = styled.input`
-  width: 300px;
-  padding: 10px;
-  background-color: rgb(240, 240, 240);
-  border-radius: 12px;
-  outline: none;
-  font-size: 16px;
-  position: relative;
-  top: 15px;
-  &:focus {
-    border: 1px solid #b0b0b0;
-  }
-
-  &::placeholder {
-    color: #c0c0c0;
-  }
-`;
 const TableContainer = styled.div`
   margin-top: 50px;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);

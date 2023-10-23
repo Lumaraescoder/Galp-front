@@ -4,12 +4,10 @@ import useSWR from 'swr';
 import {
   AvatarWrapper,
   Container,
-  FlexDiv,
   OnlineIndicator,
   StyledImg,
   StyledTH,
   StyledTableCell,
-  TableCell,
   TableHeaderCell,
   TableHeaderRow,
   UserEmail,
