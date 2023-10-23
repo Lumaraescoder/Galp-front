@@ -87,6 +87,8 @@ export const StatusIndicator = styled.span`
 
 export const StyledTableCell = styled.td`
   padding: 24px 24px;
+  white-space: nowrap;
+
   font-size: 22px !important;
 `;
 
@@ -94,6 +96,8 @@ export const TableCell = styled.td`
   padding: 24px;
 `;
 export const TableContainer = styled.td`
+  white-space: nowrap;
+
   &:hover {
     /* box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2); */
   }
