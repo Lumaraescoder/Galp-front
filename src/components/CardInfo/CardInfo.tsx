@@ -4,14 +4,7 @@ import { CardInfoProps, Stack } from 'src/types/types';
 import useSWR from 'swr';
 
 import Spinner from '../Spinner/Spinner';
-import {
-  CardButton,
-  CardContainer,
-  CardText,
-  CardTitle,
-  Container,
-  WrapperSpacing
-} from './CardInfoStyled';
+import { CardContainer, CardText, CardTitle, Container, WrapperSpacing } from './CardInfoStyled';
 
 const fetcher = (url: string) =>
   fetch(url, {

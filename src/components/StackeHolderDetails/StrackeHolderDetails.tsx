@@ -77,7 +77,6 @@ const StakeholderDetails: React.FC = () => {
             <Users className="fa fa-users" aria-hidden="true"></Users>
             <h1>Contacts</h1>
           </IconTextContainer>
-
           <TableDetails />
         </TableContainer>
       </CenteredItem>
