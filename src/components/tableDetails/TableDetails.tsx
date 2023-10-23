@@ -7,8 +7,6 @@ import {
   FlexDiv,
   OnlineIndicator,
   StyledImg,
-  StyledLink,
-  StyledSvg,
   StyledTH,
   StyledTableCell,
   TableCell,
@@ -17,10 +15,10 @@ import {
   UserEmail,
   UserInfo,
   UserName
-} from './TableStyled';
+} from './TableDetailsStyled';
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-const Table = () => {
+export const TableDetails = () => {
   const { data, error } = useSWR('https://galp-api.vercel.app/stakeholders', fetcher);
 
   if (error) return <div>Failed to load</div>;
@@ -47,7 +45,7 @@ const Table = () => {
       </TableCell>
       <TableCell>
         <FlexDiv>
-          <StyledLink href="#" title="Editar">
+          {/* <StyledLink href="#" title="Editar">
             <StyledSvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path
                 strokeLinecap="round"
@@ -64,7 +62,7 @@ const Table = () => {
                 d="M6 18V9a1 1 0 011-1h10a1 1 0 011 1v9m-1 4a2 2 0 01-2 2H8a2 2 0 01-2-2v-2a2 2 0 012-2h6a2 2 0 012 2v2zM9 9h6M9 9a3 3 0 110-6 3 3 0 010 6zm6 0a3 3 0 110-6 3 3 0 010 6zm-6 0h6"
               />
             </StyledSvg>
-          </StyledLink>
+          </StyledLink> */}
         </FlexDiv>
       </TableCell>
     </tr>
@@ -92,4 +90,4 @@ const Table = () => {
   );
 };
 
-export default Table;
+export default TableDetails;

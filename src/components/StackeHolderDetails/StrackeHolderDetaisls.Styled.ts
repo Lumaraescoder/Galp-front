@@ -34,7 +34,7 @@ export const ColumnContainer = styled.div`
   margin-top: 50px;
 `;
 export const ChartContainer = styled.div`
-  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
+  border: 1px solid #e0e0e0;
   margin-top: 30px;
   height: 650px;
   border-radius: 12px;

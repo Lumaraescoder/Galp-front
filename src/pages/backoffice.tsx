@@ -1,72 +1,52 @@
-import styled, { keyframes } from 'styled-components';
+import Link from 'next/link';
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
-import Form from '@/components/Form/Form';
+import { ChartContainer } from '@/components/StackeHolderDetails/StrackeHolderDetaisls.Styled';
+import Table from '@/components/Table/Table';
 
-const appearFromLeft = keyframes`
-  from {
-    opacity: 0;
-    transform: translateX(-100%);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-`;
-
-const StyledInput = styled.input`
-  width: 100%;
-  padding: 12px 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #f5f5f5;
+const ButtonStake = styled.button`
   border: none;
-  margin-top: 5px;
-  @media (max-width: 768px) {
-    font-size: larger;
-  }
-`;
-
-const Container = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  display: flex;
-  justify-content: center;
-  background-color: #ffffff;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    padding: 20px;
-    align-items: stretch;
-  }
-`;
-
-const LeftSection = styled.div`
-  flex: 1;
-  animation: ${appearFromLeft} 1s ease;
-
-  @media (max-width: 768px) {
-    max-width: 100%;
-    margin-bottom: 20px;
-  }
-`;
-
-const Flex = styled.div`
-  display: flex;
-  gap: 20px;
-`;
-
-const StyledLabel = styled.label`
-  display: flex;
-  align-items: center;
+  background-color: E6E6E6;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-right: 10px;
   cursor: pointer;
-  white-space: nowrap;
+  transition: background-color 0.3s ease;
+  width: 266px;
+  border-radius: 8px;
+  font-weight: 503;
+  &:hover {
+    background-color: #f0f0f0;
+  }
 
   @media (max-width: 768px) {
-    white-space: normal;
+    width: 100%;
+    margin-bottom: 10px;
   }
 `;
 
+const ButtonDash = styled.button`
+  padding: 10px 20px;
+  border: none;
+  height: 50px;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-right: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 8px;
+  font-weight: 503;
+  width: 266px;
+  color: grey;
+  &:hover {
+    background-color: #f0f0f0;
+  }
+`;
+
+const ButtonsContainers = styled.div`
+  display: flex;
+  margin: 20px 34px;
+`;
 const ContainerHeader = styled.div`
   display: flex;
   align-items: center;
@@ -77,72 +57,137 @@ const ContainerHeader = styled.div`
     font-weight: 799;
   }
 `;
-
-const LabelLeft = styled.div`
-  margin: 12px 0px;
-
-  @media (max-width: 768px) {
-    margin-bottom: 10px;
-  }
+const Image = styled.img`
+  width: 120px;
+  height: 120px;
+  margin: 3px 0px;
 `;
-
-const LabelRight = styled.div`
-  margin: 12px 20px;
-`;
-
 const WelcomeStack = styled.p`
   margin: 50px 0px;
   white-space: nowrap;
-  font-size: 30px;
+  font-size: 40px;
   position: relative;
   top: 24px;
 `;
 
-const ContainerLeft = styled.div``;
-const StrackeHolderType = styled.div`
-  margin-top: 29px;
+const Container = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  justify-content: center;
+  background-color: #ffffff;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 20px;
+    align-items: stretch;
+  }
+`;
+const SearchContainer = styled.div`
+  width: 100%;
+  padding: 18px 37px;
+  display: flex;
+  align-items: center;
+  position: relative;
 `;
 
-const LeftSide = () => {
-  return (
-    <ContainerLeft>
-      <ContainerHeader>
-        <WelcomeStack>Welcome, Stakeholder !</WelcomeStack>
-      </ContainerHeader>
-      <StrackeHolderType>Stakeholder Type</StrackeHolderType>
-      <Flex>
-        <LabelLeft>
-          <input type="radio" name="stakeholder" id="company" />
-          <label htmlFor="company"> &nbsp;Company</label>
-        </LabelLeft>
-        <LabelRight className="right-label">
-          <input type="radio" name="stakeholder" id="people" />
-          <label htmlFor="people"> &nbsp;People</label>
-        </LabelRight>
-      </Flex>
-      <StyledLabel htmlFor="stakeholder-name">Stakeholder Name</StyledLabel>
-      <StyledInput id="stakeholder-name" type="text" />
-      <StyledLabel htmlFor="business-name">Business</StyledLabel>
-      <StyledInput id="business-name" type="text" />
-      <StyledLabel htmlFor="location">Location</StyledLabel>
-      <StyledInput id="location" type="text" />
-      <StyledLabel htmlFor="ceo">CEO</StyledLabel>
-      <StyledInput id="ceo" type="text" />
-      <StyledLabel htmlFor="contact">Contact</StyledLabel>
-      <StyledInput id="contact" type="text" />
-    </ContainerLeft>
-  );
-};
+const StyledInput = styled.input`
+  width: 300px;
+  padding: 10px;
+  background-color: rgb(240, 240, 240);
+  border-radius: 12px;
+  outline: none;
+  font-size: 16px;
+  position: relative;
+  top: 15px;
+  &:focus {
+    border: 1px solid #b0b0b0;
+  }
 
-const BackOffice = () => {
+  &::placeholder {
+    color: #c0c0c0;
+  }
+`;
+const TableContainer = styled.div`
+  margin-top: 50px;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
+  height: 55vh;
+  border-radius: 12px;
+
+  @media (max-height: 800px) {
+    height: 70vh;
+  }
+
+  @media (max-width: 768px) {
+    height: 70vh;
+  }
+`;
+const ButtonCreate = styled.button`
+  padding: 10px 20px;
+  border: none;
+  height: 53px;
+  background-color: #ea5b0b;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-right: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 8px;
+  font-weight: 503;
+  /* width: 30%; */
+  color: white;
+  position: absolute;
+  right: 26px;
+  bottom: 10px;
+  top: 38px;
+  &:hover {
+    background-color: #f0f0f0;
+  }
+`;
+const StacekHolderList: React.FC = () => {
+  const [activeSection, setActiveSection] = useState('table');
+
+  const handleButtonClick = (section: string) => {
+    setActiveSection(section);
+  };
+
   return (
     <Container>
-      <LeftSection>
-        <LeftSide />
-      </LeftSection>
-      <Form />
+      <ContainerHeader>
+        <Image src="/images/boy.png" alt="Boy" />
+        <WelcomeStack>Welcome, user !</WelcomeStack>
+      </ContainerHeader>
+      <ButtonsContainers>
+        <ButtonStake
+          onClick={() => handleButtonClick('table')}
+          className={activeSection === 'table' ? 'active' : ''}
+          style={activeSection === 'table' ? { backgroundColor: '#f0f0f0' } : {}}
+        >
+          Lista de Stakeholders
+        </ButtonStake>
+        <ButtonDash
+          onClick={() => handleButtonClick('other')}
+          className={activeSection === 'other' ? 'active' : ''}
+          style={activeSection === 'other' ? { backgroundColor: '#f0f0f0' } : {}}
+        >
+          Users
+        </ButtonDash>
+      </ButtonsContainers>
+      <div>
+        {activeSection === 'table' ? (
+          <TableContainer>
+            <SearchContainer>
+              <StyledInput type="text" placeholder="Search" />
+              <Link href="/stakeholderadd" passHref>
+                <ButtonCreate>Create Stakeholder</ButtonCreate>
+              </Link>
+            </SearchContainer>
+            <Table />
+          </TableContainer>
+        ) : null}
+        {activeSection === 'other' ? <ChartContainer /> : null}
+      </div>
     </Container>
   );
 };
 
-export default BackOffice;
+export default StacekHolderList;
