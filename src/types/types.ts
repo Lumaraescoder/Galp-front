@@ -18,6 +18,7 @@ export type Contract = {
 };
 
 export type Stakeholder = {
+  contactNumber: string;
   _id: string;
   description: string;
   business: string;
@@ -49,4 +50,7 @@ export interface StacekHolderProps {
   company: string;
   stakeholder: string;
   address: string;
+  location: string;
+  email: string;
+  cellphone: string;
 }

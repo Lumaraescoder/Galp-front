@@ -2,10 +2,7 @@ import React from 'react';
 import useSWR from 'swr';
 
 import {
-  AvatarWrapper,
   Container,
-  OnlineIndicator,
-  StyledImg,
   StyledTH,
   StyledTableCell,
   TableHeaderCell,
@@ -25,16 +22,14 @@ export const TableDetails = () => {
   const renderTableRows = data.map((user: any, index: any): any => (
     <tr key={index} className="hover:bg-gray-50">
       <StyledTH>
-        <AvatarWrapper>
-          <StyledImg src={user.logo} alt="User Avatar" />
-          <OnlineIndicator />
-        </AvatarWrapper>
         <UserInfo>
           <UserName>{user.ceo}</UserName>
-          <UserEmail>{user.email}</UserEmail>
+          <UserEmail>{user.company}</UserEmail>
         </UserInfo>
       </StyledTH>
-      <StyledTableCell>{user.cellphone}</StyledTableCell>
+      <StyledTableCell>
+        <h1>cto</h1>
+      </StyledTableCell>
       <StyledTableCell>{user.stakeholder}</StyledTableCell>
       <StyledTableCell>{user.business}</StyledTableCell>
     </tr>
@@ -47,8 +42,8 @@ export const TableDetails = () => {
           <thead className="">
             <TableHeaderRow>
               <TableHeaderCell>Name</TableHeaderCell>
-              <TableHeaderCell>email</TableHeaderCell>
-              <TableHeaderCell>StakekHolder</TableHeaderCell>
+              <TableHeaderCell>Role</TableHeaderCell>
+              <TableHeaderCell>StakeHolder</TableHeaderCell>
               <TableHeaderCell>Business</TableHeaderCell>
             </TableHeaderRow>
           </thead>

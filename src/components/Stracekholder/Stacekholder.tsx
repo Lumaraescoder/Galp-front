@@ -11,26 +11,41 @@ import {
   IconUser
 } from './StrackeholderStyled';
 
-const StacekHolder: React.FC<StacekHolderProps> = ({ company, stakeholder, address }) => {
+const StacekHolder: React.FC<StacekHolderProps> = ({
+  company,
+  stakeholder,
+  address,
+  email,
+  cellphone
+}) => {
   return (
     <CardContainers>
       <CardHeader>
         <CardTitle>
           <IconUser className="fa fa-users" aria-hidden="true"></IconUser>
-          &nbsp; Stakeholder Details
+          &nbsp; Detalhes Stakeholder
         </CardTitle>
       </CardHeader>
       <CardItem>
         <CardLabel>Company: </CardLabel>
-        <CardValue>{company}</CardValue>
+        <CardValue> &nbsp; &nbsp;&nbsp;{company}</CardValue>
       </CardItem>
       <CardItem>
         <CardLabel>Stakeholder:</CardLabel>
-        <CardValue>{stakeholder}</CardValue>
+        <CardValue> &nbsp;&nbsp;&nbsp; {stakeholder}</CardValue>
       </CardItem>
       <CardItem>
         <CardLabel>Address:</CardLabel>
-        <CardValue>{address}</CardValue>
+        <CardValue> &nbsp;&nbsp;&nbsp;{address}</CardValue>
+      </CardItem>
+
+      <CardItem>
+        <CardLabel>E-mail:</CardLabel>
+        <CardValue>&nbsp;&nbsp;&nbsp;{email}</CardValue>
+      </CardItem>
+      <CardItem>
+        <CardLabel>Contact:</CardLabel>
+        <CardValue>&nbsp;&nbsp;&nbsp;{cellphone}</CardValue>
       </CardItem>
     </CardContainers>
   );
