@@ -35,6 +35,7 @@ const Table = () => {
           <UserName>{user.business}</UserName>
         </UserInfo>
       </StyledTH>
+
       <StyledTableCell>{user.businesstype}</StyledTableCell>
       <StyledTableCell>{user.business}</StyledTableCell>
       <StyledTableCell>{user.ceo}</StyledTableCell>
@@ -67,7 +68,7 @@ const Table = () => {
           <thead className="">
             <TableHeaderRow>
               <TableHeaderCell>&nbsp;Name</TableHeaderCell>
-              <TableHeaderCell>&nbsp;Business</TableHeaderCell>
+              <TableHeaderCell>&nbsp;StakeHolders</TableHeaderCell>
               <TableHeaderCell>&nbsp;Last Edit</TableHeaderCell>
               <TableHeaderCell>&nbsp;Edited By</TableHeaderCell>
             </TableHeaderRow>
