@@ -8,13 +8,12 @@ export const TableHeaderCell = styled.th`
   padding: 1rem;
   font-weight: bold;
   color: #333;
-  font-size: 22px !important;
+  font-size: 18px !important;
 `;
 
 export const StyledTH = styled.th`
-  font-size: 22px !important;
+  font-size: 18px !important;
   white-space: nowrap;
-
   display: flex;
   gap: 12px;
   padding: 24px;
@@ -53,7 +52,7 @@ export const UserInfo = styled.div`
 export const UserName = styled.div`
   font-weight: 500;
   color: #374151;
-  font-size: 24px;
+  font-size: 21px;
   margin: 9px 3px;
 `;
 
@@ -62,7 +61,7 @@ export const UserEmail = styled.div`
 `;
 
 export const StyledTD = styled.td`
-  font-size: 22px !important;
+  font-size: 18px !important;
   white-space: nowrap;
   padding: 24px;
 `;
@@ -90,7 +89,7 @@ export const StyledTableCell = styled.td`
   padding: 24px 24px;
   white-space: nowrap;
 
-  font-size: 22px !important;
+  font-size: 18px !important;
 `;
 
 export const TableCell = styled.td`
