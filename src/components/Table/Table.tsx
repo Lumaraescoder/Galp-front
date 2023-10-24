@@ -25,7 +25,7 @@ const Table = () => {
   if (error) return <div>Failed to load</div>;
   if (!data) return <div>Loading...</div>;
 
-  function shortenString(originalString, maxLength) {
+  function shortenString(originalString: string, maxLength: number) {
     if (originalString.length <= maxLength) {
       return originalString; // Retorna a string original se for menor ou igual ao comprimento máximo desejado
     } else {
@@ -44,7 +44,7 @@ const Table = () => {
       </StyledTH>
 
       <StyledTableCell>{user.businesstype}</StyledTableCell>
-      {user.contracts.map((contract, index) => (
+      {user.contracts.map((contract: { createdAt: any }, index: React.Key | null | undefined) => (
         <tr key={index}>
           <StyledTableCell>
             {contract.createdAt ? shortenString(contract.createdAt, 10) : ''}
