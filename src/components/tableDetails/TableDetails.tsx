@@ -1,16 +1,6 @@
 import React from 'react';
-import useSWR from 'swr';
 
-import {
-  Container,
-  StyledTH,
-  StyledTableCell,
-  TableHeaderCell,
-  TableHeaderRow,
-  UserEmail,
-  UserInfo,
-  UserName
-} from './TableDetailsStyled';
+import { Container, StyledTableCell, TableHeaderCell, TableHeaderRow } from './TableDetailsStyled';
 
 export const TableDetails = () => {
   const data = [
