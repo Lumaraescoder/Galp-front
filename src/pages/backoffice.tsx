@@ -2,8 +2,8 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 
-import { ChartContainer } from '@/components/StackeHolderDetails/StrackeHolderDetaisls.Styled';
 import Table from '@/components/Table/Table';
+import UsersTable from '@/components/UsersTable/UsersTable';
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -14,8 +14,9 @@ const fadeIn = keyframes`
 `;
 const ButtonStake = styled.button`
   border: none;
-  background-color: E6E6E6;
+  background-color: #ffffff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e6e6e6;
   margin-right: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -38,6 +39,7 @@ const ButtonDash = styled.button`
   border: none;
   height: 61px;
   background-color: #ffffff;
+  border: 1px solid #e6e6e6;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin-right: 10px;
   cursor: pointer;
@@ -53,29 +55,25 @@ const ButtonDash = styled.button`
 
 const ButtonsContainers = styled.div`
   display: flex;
-  margin: 20px 34px;
+  margin: 20px 0;
 `;
 const ContainerHeader = styled.div`
   display: flex;
-  align-items: center;
+  align-items: end;
   gap: 10px;
-  margin-top: -11px;
+  justify-content: flex-start;
+
   p {
     color: #030517;
-    font-weight: 799;
+    font-weight: 900;
   }
 `;
 const Image = styled.img`
   width: 154px;
   height: 140px;
-  margin: 14px 6px;
 `;
 const WelcomeStack = styled.p`
-  margin: 50px 0px;
-  white-space: nowrap;
   font-size: 40px;
-  position: relative;
-  top: 24px;
 `;
 
 const Container = styled.div`
@@ -93,46 +91,33 @@ const Container = styled.div`
 `;
 const SearchContainer = styled.div`
   width: 100%;
-  padding: 18px 37px;
   display: flex;
   align-items: center;
-  position: relative;
+  justify-content: flex-end;
 `;
 
 const TableContainer = styled.div`
-  margin-top: 50px;
-  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
-  height: 62vh;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
-
-  @media (max-height: 800px) {
-    height: 70vh;
-  }
-
-  @media (max-width: 768px) {
-    height: 70vh;
-  }
+  padding: 20px;
 `;
 const ButtonCreate = styled.button`
   padding: 10px 20px;
   border: none;
-  height: 61px;
+  height: 44px;
   background-color: #ea5b0b;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-right: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   border-radius: 8px;
-  font-weight: 503;
+  font-weight: 600;
   color: white;
-  position: absolute;
-  right: 26px;
-  bottom: 10px;
-  top: 38px;
+
   &:hover {
-    background-color: #f0f0f0;
+    opacity: 0.8;
   }
 `;
+
 const StacekHolderList: React.FC = () => {
   const [activeSection, setActiveSection] = useState('table');
 
@@ -152,7 +137,7 @@ const StacekHolderList: React.FC = () => {
           className={activeSection === 'table' ? 'active' : ''}
           style={activeSection === 'table' ? { backgroundColor: '#f0f0f0' } : {}}
         >
-          Lista de Stakeholders
+          Stakeholders
         </ButtonStake>
         <ButtonDash
           onClick={() => handleButtonClick('other')}
@@ -173,7 +158,14 @@ const StacekHolderList: React.FC = () => {
             <Table />
           </TableContainer>
         ) : null}
-        {activeSection === 'other' ? <ChartContainer /> : null}
+        {activeSection === 'other' ? (
+          <TableContainer>
+            <SearchContainer>
+              <ButtonCreate>Create User</ButtonCreate>
+            </SearchContainer>
+            <UsersTable />
+          </TableContainer>
+        ) : null}
       </div>
     </Container>
   );

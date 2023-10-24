@@ -2,10 +2,11 @@ import styled from 'styled-components';
 
 export const ContractsContainer = styled.div`
   background-color: #fff;
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 20px;
   width: 100%;
   max-width: 800px;
+  min-height: 338px;
   margin: auto;
   border: 1px solid #e0e0e0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

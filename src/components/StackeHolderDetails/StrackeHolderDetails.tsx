@@ -27,15 +27,20 @@ const fetcher = (url: string) =>
 
     return res.json();
   });
+
 const IconTextContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-bottom: 30px;
+`;
+
+const SingleLineText = styled.p`
   font-size: 26px;
-  position: relative;
-  top: 10px;
+  gap: 10px;
   font-weight: 600;
 `;
+
 const StakeholderDetails: React.FC = () => {
   const router = useRouter();
   const { id } = router.query;
@@ -78,7 +83,7 @@ const StakeholderDetails: React.FC = () => {
         <TableContainer>
           <IconTextContainer>
             <Users className="fa fa-users" aria-hidden="true"></Users>
-            <h1>Contacts</h1>
+            <SingleLineText>Contacts</SingleLineText>
           </IconTextContainer>
           <TableDetails />
         </TableContainer>

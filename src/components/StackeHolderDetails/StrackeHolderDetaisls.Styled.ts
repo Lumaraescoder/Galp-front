@@ -1,22 +1,10 @@
-import styled, { keyframes } from 'styled-components';
-
-export const fadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
+import styled from 'styled-components';
 
 export const CenteredContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 1800px;
-  padding: 50px;
-
-  margin-top: 100px;
+  padding: 20px;
 `;
 
 export const CenteredItem = styled.div`
@@ -35,7 +23,6 @@ export const ColumnContainer = styled.div`
 `;
 export const ChartContainer = styled.div`
   margin-top: 30px;
-  height: 650px;
   border-radius: 12px;
   border: 1px solid #e0e0e0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -44,8 +31,8 @@ export const ChartContainer = styled.div`
   }
 `;
 export const TableContainer = styled.div`
-  margin-top: 50px;
-  height: 600px;
+  margin-top: 30px;
+  padding: 20px;
   border-radius: 12px;
   border: 1px solid #e0e0e0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -56,10 +43,8 @@ export const TableContainer = styled.div`
 export const Money = styled.i`
   font-size: 30px;
   color: #ea5b0b;
-  margin: 17px 15px;
 `;
 export const Users = styled.i`
   font-size: 30px;
   color: #ea5b0b;
-  margin: 17px 15px;
 `;

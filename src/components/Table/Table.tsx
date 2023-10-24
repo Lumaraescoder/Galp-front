@@ -77,7 +77,7 @@ const Table = () => {
 
   return (
     <Container>
-      <div id="test" className="border-white-200 m-0 mt-5 overflow-hidden">
+      <div className="border-white-200 m-0 mt-5 overflow-hidden">
         <table className="w-full text-left text-sm text-gray-500 shadow-none">
           <thead className="">
             <TableHeaderRow>

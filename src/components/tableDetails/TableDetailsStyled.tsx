@@ -6,7 +6,7 @@ export const TableHeaderCell = styled.th`
   padding: 1rem;
   font-weight: bold;
   color: #333;
-  font-size: 22px !important;
+  font-size: 18px;
 `;
 
 export const StyledTH = styled.th`
@@ -42,7 +42,7 @@ export const OnlineIndicator = styled.span`
 `;
 
 export const UserInfo = styled.div`
-  font-size: 22px !important;
+  font-size: 18px;
 `;
 
 export const UserName = styled.div`
@@ -56,7 +56,7 @@ export const UserEmail = styled.div`
 
 export const StyledTD = styled.td`
   padding: 24px;
-  font-size: 22px !important;
+  font-size: 18px;
 `;
 
 export const StatusBadge = styled.span`
@@ -80,12 +80,12 @@ export const StatusIndicator = styled.span`
 
 export const StyledTableCell = styled.td`
   padding: 24px 24px;
-  font-size: 22px !important;
+  font-size: 18px;
 `;
 
 export const TableCell = styled.td`
   padding: 24px;
-  font-size: 22px !important;
+  font-size: 18px;
 `;
 export const TableContainer = styled.td``;
 
@@ -120,8 +120,6 @@ export const StyledSvg = styled.svg`
   stroke: currentColor;
 `;
 export const Container = styled.div`
-  margin-top: 82px;
   width: 100%;
-  padding: 0px 34px;
   border-radius: 12px;
 `;
