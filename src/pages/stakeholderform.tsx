@@ -345,7 +345,7 @@ const StakeHolderForm = () => {
   if (isLoading) {
     return <div>Carregando...</div>;
   }
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: any) => {
     event.preventDefault();
 
     const apiUrl = `https://galp-api.vercel.app/stakeholders/${id}`;
@@ -361,13 +361,11 @@ const StakeHolderForm = () => {
       if (!response.ok) {
         throw new Error('Erro ao atualizar o stakeholder');
       }
-
-      const data = await response.json();
     } catch (error) {
       console.error('Houve um problema com a requisição fetch:', error);
     }
   };
-  const handleRadioChange = (e) => {
+  const handleRadioChange = (e: any) => {
     setFormData({
       ...formData,
       stakeholderType: e.target.value
@@ -481,7 +479,7 @@ const StakeHolderForm = () => {
               </InputContainer>
             </TwoColumns>
 
-            {formData.contracts.map((contract, index) => (
+            {formData.contracts.map((contract: any, index: any) => (
               <InputContainer key={index}>
                 <StyledLabel2 htmlFor={`contract-date-${index}`}>Contract Date</StyledLabel2>
                 <StyledInput2
