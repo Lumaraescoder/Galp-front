@@ -122,4 +122,10 @@ export const StyledSvg = styled.svg`
 export const Container = styled.div`
   width: 100%;
   border-radius: 12px;
+
+  @media only screen and (max-width: 764px) {
+    #wrapperTable {
+      overflow-x: scroll;
+    }
+  }
 `;
