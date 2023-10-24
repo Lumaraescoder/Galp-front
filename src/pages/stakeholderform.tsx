@@ -290,7 +290,7 @@ export const StyledInputWithIcon = styled(StyledInputFull)`
   padding-left: 40px;
 `;
 
-const UnifiedForm = () => {
+const StakeHolderForm = () => {
   const router = useRouter();
   const { id } = router.query;
 
@@ -525,4 +525,4 @@ const UnifiedForm = () => {
   );
 };
 
-export default UnifiedForm;
+export default StakeHolderForm;
