@@ -8,11 +8,11 @@ export const TableHeaderCell = styled.th`
   padding: 1rem;
   font-weight: bold;
   color: #333;
-  font-size: 18px !important;
+  font-size: 18px;
 `;
 
 export const StyledTH = styled.th`
-  font-size: 18px !important;
+  font-size: 18px;
   white-space: nowrap;
   display: flex;
   gap: 12px;
@@ -61,7 +61,7 @@ export const UserEmail = styled.div`
 `;
 
 export const StyledTD = styled.td`
-  font-size: 18px !important;
+  font-size: 18px;
   white-space: nowrap;
   padding: 24px;
 `;
@@ -89,7 +89,7 @@ export const StyledTableCell = styled.td`
   padding: 24px 24px;
   white-space: nowrap;
 
-  font-size: 18px !important;
+  font-size: 18px;
 `;
 
 export const TableCell = styled.td`

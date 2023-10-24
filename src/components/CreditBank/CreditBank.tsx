@@ -17,6 +17,7 @@ const SmallCards = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  min-height: 415px;
 `;
 const Card = styled.div`
   width: 283px;
