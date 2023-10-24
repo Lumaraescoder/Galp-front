@@ -11,24 +11,40 @@ import {
   UserInfo,
   UserName
 } from './TableDetailsStyled';
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export const TableDetails = () => {
-  const { data, error } = useSWR('https://galp-api.vercel.app/stakeholders', fetcher);
-
-  if (error) return <div>Failed to load</div>;
-  if (!data) return <div>Loading...</div>;
+  const data = [
+    {
+      name: 'John Doe',
+      role: 'Manager',
+      department: 'Sales',
+      email: 'john.doe@@test.com'
+    },
+    {
+      name: 'Jane Smith',
+      role: 'Engineer',
+      department: 'Engineering',
+      email: 'jane.smith@@test.com'
+    },
+    {
+      name: 'Michael Johnson',
+      role: 'Developer',
+      department: 'IT',
+      email: 'michael.johnson@@test.com'
+    },
+    {
+      name: 'Sarah Williams',
+      role: 'Analyst',
+      department: 'Finance',
+      email: 'sarah.williams@c@test.com'
+    }
+  ];
 
   const renderTableRows = data.map((user: any, index: any): any => (
     <tr key={index} className="hover:bg-gray-50">
-      <StyledTH>
-        <UserInfo>
-          <UserName>{user.ceo}</UserName>
-          <UserEmail>{user.company}</UserEmail>
-        </UserInfo>
-      </StyledTH>
+      <StyledTableCell>{user.name}</StyledTableCell>
       <StyledTableCell>{user.role}</StyledTableCell>
-      <StyledTableCell>{user.businesstype}</StyledTableCell>
+      <StyledTableCell>{user.department}</StyledTableCell>
       <StyledTableCell>{user.email}</StyledTableCell>
     </tr>
   ));
@@ -39,10 +55,10 @@ export const TableDetails = () => {
         <table className="w-full  text-left text-sm text-gray-500">
           <thead className="">
             <TableHeaderRow>
-              <TableHeaderCell>&nbsp;Name</TableHeaderCell>
-              <TableHeaderCell>&nbsp;Role</TableHeaderCell>
-              <TableHeaderCell>&nbsp;Department</TableHeaderCell>
-              <TableHeaderCell>&nbsp;E-mail</TableHeaderCell>
+              <TableHeaderCell>Name</TableHeaderCell>
+              <TableHeaderCell>Role</TableHeaderCell>
+              <TableHeaderCell>Department</TableHeaderCell>
+              <TableHeaderCell>E-mail</TableHeaderCell>
             </TableHeaderRow>
           </thead>
           <tbody className="divide-y divide-gray-100 border-t border-gray-100">
