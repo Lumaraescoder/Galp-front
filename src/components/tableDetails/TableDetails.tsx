@@ -42,7 +42,7 @@ export const TableDetails = () => {
               <TableHeaderCell>&nbsp;Name</TableHeaderCell>
               <TableHeaderCell>&nbsp;Role</TableHeaderCell>
               <TableHeaderCell>&nbsp;Department</TableHeaderCell>
-              <TableHeaderCell>&nbsp;Business</TableHeaderCell>
+              <TableHeaderCell>&nbsp;E-mail</TableHeaderCell>
             </TableHeaderRow>
           </thead>
           <tbody className="divide-y divide-gray-100 border-t border-gray-100">
