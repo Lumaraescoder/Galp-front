@@ -25,6 +25,13 @@ const Table = () => {
   if (error) return <div>Failed to load</div>;
   if (!data) return <div>Loading...</div>;
 
+  function shortenString(originalString: string, maxLength: number) {
+    if (originalString.length <= maxLength) {
+      return originalString; // Retorna a string original se for menor ou igual ao comprimento máximo desejado
+    } else {
+      return originalString.substring(0, maxLength); // Corta a string e adiciona "..." ao final
+    }
+  }
   const renderTableRows = data.map((user: any, index: any): any => (
     <tr key={index} className="hover:bg-gray-50">
       <StyledTH>
@@ -37,8 +44,15 @@ const Table = () => {
       </StyledTH>
 
       <StyledTableCell>{user.businesstype}</StyledTableCell>
-      <StyledTableCell>{user.business}</StyledTableCell>
+      {user.contracts.map((contract: { createdAt: any }, index: React.Key | null | undefined) => (
+        <tr key={index}>
+          <StyledTableCell>
+            {contract.createdAt ? shortenString(contract.createdAt, 10) : ''}
+          </StyledTableCell>
+        </tr>
+      ))}
       <StyledTableCell>{user.ceo}</StyledTableCell>
+
       <TableCell>
         <FlexDiv></FlexDiv>
       </TableCell>
@@ -68,7 +82,7 @@ const Table = () => {
           <thead className="">
             <TableHeaderRow>
               <TableHeaderCell>&nbsp;Name</TableHeaderCell>
-              <TableHeaderCell>&nbsp;StakeHolders</TableHeaderCell>
+              <TableHeaderCell>&nbsp;Business</TableHeaderCell>
               <TableHeaderCell>&nbsp;Last Edit</TableHeaderCell>
               <TableHeaderCell>&nbsp;Edited By</TableHeaderCell>
             </TableHeaderRow>

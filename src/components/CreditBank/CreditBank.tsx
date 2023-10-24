@@ -5,6 +5,9 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 const SmallCards = styled.div`
   flex-direction: column;
@@ -27,7 +30,7 @@ const Card = styled.div`
 
 const DarkCard = styled(Card)`
   background-color: #090d1f;
-  color: #fff;
+  color: #333;
   height: 174px;
   position: relative;
   top: -9px;
@@ -94,19 +97,19 @@ const Total2 = styled.p`
   position: relative !important;
   top: -30px !important;
   color: #a5b3cd;
-  font-size: 21px;
+  font-size: 22px;
 `;
 const Value2 = styled.p`
   position: relative !important;
   top: -21px !important;
-  font-size: 24px;
+  font-size: 22px;
 `;
 const CreditBank = () => {
   return (
     <div>
       <IconTextContainer>
         <Money className="fa fa-money" aria-hidden="true"></Money>
-        <SingleLineText>Credit Bank</SingleLineText>
+        <SingleLineText>Financials</SingleLineText>
       </IconTextContainer>
 
       <Container>

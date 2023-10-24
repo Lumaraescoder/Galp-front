@@ -42,14 +42,14 @@ export const DownloadIcon = styled.i`
 export const ContractsHeader = styled.div`
   display: flex;
   align-items: center;
-  font-size: 24px;
+  font-size: 21px;
   margin-bottom: 24px;
   position: relative;
   top: 10px;
 `;
 
 export const ContractName = styled.span`
-  font-size: 24px;
+  font-size: 20px;
   color: grey;
 `;
 export const Title = styled.p`
