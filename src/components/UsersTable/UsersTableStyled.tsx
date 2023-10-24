@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const TableHeaderRow = styled.tr``;
+export const TableHeaderRow = styled.tr`
+  /* background-color: #f7fafc; */
+`;
 
 export const TableHeaderCell = styled.th`
   padding: 1rem;
@@ -10,6 +12,8 @@ export const TableHeaderCell = styled.th`
 `;
 
 export const StyledTH = styled.th`
+  font-size: 18px !important;
+  white-space: nowrap;
   display: flex;
   gap: 12px;
   padding: 24px;
@@ -42,12 +46,14 @@ export const OnlineIndicator = styled.span`
 `;
 
 export const UserInfo = styled.div`
-  font-size: 18px !important;
+  font-size: 0.875rem;
 `;
 
 export const UserName = styled.div`
   font-weight: 500;
   color: #374151;
+  font-size: 21px;
+  margin: 9px 3px;
 `;
 
 export const UserEmail = styled.div`
@@ -55,8 +61,9 @@ export const UserEmail = styled.div`
 `;
 
 export const StyledTD = styled.td`
-  padding: 24px;
   font-size: 18px !important;
+  white-space: nowrap;
+  padding: 24px;
 `;
 
 export const StatusBadge = styled.span`
@@ -80,14 +87,21 @@ export const StatusIndicator = styled.span`
 
 export const StyledTableCell = styled.td`
   padding: 24px 24px;
+  white-space: nowrap;
+
   font-size: 18px !important;
 `;
 
 export const TableCell = styled.td`
   padding: 24px;
-  font-size: 18px !important;
 `;
-export const TableContainer = styled.td``;
+export const TableContainer = styled.td`
+  white-space: nowrap;
+
+  &:hover {
+    /* box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2); */
+  }
+`;
 
 export const FlexDiv = styled.div`
   display: flex;
@@ -120,6 +134,9 @@ export const StyledSvg = styled.svg`
   stroke: currentColor;
 `;
 export const Container = styled.div`
+  margin-top: 80px;
   width: 100%;
+  padding: 15px 43px;
   border-radius: 12px;
+  font-size: 23px;
 `;

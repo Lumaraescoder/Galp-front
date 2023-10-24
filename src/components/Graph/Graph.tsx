@@ -9,12 +9,9 @@ const Box = styled.div`
   box-sizing: border-box;
   width: 90%;
   z-index: 5;
-  margin-top: 100px;
   height: auto;
   background-color: #f6f0f0;
   border-radius: 12px;
-  position: relative;
-  right: 18px;
 `;
 const state: Props['series'] = [
   {
