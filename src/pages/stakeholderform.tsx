@@ -99,7 +99,6 @@ const WelcomeStack = styled.p`
   top: 24px;
 `;
 
-const ContainerLeft = styled.div``;
 const StrackeHolderType = styled.div`
   margin-top: 29px;
 `;
