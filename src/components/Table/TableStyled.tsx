@@ -31,7 +31,7 @@ export const StyledImg = styled.img`
   height: 100%;
   width: 100%;
   border-radius: 50%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
 `;
 
@@ -137,4 +137,10 @@ export const Container = styled.div`
   width: 100%;
   padding: 30px 0 0;
   font-size: 18px;
+
+  @media only screen and (max-width: 764px) {
+    #wrapperTable {
+      overflow-x: scroll;
+    }
+  
 `;

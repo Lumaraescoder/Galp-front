@@ -92,11 +92,9 @@ const LabelRight = styled.div`
 `;
 
 const WelcomeStack = styled.p`
-  margin: 50px 0px;
+  margin: 30px 0px 20px;
   white-space: nowrap;
-  font-size: 42px;
-  position: relative;
-  top: 24px;
+  font-size: 40px;
 `;
 
 const StrackeHolderType = styled.div`
@@ -359,11 +357,18 @@ const StakeHolderForm = () => {
       });
       if (!response.ok) {
         throw new Error('Erro ao atualizar o stakeholder');
+      } else {
+        router.push('/backoffice');
       }
     } catch (error) {
       console.error('Houve um problema com a requisição fetch:', error);
     }
   };
+
+  const backPage = () => {
+    router.push('/backoffice');
+  };
+
   const handleRadioChange = (e: any) => {
     setFormData({
       ...formData,
@@ -376,7 +381,9 @@ const StakeHolderForm = () => {
       <Container>
         <LeftSection>
           <ContainerHeader>
-            <WelcomeStack>Edit StakeHolder</WelcomeStack>
+            <WelcomeStack>
+              Edit <em>{formData.business}</em>
+            </WelcomeStack>
           </ContainerHeader>
           <StrackeHolderType>Stakeholder Type</StrackeHolderType>
           <Flex>
@@ -512,7 +519,9 @@ const StakeHolderForm = () => {
             </InputContainer>
 
             <ButtonsContainer>
-              <CancelButton type="button">Cancel</CancelButton>
+              <CancelButton type="button" onClick={backPage}>
+                Cancel
+              </CancelButton>
               <SubmitButton type="submit">Submit</SubmitButton>
             </ButtonsContainer>
           </RightSideFormContainer>

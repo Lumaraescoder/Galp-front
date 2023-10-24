@@ -1,4 +1,4 @@
-import router from 'next/router';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 
@@ -289,6 +289,7 @@ export const StyledInputWithIcon = styled(StyledInputFull)`
 `;
 
 const StakeHolderForm = () => {
+  const router = useRouter();
   const [formData, setFormData] = useState<any>({
     stakeholder: '',
     business: '',
@@ -324,6 +325,8 @@ const StakeHolderForm = () => {
       });
       if (!response.ok) {
         throw new Error('Erro ao criar o Stakeholder');
+      } else {
+        router.push('/backoffice');
       }
 
       const data = await response.json();
@@ -334,12 +337,18 @@ const StakeHolderForm = () => {
     }
   };
 
+  const backPage = () => {
+    router.push('/backoffice');
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <Container>
         <LeftSection>
           <ContainerHeader>
-            <WelcomeStack>Edit StakeHolder</WelcomeStack>
+            <WelcomeStack>
+              Add <em>StakeHolder</em>
+            </WelcomeStack>
           </ContainerHeader>
           <StrackeHolderType>Stakeholder Type</StrackeHolderType>
           <Flex>
@@ -468,7 +477,9 @@ const StakeHolderForm = () => {
             </InputContainer>
 
             <ButtonsContainer>
-              <CancelButton type="button">Cancel</CancelButton>
+              <CancelButton type="button" onClick={backPage}>
+                Cancel
+              </CancelButton>
               <SubmitButton type="submit">Submit</SubmitButton>
             </ButtonsContainer>
           </RightSideFormContainer>

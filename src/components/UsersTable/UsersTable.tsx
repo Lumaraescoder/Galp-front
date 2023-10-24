@@ -45,7 +45,7 @@ const UsersTable = () => {
 
   return (
     <Container>
-      <div className="border-white-200 m-0 mt-5 overflow-hidden">
+      <div id="wrapperTable" className="border-white-200 m-0 mt-5 overflow-hidden">
         <table className="w-full text-left text-sm text-gray-500 shadow-none">
           <thead className="">
             <TableHeaderRow>

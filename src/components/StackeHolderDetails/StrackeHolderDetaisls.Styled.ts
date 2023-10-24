@@ -11,6 +11,10 @@ export const CenteredItem = styled.div`
   width: 85%;
   background-color: #ffffff;
   padding: 20px;
+
+  @media only screen and (max-width: 764px) {
+    width: 100%;
+  }
 `;
 
 export const ColumnContainer = styled.div`
@@ -20,6 +24,11 @@ export const ColumnContainer = styled.div`
   gap: 40px;
   width: 100%;
   margin-top: 50px;
+
+  @media only screen and (max-width: 764px) {
+    flex-direction: column;
+    justify-content: center;
+  }
 `;
 export const ChartContainer = styled.div`
   margin-top: 30px;

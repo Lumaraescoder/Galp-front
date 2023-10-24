@@ -23,29 +23,29 @@ const StacekHolder: React.FC<StacekHolderProps> = ({
       <CardHeader>
         <CardTitle>
           <IconUser className="fa fa-users" aria-hidden="true"></IconUser>
-          &nbsp; Stakeholder Details
+          <p>Stakeholder Details</p>
         </CardTitle>
       </CardHeader>
       <CardItem>
-        <CardLabel>Company: </CardLabel>
-        <CardValue> &nbsp; &nbsp;&nbsp;{company}</CardValue>
+        <CardLabel>Company:</CardLabel>
+        <CardValue>{company}</CardValue>
       </CardItem>
       <CardItem>
         <CardLabel>Stakeholder:</CardLabel>
-        <CardValue> &nbsp;&nbsp;&nbsp; {stakeholder}</CardValue>
+        <CardValue>{stakeholder}</CardValue>
       </CardItem>
       <CardItem>
         <CardLabel>Address:</CardLabel>
-        <CardValue> &nbsp;&nbsp;&nbsp;{address}</CardValue>
+        <CardValue>{address}</CardValue>
       </CardItem>
 
       <CardItem>
         <CardLabel>E-mail:</CardLabel>
-        <CardValue>&nbsp;&nbsp;&nbsp;{email}</CardValue>
+        <CardValue>{email}</CardValue>
       </CardItem>
       <CardItem>
         <CardLabel>Contact:</CardLabel>
-        <CardValue>&nbsp;&nbsp;&nbsp;{cellphone}</CardValue>
+        <CardValue>{cellphone}</CardValue>
       </CardItem>
     </CardContainers>
   );

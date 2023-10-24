@@ -12,13 +12,24 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media only screen and (max-width: 764px) {
+    flex-direction: column;
+  }
 `;
 const SmallCards = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
   min-height: 415px;
+
+  @media only screen and (max-width: 764px) {
+    min-height: 200px;
+    justify-content: center;
+    gap: 20px;
+  }
 `;
+
 const Card = styled.div`
   width: 283px;
   height: 142px;
@@ -33,6 +44,9 @@ const Card = styled.div`
 `;
 
 const LightCard = styled(Card)`
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
   color: #333;
   height: 174px;
 `;
@@ -53,24 +67,24 @@ const IconTextContainer = styled.div`
   margin-bottom: 30px;
 `;
 const Image = styled.img`
-  max-width: 100%;
-  height: auto;
-  position: relative;
-  top: 18px !important;
-  left: -74px;
   width: 49px;
 `;
 const Total = styled.p`
-  position: relative !important;
-  top: -30px !important;
   color: #a5b3cd;
-  font-size: 22px;
+  font-size: 20px;
 `;
 const Value = styled.p`
-  position: relative !important;
   top: -21px !important;
-  font-size: 22px;
+  font-size: 20px;
 `;
+
+const Label = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+`;
+
 const CreditBank = () => {
   return (
     <Wrapper>
@@ -82,23 +96,19 @@ const CreditBank = () => {
       <Container>
         <SmallCards>
           <LightCard>
-            <div>
-              <Image src="/images/growth-svgrepo-com.svg"></Image>
+            <Image src="/images/growth-svgrepo-com.svg"></Image>
+            <Label>
               <Total>Total Profit</Total>
-            </div>
-            <div>
               <Value>$2,360.00</Value>
-            </div>
+            </Label>
           </LightCard>
 
           <LightCard>
-            <div>
-              <Image src="/images/growth-svgrepo-com.svg"></Image>
+            <Image src="/images/growth-svgrepo-com.svg"></Image>
+            <Label>
               <Total>Total Income</Total>
-            </div>
-            <div>
               <Value>$6,169.00</Value>
-            </div>
+            </Label>
           </LightCard>
         </SmallCards>
         <Steam />
