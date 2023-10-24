@@ -1,11 +1,11 @@
 import React from 'react';
 
-import BackOffice from '../stakeholderform';
+import UnifiedForm from '../stakeholderform';
 
 const StacekHolderEdit = () => {
   return (
     <div>
-      <BackOffice />
+      <UnifiedForm />
     </div>
   );
 };

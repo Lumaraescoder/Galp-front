@@ -54,3 +54,28 @@ export interface StacekHolderProps {
   email: string;
   cellphone: string;
 }
+
+export type StakeholderData = {
+  _id: string;
+  description: string;
+  business: string;
+  stakeholder: string;
+  location: string;
+  ceo: string;
+  contact: string;
+  cashflow: string;
+  logo: string;
+  email: string;
+  cellphone: string;
+  contracts: Array<{
+    name: string;
+    createdAt: string;
+    createdBy: string;
+    _id: string;
+  }>;
+  stakeholderType: string;
+  __v: number;
+  businesstype: string;
+  role: string;
+  editedby: string;
+};
