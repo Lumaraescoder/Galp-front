@@ -26,6 +26,7 @@ export const CardTitle = styled.h5`
   font-weight: 500;
   line-height: 1.25;
   color: #1f2937;
+
   &.dark {
     color: #f9fafb;
   }
