@@ -2,7 +2,6 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 
-import { ChartContainer } from '@/components/StackeHolderDetails/StrackeHolderDetaisls.Styled';
 import Table from '@/components/Table/Table';
 import UsersTable from '@/components/UsersTable/UsersTable';
 const fadeIn = keyframes`
@@ -92,46 +91,33 @@ const Container = styled.div`
 `;
 const SearchContainer = styled.div`
   width: 100%;
-  padding: 18px 37px;
   display: flex;
   align-items: center;
-  position: relative;
+  justify-content: flex-end;
 `;
 
 const TableContainer = styled.div`
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
-  height: 62vh;
   border-radius: 12px;
-
-  @media (max-height: 800px) {
-    height: 70vh;
-  }
-
-  @media (max-width: 768px) {
-    height: 70vh;
-  }
+  padding: 20px;
 `;
 const ButtonCreate = styled.button`
   padding: 10px 20px;
   border: none;
-  height: 61px;
+  height: 44px;
   background-color: #ea5b0b;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-right: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   border-radius: 8px;
-  font-weight: 503;
+  font-weight: 600;
   color: white;
-  position: absolute;
-  right: 26px;
-  bottom: 10px;
-  top: 38px;
 
   &:hover {
     opacity: 0.8;
   }
 `;
+
 const StacekHolderList: React.FC = () => {
   const [activeSection, setActiveSection] = useState('table');
 

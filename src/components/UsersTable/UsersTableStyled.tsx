@@ -134,9 +134,7 @@ export const StyledSvg = styled.svg`
   stroke: currentColor;
 `;
 export const Container = styled.div`
-  margin-top: 80px;
   width: 100%;
-  padding: 15px 43px;
-  border-radius: 12px;
-  font-size: 23px;
+  padding: 30px 0 0;
+  font-size: 18px;
 `;
