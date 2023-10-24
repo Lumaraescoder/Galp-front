@@ -27,7 +27,7 @@ export const TableDetails = () => {
           <UserEmail>{user.company}</UserEmail>
         </UserInfo>
       </StyledTH>
-      <StyledTableCell>cto</StyledTableCell>
+      <StyledTableCell>{user.role}</StyledTableCell>
       <StyledTableCell>{user.stakeholder}</StyledTableCell>
       <StyledTableCell>{user.business}</StyledTableCell>
     </tr>
