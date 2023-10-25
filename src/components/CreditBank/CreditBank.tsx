@@ -90,7 +90,7 @@ const CreditBank = () => {
     <Wrapper>
       <IconTextContainer>
         <Money className="fa fa-money" aria-hidden="true"></Money>
-        <SingleLineText>Financies</SingleLineText>
+        <SingleLineText>Financials</SingleLineText>
       </IconTextContainer>
 
       <Container>
