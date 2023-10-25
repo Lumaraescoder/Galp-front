@@ -4,17 +4,17 @@ export const CenteredContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const Wrapper = styled.div`
+  max-width: 1400px;
+  margin: 0 auto;
   padding: 20px;
 `;
 
 export const CenteredItem = styled.div`
-  width: 85%;
+  width: 100%;
   background-color: #ffffff;
-  padding: 20px;
-
-  @media only screen and (max-width: 764px) {
-    width: 100%;
-  }
 `;
 
 export const ColumnContainer = styled.div`

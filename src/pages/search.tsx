@@ -14,6 +14,11 @@ const fadeIn = keyframes`
   }
 `;
 
+const Wrapper = styled.div`
+  max-width: 1400px;
+  margin: 0 auto;
+`;
+
 export const CardContainer = styled.div`
   animation: ${fadeIn} 1s ease-in-out;
 `;
@@ -28,12 +33,14 @@ const StackHolders: React.FC = () => {
 
   return (
     <MainLayout>
-      <SearchBar onSearch={onSearch} />
-      {searchInitiated && (
-        <CardContainer>
-          <CardInfo searchQuery={searchQuery} />
-        </CardContainer>
-      )}
+      <Wrapper>
+        <SearchBar onSearch={onSearch} />
+        {searchInitiated && (
+          <CardContainer>
+            <CardInfo searchQuery={searchQuery} />
+          </CardContainer>
+        )}
+      </Wrapper>
     </MainLayout>
   );
 };

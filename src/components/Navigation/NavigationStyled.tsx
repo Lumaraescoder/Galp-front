@@ -14,9 +14,14 @@ export type ActiveLink = 'Home' | 'BackOffice';
 
 export const NavbarContainer = styled.nav`
   background-color: #ea5b0b;
-  padding: 2rem;
   color: white;
   font-size: 18px;
+`;
+
+export const Wrapper = styled.div`
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 20px;
 `;
 
 export const Logo = styled.img`

@@ -16,7 +16,8 @@ import {
   ChartContainer,
   ColumnContainer,
   TableContainer,
-  Users
+  Users,
+  Wrapper
 } from './StrackeHolderDetaisls.Styled';
 
 const fetcher = (url: string) =>
@@ -63,32 +64,34 @@ const StakeholderDetails: React.FC = () => {
   };
 
   return (
-    <CenteredContainer>
-      <CenteredItem>
-        <InfoCard company={companyInfo} />
-        <ColumnContainer>
-          <StacekHolder
-            company={stakeholder.business}
-            stakeholder={stakeholder.stakeholder}
-            address={stakeholder.location}
-            location={stakeholder.location}
-            email={stakeholder.email}
-            cellphone={stakeholder.cellphone}
-          />
-          <Contracts />
-        </ColumnContainer>
-        <ChartContainer>
-          <CreditBank />
-        </ChartContainer>
-        <TableContainer>
-          <IconTextContainer>
-            <Users className="fa fa-users" aria-hidden="true"></Users>
-            <SingleLineText>Contacts</SingleLineText>
-          </IconTextContainer>
-          <TableDetails />
-        </TableContainer>
-      </CenteredItem>
-    </CenteredContainer>
+    <Wrapper>
+      <CenteredContainer>
+        <CenteredItem>
+          <InfoCard company={companyInfo} />
+          <ColumnContainer>
+            <StacekHolder
+              company={stakeholder.business}
+              stakeholder={stakeholder.stakeholder}
+              address={stakeholder.location}
+              location={stakeholder.location}
+              email={stakeholder.email}
+              cellphone={stakeholder.cellphone}
+            />
+            <Contracts />
+          </ColumnContainer>
+          <ChartContainer>
+            <CreditBank />
+          </ChartContainer>
+          <TableContainer>
+            <IconTextContainer>
+              <Users className="fa fa-users" aria-hidden="true"></Users>
+              <SingleLineText>Contacts</SingleLineText>
+            </IconTextContainer>
+            <TableDetails />
+          </TableContainer>
+        </CenteredItem>
+      </CenteredContainer>
+    </Wrapper>
   );
 };
 
