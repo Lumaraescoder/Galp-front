@@ -27,7 +27,7 @@ const StyledInput = styled.input`
 `;
 
 const Container = styled.div`
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 40px 20px;
   display: flex;
@@ -91,11 +91,8 @@ const LabelRight = styled.div`
 `;
 
 const WelcomeStack = styled.p`
-  margin: 50px 0px;
-  white-space: nowrap;
-  font-size: 42px;
-  position: relative;
-  top: 24px;
+  margin: 30px 0px 20px;
+  font-size: 40px;
 `;
 
 const StrackeHolderType = styled.div`
