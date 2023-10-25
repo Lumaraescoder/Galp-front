@@ -15,6 +15,12 @@ export const CardContainer = styled.div`
   margin-bottom: 3rem;
   margin-top: 40px;
   transition: opacity 0.5s ease-in-out;
+  min-width: 300px;
+
+  @media (max-width: 768px) {
+    max-width: 800px;
+  }
+
   &.dark {
     background-color: #2a2e37;
     color: #d1d5db;
@@ -22,10 +28,14 @@ export const CardContainer = styled.div`
 `;
 export const CardTitle = styled.h5`
   margin-bottom: 0.5rem;
-  font-size: 1.25rem;
+  font-size: 20px !important;
   font-weight: 500;
   line-height: 1.25;
   color: #1f2937;
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
 
   &.dark {
     color: #f9fafb;
@@ -42,16 +52,28 @@ export const WrapperSpacing = styled.div`
     &:hover {
       opacity: 0.7;
     }
+    @media (max-width: 768px) {
+      i {
+        font-size: 30px;
+      }
+    }
   }
 `;
 
 export const CardText = styled.p`
   margin-bottom: 1rem;
-  font-size: 1rem;
+  font-size: 16px;
   color: #4b5563;
 
   &.dark {
     color: #d1d5db;
+  }
+  @media (max-width: 768px) {
+    font-size: 14px;
+
+    &.dark {
+      color: #d1d5db;
+    }
   }
 `;
 
