@@ -15,7 +15,7 @@ export const CardContainer = styled.div`
   margin-bottom: 3rem;
   margin-top: 40px;
   transition: opacity 0.5s ease-in-out;
-  min-width: 300px;
+  min-width: 240px;
 
   @media (max-width: 768px) {
     max-width: 800px;
@@ -45,6 +45,7 @@ export const WrapperSpacing = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   i {
     font-size: 44px;
     color: #ea5b0b;
@@ -52,10 +53,14 @@ export const WrapperSpacing = styled.div`
     &:hover {
       opacity: 0.7;
     }
-    @media (max-width: 768px) {
-      i {
-        font-size: 30px;
-      }
+  }
+
+  @media (max-width: 400px) {
+    flex-direction: column;
+    align-items: flex-start;
+
+    i {
+      margin-top: 20px;
     }
   }
 `;
