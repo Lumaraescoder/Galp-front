@@ -307,7 +307,19 @@ type FormData = {
   role: string;
   editedby: string;
 };
+export const useForm = (initialValues) => {
+  const [values, setValues] = useState(initialValues);
 
+  return [
+    values,
+    (e) => {
+      setValues({
+        ...values,
+        [e.target.name]: e.target.type === 'file' ? e.target.files[0] : e.target.value
+      });
+    }
+  ];
+};
 const StakeHolderForm: React.FC = () => {
   const router = useRouter();
   const [formData, setFormData] = useState<FormData>({
@@ -328,98 +340,55 @@ const StakeHolderForm: React.FC = () => {
     role: '',
     editedby: ''
   });
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  // Handle file inputs separately from regular inputs.
+  const handleFileChange = (e) => {
     const { name, files } = e.target;
     if (files?.length) {
-      setFormData((prevState: FormData) => ({
+      setFormData((prevState) => ({
         ...prevState,
         [name]: files[0]
       }));
     }
   };
-  const handleInputChange = (e: any) => {
+
+  // Handle changes for regular inputs.
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevState: any) => ({
+    setFormData((prevState) => ({
       ...prevState,
       [name]: value
     }));
   };
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+
+  // Handle form submission.
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
+    // Define the API URL.
     const apiUrl = 'http://localhost:3333/stakeholders';
 
     try {
-      const form = event.currentTarget;
-      const formData = new FormData();
+      // Create a FormData object to prepare data for the API call.
+      const data = new FormData(event.currentTarget);
 
-      const stakeholderInput = form.elements.namedItem('stakeholder') as HTMLInputElement;
-      const businessInput = form.elements.namedItem('business') as HTMLInputElement;
-      const locationInput = form.elements.namedItem('location') as HTMLInputElement;
-      const ceoInput = form.elements.namedItem('ceo') as HTMLInputElement;
-      const contactInput = form.elements.namedItem('contact') as HTMLInputElement;
-      const descriptionInput = form.elements.namedItem('description') as HTMLInputElement;
-      const cashflowInput = form.elements.namedItem('cashflow') as HTMLInputElement;
-      const logoInput = form.elements.namedItem('logo') as HTMLInputElement;
-      const emailInput = form.elements.namedItem('email') as HTMLInputElement;
-      const cellphoneInput = form.elements.namedItem('cellphone') as HTMLInputElement;
-      const businesstypeInput = form.elements.namedItem('businesstype') as HTMLInputElement;
-      const contractsInput = form.elements.namedItem('contracts') as HTMLInputElement;
-      const keywordsInput = form.elements.namedItem('keywords') as HTMLInputElement;
-      const stakeholderTypeInput = form.elements.namedItem('stakeholderType') as HTMLInputElement;
-      const roleInput = form.elements.namedItem('role') as HTMLInputElement;
-      const editedbyInput = form.elements.namedItem('editedby') as HTMLInputElement;
+      // Make the API call.
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        body: data
+      });
 
-      if (
-        stakeholderInput &&
-        businessInput &&
-        locationInput &&
-        ceoInput &&
-        contactInput &&
-        descriptionInput &&
-        cashflowInput &&
-        logoInput &&
-        emailInput &&
-        cellphoneInput &&
-        businesstypeInput &&
-        contractsInput &&
-        keywordsInput &&
-        stakeholderTypeInput &&
-        roleInput &&
-        editedbyInput
-      ) {
-        formData.append('stakeholder', stakeholderInput.value);
-        formData.append('business', businessInput.value);
-        formData.append('location', locationInput.value);
-        formData.append('ceo', ceoInput.value);
-        formData.append('contact', contactInput.value);
-        formData.append('description', descriptionInput.value);
-        formData.append('cashflow', cashflowInput.value);
-        formData.append('logo', logoInput.files ? logoInput.files[0] : '');
-        formData.append('email', emailInput.value);
-        formData.append('cellphone', cellphoneInput.value);
-        formData.append('businesstype', businesstypeInput.value);
-        formData.append('contracts', contractsInput.value);
-        formData.append('keywords', keywordsInput.value);
-        formData.append('stakeholderType', stakeholderTypeInput.value);
-        formData.append('role', roleInput.value);
-        formData.append('editedby', editedbyInput.value);
-
-        const response = await fetch(apiUrl, {
-          method: 'POST',
-          body: formData
-        });
-
-        if (!response.ok) {
-          throw new Error('Error creating Stakeholder');
-        }
-
-        const data = await response.json();
-        console.log(data);
-      } else {
-        throw new Error('Form elements do not exist');
+      // Throw an error if the response is not OK.
+      if (!response.ok) {
+        throw new Error('Error creating Stakeholder');
       }
+
+      // Process and log the response data.
+      const responseData = await response.json();
+      console.log(responseData);
+
+      // Here you might want to redirect or give feedback.
     } catch (error) {
+      // Handle errors and provide feedback.
       console.error('Error:', error);
     }
   };
