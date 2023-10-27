@@ -284,21 +284,59 @@ export const InputIconContainer = styled.div`
 export const StyledInputWithIcon = styled(StyledInputFull)`
   padding-left: 40px;
 `;
+type Contract = {
+  name: string;
+  createdAt: string;
+};
 
-const StakeHolderForm = () => {
+type FormData = {
+  keywords: [];
+  description: string;
+  business: string;
+  stakeholder: string;
+  location: string;
+  ceo: string;
+  contact: string;
+  cashflow: string;
+  logo: string;
+  email: string;
+  cellphone: string;
+  contracts: Contract[];
+  stakeholderType: string;
+  businesstype: string;
+  role: string;
+  editedby: string;
+};
+
+const StakeHolderForm: React.FC = () => {
   const router = useRouter();
-  const [formData, setFormData] = useState<any>({
+  const [formData, setFormData] = useState<FormData>({
     stakeholder: '',
     business: '',
     location: '',
     ceo: '',
     contact: '',
-    contracts: [],
+    cashflow: '',
+    logo: '',
+    email: '',
+    cellphone: '',
     description: '',
-    logoUpload: null,
-    stakeholderType: 'company'
+    businesstype: '',
+    contracts: [],
+    keywords: [],
+    stakeholderType: '',
+    role: '',
+    editedby: ''
   });
-
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, files } = e.target;
+    if (files?.length) {
+      setFormData((prevState: FormData) => ({
+        ...prevState,
+        [name]: files[0]
+      }));
+    }
+  };
   const handleInputChange = (e: any) => {
     const { name, value } = e.target;
     setFormData((prevState: any) => ({
@@ -306,31 +344,83 @@ const StakeHolderForm = () => {
       [name]: value
     }));
   };
-
-  const handleSubmit = async (event: any) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const apiUrl = 'https://galp-api.vercel.app/stakeholders';
+    const apiUrl = 'http://localhost:3333/stakeholders';
 
     try {
-      const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
-      if (!response.ok) {
-        throw new Error('Erro ao criar o Stakeholder');
+      const form = event.currentTarget;
+      const formData = new FormData();
+
+      const stakeholderInput = form.elements.namedItem('stakeholder') as HTMLInputElement;
+      const businessInput = form.elements.namedItem('business') as HTMLInputElement;
+      const locationInput = form.elements.namedItem('location') as HTMLInputElement;
+      const ceoInput = form.elements.namedItem('ceo') as HTMLInputElement;
+      const contactInput = form.elements.namedItem('contact') as HTMLInputElement;
+      const descriptionInput = form.elements.namedItem('description') as HTMLInputElement;
+      const cashflowInput = form.elements.namedItem('cashflow') as HTMLInputElement;
+      const logoInput = form.elements.namedItem('logo') as HTMLInputElement;
+      const emailInput = form.elements.namedItem('email') as HTMLInputElement;
+      const cellphoneInput = form.elements.namedItem('cellphone') as HTMLInputElement;
+      const businesstypeInput = form.elements.namedItem('businesstype') as HTMLInputElement;
+      const contractsInput = form.elements.namedItem('contracts') as HTMLInputElement;
+      const keywordsInput = form.elements.namedItem('keywords') as HTMLInputElement;
+      const stakeholderTypeInput = form.elements.namedItem('stakeholderType') as HTMLInputElement;
+      const roleInput = form.elements.namedItem('role') as HTMLInputElement;
+      const editedbyInput = form.elements.namedItem('editedby') as HTMLInputElement;
+
+      if (
+        stakeholderInput &&
+        businessInput &&
+        locationInput &&
+        ceoInput &&
+        contactInput &&
+        descriptionInput &&
+        cashflowInput &&
+        logoInput &&
+        emailInput &&
+        cellphoneInput &&
+        businesstypeInput &&
+        contractsInput &&
+        keywordsInput &&
+        stakeholderTypeInput &&
+        roleInput &&
+        editedbyInput
+      ) {
+        formData.append('stakeholder', stakeholderInput.value);
+        formData.append('business', businessInput.value);
+        formData.append('location', locationInput.value);
+        formData.append('ceo', ceoInput.value);
+        formData.append('contact', contactInput.value);
+        formData.append('description', descriptionInput.value);
+        formData.append('cashflow', cashflowInput.value);
+        formData.append('logo', logoInput.files ? logoInput.files[0] : '');
+        formData.append('email', emailInput.value);
+        formData.append('cellphone', cellphoneInput.value);
+        formData.append('businesstype', businesstypeInput.value);
+        formData.append('contracts', contractsInput.value);
+        formData.append('keywords', keywordsInput.value);
+        formData.append('stakeholderType', stakeholderTypeInput.value);
+        formData.append('role', roleInput.value);
+        formData.append('editedby', editedbyInput.value);
+
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          body: formData
+        });
+
+        if (!response.ok) {
+          throw new Error('Error creating Stakeholder');
+        }
+
+        const data = await response.json();
+        console.log(data);
       } else {
-        router.push('/backoffice');
+        throw new Error('Form elements do not exist');
       }
-
-      const data = await response.json();
-
-      router.push(`/stakeholders/${data.id}`);
     } catch (error) {
-      console.error('Houve um problema com a requisição fetch:', error);
+      console.error('Error:', error);
     }
   };
 
@@ -356,7 +446,7 @@ const StakeHolderForm = () => {
                 id="company"
                 value="company"
                 checked={formData.stakeholderType === 'company'}
-                // onChange={handleRadioChange}
+                onChange={handleInputChange}
               />
               <label htmlFor="company"> &nbsp;Company</label>
             </LabelLeft>
@@ -367,7 +457,7 @@ const StakeHolderForm = () => {
                 id="people"
                 value="people"
                 checked={formData.stakeholderType === 'people'}
-                // onChange={handleRadioChange}
+                onChange={handleInputChange}
               />
               <label htmlFor="people"> &nbsp;People</label>
             </LabelRight>
@@ -392,7 +482,6 @@ const StakeHolderForm = () => {
             placeholder="Enter business name"
           />
 
-          {/* Input para a localização */}
           <StyledLabel htmlFor="location">Location</StyledLabel>
           <StyledInput
             id="location"
@@ -403,24 +492,24 @@ const StakeHolderForm = () => {
             placeholder="Enter location"
           />
 
-          <StyledLabel htmlFor="ceo">E-mail</StyledLabel>
+          <StyledLabel htmlFor="email">E-mail</StyledLabel>
           <StyledInput
             id="ceo"
-            type="text"
-            name="ceo"
+            type="email"
+            name="email" // was 'ceo' but it should be 'email' to match your state property
             value={formData.email}
             onChange={handleInputChange}
-            placeholder="Enter CEO's name"
+            placeholder="Enter CEO's email"
           />
 
-          <StyledLabel htmlFor="contact">Role</StyledLabel>
+          <StyledLabel htmlFor="contact">Number</StyledLabel>
           <StyledInput
             id="contact"
             type="text"
             name="contact"
-            value={formData.role}
+            value={formData.cellphone}
             onChange={handleInputChange}
-            placeholder="Enter Role"
+            placeholder="Enter Telephone Number"
           />
         </LeftSection>
 
@@ -428,7 +517,7 @@ const StakeHolderForm = () => {
           <RightSideFormContainer>
             <TwoColumns>
               <InputContainer>
-                <StyledLabel2 htmlFor="contract-upload">Contract </StyledLabel2>
+                <StyledLabel2 htmlFor="contract-upload">Contract</StyledLabel2>
                 <InputIconContainer>
                   <Icon className="fa fa-cloud-upload" aria-hidden="true"></Icon>
                   <StyledInputWithIcon
@@ -459,12 +548,13 @@ const StakeHolderForm = () => {
                 name="description"
                 placeholder="Describe the details..."
                 value={formData.description}
+                onChange={handleInputChange} // Add the onChange handler
               ></StyledTextArea>
             </InputContainer>
 
             <InputContainer as={LogoUploads}>
               <StyledLabel2 as="div">
-                <LogoButton>
+                <LogoButton onChange={handleFileChange}>
                   <IconButton className="fa fa-cloud-upload" aria-hidden="true"></IconButton>
                   &nbsp; Upload Logo
                 </LogoButton>
