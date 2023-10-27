@@ -2,6 +2,8 @@ import { useRouter } from 'next/router';
 import React, { useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 
+import { UploadButton } from './AddStackeHolderStyled';
+
 const appearFromLeft = keyframes`
   from {
     opacity: 0;
@@ -284,13 +286,28 @@ export const InputIconContainer = styled.div`
 export const StyledInputWithIcon = styled(StyledInputFull)`
   padding-left: 40px;
 `;
+const TagContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 8px;
+`;
+
+const Tag = styled.div`
+  background-color: ${(props) => props.color || '#333'};
+  color: white;
+  padding: 4px 8px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+`;
+
 type Contract = {
   name: string;
   createdAt: string;
 };
 
 type FormData = {
-  keywords: [];
+  keywords: string[];
   description: string;
   business: string;
   stakeholder: string;
@@ -322,6 +339,9 @@ export const useForm = (initialValues) => {
 };
 const StakeHolderForm: React.FC = () => {
   const router = useRouter();
+  const [tagInput, setTagInput] = useState(''); // Estado para o campo de entrada de tag
+  const [tags, setTags] = useState([]);
+  const [uploadedImage, setUploadedImage] = useState('');
   const [formData, setFormData] = useState<FormData>({
     stakeholder: '',
     business: '',
@@ -340,18 +360,15 @@ const StakeHolderForm: React.FC = () => {
     role: '',
     editedby: ''
   });
-  const [uploadedImage, setUploadedImage] = useState('');
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       const newImageUrl = URL.createObjectURL(file);
-      setUploadedImage(newImageUrl); // Save this URL in your state
-
-      // If you need to update the form data, do so here
+      setUploadedImage(newImageUrl);
       setFormData((prevState) => ({
         ...prevState,
-        logo: file // Assuming 'logo' is the correct field in your form data
+        logo: file
       }));
     }
   };
@@ -363,11 +380,43 @@ const StakeHolderForm: React.FC = () => {
       [name]: value
     }));
   };
+  const handleContractsUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const newContract: Contract = {
+        name: file.name, // Store the file name
+        createdAt: new Date().toISOString()
+      };
+      setFormData((prevState) => ({
+        ...prevState,
+        contracts: [...prevState.contracts, newContract]
+      }));
+    }
+  };
+
+  const handleTagInputChange = (e) => {
+    setTagInput(e.target.value);
+  };
+  const getRandomColor = () => {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+
+    return color;
+  };
+  const addTag = () => {
+    if (tagInput.trim() !== '') {
+      setTags([...tags, tagInput.trim()]);
+      setTagInput('');
+    }
+  };
   const fileInputRef = useRef(null);
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const apiUrl = 'http://localhost:3333/stakeholders';
+    const apiUrl = 'https://galp-api.vercel.app/stakeholders';
 
     try {
       const data = new FormData(event.currentTarget);
@@ -460,7 +509,7 @@ const StakeHolderForm: React.FC = () => {
           <StyledInput
             id="ceo"
             type="email"
-            name="email" // was 'ceo' but it should be 'email' to match your state property
+            name="email"
             value={formData.email}
             onChange={handleInputChange}
             placeholder="Enter CEO's email"
@@ -483,26 +532,62 @@ const StakeHolderForm: React.FC = () => {
               <InputContainer>
                 <StyledLabel2 htmlFor="contract-upload">Contract</StyledLabel2>
                 <InputIconContainer>
-                  <Icon className="fa fa-cloud-upload" aria-hidden="true"></Icon>
-                  <StyledInputWithIcon
+                  <UploadButton htmlFor="contract-upload" className="upload-button">
+                    <Icon className="fa fa-cloud-upload" aria-hidden="true"></Icon>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Upload Contract
+                  </UploadButton>
+                  <input
                     id="contract-upload"
                     name="contractUpload"
-                    type="text"
-                    placeholder="Upload Contract"
+                    type="file"
+                    placeholder="asdsd"
+                    accept=".pdf, .doc, .docx"
+                    onChange={handleContractsUpload}
+                    style={{ display: 'none' }}
                   />
                 </InputIconContainer>
               </InputContainer>
 
               <InputContainer>
-                <StyledLabel2>&nbsp;</StyledLabel2>
-
-                <StyledInputFullRight name="contractName" type="text" placeholder="contract.pdf" />
+                <StyledLabel2>Contract Name</StyledLabel2>
+                <StyledInputFullRight
+                  name="contractName"
+                  type="text"
+                  placeholder="contract.pdf"
+                  value={
+                    formData.contracts.length > 0
+                      ? formData.contracts[formData.contracts.length - 1].name
+                      : ''
+                  }
+                  readOnly
+                />
               </InputContainer>
             </TwoColumns>
 
             <InputContainer>
               <StyledLabel2>Contract Date</StyledLabel2>
               <StyledInput2 name="contractDate" type="date" />
+            </InputContainer>
+            <InputContainer>
+              <StyledLabel2 htmlFor="tags">Tags</StyledLabel2>
+              <div className="tag-input-container">
+                <StyledInput
+                  id="tags"
+                  name="tags"
+                  type="text"
+                  placeholder="Digite uma tag"
+                  value={tagInput}
+                  onChange={handleTagInputChange}
+                />
+                <button onClick={addTag}>Adicionar</button>
+              </div>
+              <TagContainer>
+                {tags.map((tag, index) => (
+                  <Tag key={index} color={getRandomColor()}>
+                    {tag}
+                  </Tag>
+                ))}
+              </TagContainer>
             </InputContainer>
 
             <InputContainer>
@@ -512,7 +597,7 @@ const StakeHolderForm: React.FC = () => {
                 name="description"
                 placeholder="Describe the details..."
                 value={formData.description}
-                onChange={handleInputChange} // Add the onChange handler
+                onChange={handleInputChange}
               ></StyledTextArea>
             </InputContainer>
 
@@ -536,7 +621,7 @@ const StakeHolderForm: React.FC = () => {
                   onChange={handleFileChange}
                 />
               </StyledLabel2>
-              <UploadedLogo src={uploadedImage || 'images/Galp'} alt="Uploaded Logo" />
+              <UploadedLogo src={uploadedImage || 'images/Galp.png'} alt="Uploaded Logo" />
             </InputContainer>
 
             <ButtonsContainer>

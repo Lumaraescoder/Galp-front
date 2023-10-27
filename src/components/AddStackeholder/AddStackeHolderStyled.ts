@@ -61,7 +61,14 @@ export const LogoButton = styled.div`
     width: 100%;
   }
 `;
-
+export const UploadButton = styled.label`
+  display: inline-block;
+  background-color: white;
+  color: black;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+`;
 export const LogoUploads = styled.div`
   display: flex;
   justify-content: space-between;
