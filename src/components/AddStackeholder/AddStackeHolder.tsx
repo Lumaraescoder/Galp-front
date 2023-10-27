@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 const appearFromLeft = keyframes`
@@ -340,18 +340,22 @@ const StakeHolderForm: React.FC = () => {
     role: '',
     editedby: ''
   });
-  // Handle file inputs separately from regular inputs.
+  const [uploadedImage, setUploadedImage] = useState('');
+
   const handleFileChange = (e) => {
-    const { name, files } = e.target;
-    if (files?.length) {
+    const file = e.target.files[0];
+    if (file) {
+      const newImageUrl = URL.createObjectURL(file);
+      setUploadedImage(newImageUrl); // Save this URL in your state
+
+      // If you need to update the form data, do so here
       setFormData((prevState) => ({
         ...prevState,
-        [name]: files[0]
+        logo: file // Assuming 'logo' is the correct field in your form data
       }));
     }
   };
 
-  // Handle changes for regular inputs.
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -359,36 +363,27 @@ const StakeHolderForm: React.FC = () => {
       [name]: value
     }));
   };
-
-  // Handle form submission.
+  const fileInputRef = useRef(null);
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Define the API URL.
     const apiUrl = 'http://localhost:3333/stakeholders';
 
     try {
-      // Create a FormData object to prepare data for the API call.
       const data = new FormData(event.currentTarget);
 
-      // Make the API call.
       const response = await fetch(apiUrl, {
         method: 'POST',
         body: data
       });
 
-      // Throw an error if the response is not OK.
       if (!response.ok) {
         throw new Error('Error creating Stakeholder');
       }
 
-      // Process and log the response data.
       const responseData = await response.json();
       console.log(responseData);
-
-      // Here you might want to redirect or give feedback.
     } catch (error) {
-      // Handle errors and provide feedback.
       console.error('Error:', error);
     }
   };
@@ -475,7 +470,7 @@ const StakeHolderForm: React.FC = () => {
           <StyledInput
             id="contact"
             type="text"
-            name="contact"
+            name="cellphone"
             value={formData.cellphone}
             onChange={handleInputChange}
             placeholder="Enter Telephone Number"
@@ -523,13 +518,25 @@ const StakeHolderForm: React.FC = () => {
 
             <InputContainer as={LogoUploads}>
               <StyledLabel2 as="div">
-                <LogoButton onChange={handleFileChange}>
+                <LogoButton
+                  onClick={() => {
+                    fileInputRef.current && fileInputRef.current.click();
+                  }}
+                >
                   <IconButton className="fa fa-cloud-upload" aria-hidden="true"></IconButton>
                   &nbsp; Upload Logo
                 </LogoButton>
-                <HiddenInput id="logo-upload" name="logoUpload" type="file" />
+
+                <HiddenInput
+                  type="file"
+                  ref={fileInputRef}
+                  id="logo-upload"
+                  name="logo"
+                  style={{ display: 'none' }}
+                  onChange={handleFileChange}
+                />
               </StyledLabel2>
-              <UploadedLogo src="images/galp.png" alt="Uploaded Logo" />
+              <UploadedLogo src={uploadedImage || 'images/Galp'} alt="Uploaded Logo" />
             </InputContainer>
 
             <ButtonsContainer>
