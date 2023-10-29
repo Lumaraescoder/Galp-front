@@ -64,10 +64,11 @@ export const LogoButton = styled.div`
 export const UploadButton = styled.label`
   display: inline-block;
   background-color: white;
-  color: black;
-  padding: 8px 16px;
+  color: grey;
+  background-color: #f5f5f5;
+  padding: 3px 16px;
   cursor: pointer;
-  border-radius: 4px;
+  height: 36px;
 `;
 export const LogoUploads = styled.div`
   display: flex;
@@ -161,7 +162,8 @@ export const StyledInputFullRight = styled.input`
   background-color: #f5f5f5;
   flex: 1;
   width: 100%;
-  padding: 0px 10px;
+  padding: 6px 12px !important;
+  border-radius: 6px;
 `;
 
 export const Icon = styled.i`

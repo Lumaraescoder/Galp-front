@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import useSWR from 'swr';
+import useSWR, { mutate } from 'swr';
 
 import {
   AvatarWrapper,
@@ -32,6 +32,26 @@ const Table = () => {
       return originalString.substring(0, maxLength); // Corta a string e adiciona "..." ao final
     }
   }
+  const deleteUser = async (userId) => {
+    try {
+      const response = await fetch(`https://galp-api.vercel.app/stakeholders/${userId}`, {
+        method: 'DELETE'
+      });
+
+      if (!response.ok) {
+        throw new Error('Server-side deletion failed.');
+      }
+
+      // Filter out the deleted user from the local data array
+      const updatedData = data.filter((user) => user._id !== userId);
+
+      // Update the local state with the updated data
+      mutate('https://galp-api.vercel.app/stakeholders', updatedData, false);
+    } catch (error) {
+      console.error('Error deleting user:', error);
+    }
+  };
+
   const renderTableRows = data.map((user: any, index: any): any => (
     <tr key={index} className="hover:bg-gray-50">
       <StyledTH>
@@ -69,7 +89,27 @@ const Table = () => {
               </StyledSvg>
             </StyledLink>
           </Link>
-          <StyledLink href="#" title="Excluir"></StyledLink>
+          <FlexDiv>
+            <button
+              onClick={() => deleteUser(user._id)}
+              className="ml-2 rounded p-1 hover:bg-gray-300"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 text-red-500"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+          </FlexDiv>
         </FlexDiv>
       </TableCell>
     </tr>

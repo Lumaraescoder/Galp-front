@@ -4,6 +4,7 @@ export type CardInfoProps = {
   business: string;
   stakeholder: string;
   email: string;
+  keywords: string[];
 };
 export type Stack = {
   stakeholder: CardInfoProps;
