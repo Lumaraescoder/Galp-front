@@ -363,19 +363,6 @@ type FormData = {
   editedby: string;
 };
 
-export const useForm = (initialValues) => {
-  const [values, setValues] = useState(initialValues);
-
-  return [
-    values,
-    (e) => {
-      setValues({
-        ...values,
-        [e.target.name]: e.target.type === 'file' ? e.target.files[0] : e.target.value
-      });
-    }
-  ];
-};
 const StakeHolderForm: React.FC = () => {
   const router = useRouter();
   const [tagInput, setTagInput] = useState(''); // Estado para o campo de entrada de tag
@@ -583,9 +570,9 @@ const StakeHolderForm: React.FC = () => {
                   </UploadButton>
                   <input
                     id="contract-upload"
-                    name="contractUpload"
+                    name="contracts[0][url]"
                     type="file"
-                    placeholder="asdsd"
+                    placeholder="Contract"
                     accept=".pdf, .doc, .docx"
                     onChange={handleContractsUpload}
                     style={{ display: 'none' }}
