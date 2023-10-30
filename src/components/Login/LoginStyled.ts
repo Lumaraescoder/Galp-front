@@ -119,7 +119,7 @@ export const Input = styled.input`
       url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23969696' width='18px' height='18px'><path d='M0 0h24v24H0z' fill='none'/><path d='M2 5v14h20V5l-10 7L2 5zm0 2.236l7.376 5.264L12 8l2.624 4.5L22 7.236V6H2v1.236z'/></svg>")
       no-repeat 5% center;
     padding-left: 2rem;
-    padding: 10px 51px;
+    padding: 11px 60px;
   }
 
   &.password-input {
