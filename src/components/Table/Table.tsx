@@ -18,6 +18,9 @@ import {
   UserName
 } from './TableStyled';
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
+interface UserData {
+  _id: string;
+}
 
 const Table = () => {
   const { data, error } = useSWR('https://galp-api.vercel.app/stakeholders', fetcher);
@@ -25,7 +28,7 @@ const Table = () => {
   if (error) return <div>Failed to load</div>;
   if (!data) return <div>Loading...</div>;
 
-  const deleteUser = async (userId: any) => {
+  const deleteUser = async (userId: string) => {
     try {
       const response = await fetch(`https://galp-api.vercel.app/stakeholders/${userId}`, {
         method: 'DELETE'
@@ -35,7 +38,7 @@ const Table = () => {
         throw new Error('Server-side deletion failed.');
       }
 
-      const updatedData = data.filter((user: string) => user._id !== userId);
+      const updatedData: UserData[] = data.filter((user: UserData) => user._id !== userId);
 
       mutate('https://galp-api.vercel.app/stakeholders', updatedData, false);
     } catch (error) {
