@@ -28,23 +28,23 @@ const Table = () => {
   if (error) return <div>Failed to load</div>;
   if (!data) return <div>Loading...</div>;
 
-  const deleteUser = async (userId: string) => {
-    try {
-      const response = await fetch(`https://galp-api.vercel.app/stakeholders/${userId}`, {
-        method: 'DELETE'
-      });
+  // const deleteUser = async (userId: string) => {
+  //   try {
+  //     const response = await fetch(`https://galp-api.vercel.app/stakeholders/${userId}`, {
+  //       method: 'DELETE'
+  //     });
 
-      if (!response.ok) {
-        throw new Error('Server-side deletion failed.');
-      }
+  //     if (!response.ok) {
+  //       throw new Error('Server-side deletion failed.');
+  //     }
 
-      const updatedData: UserData[] = data.filter((user: UserData) => user._id !== userId);
+  //     const updatedData: UserData[] = data.filter((user: UserData) => user._id !== userId);
 
-      mutate('https://galp-api.vercel.app/stakeholders', updatedData, false);
-    } catch (error) {
-      console.error('Error deleting user:', error);
-    }
-  };
+  //     mutate('https://galp-api.vercel.app/stakeholders', updatedData, false);
+  //   } catch (error) {
+  //     console.error('Error deleting user:', error);
+  //   }
+  // };
 
   const renderTableRows = data.map((user: any, index: any): any => (
     <tr key={index} className="hover:bg-gray-50">
@@ -75,7 +75,7 @@ const Table = () => {
               </StyledSvg>
             </StyledLink>
           </Link>
-          <FlexDiv>
+          {/* <FlexDiv>
             <button
               onClick={() => deleteUser(user._id)}
               className="ml-2 rounded p-1 hover:bg-gray-300"
@@ -95,7 +95,7 @@ const Table = () => {
                 ></path>
               </svg>
             </button>
-          </FlexDiv>
+          </FlexDiv> */}
         </FlexDiv>
       </TableCell>
     </tr>

@@ -402,21 +402,21 @@ const StakeHolderForm: React.FC = () => {
       [name]: value
     }));
   };
-  const handleContractsUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
+  // const handleContractsUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const files = e.target.files;
 
-    if (files && files.length > 0) {
-      const file = files[0];
-      const newContract: Contract = {
-        name: file.name,
-        createdAt: new Date().toISOString()
-      };
-      setFormData((prevState) => ({
-        ...prevState,
-        contracts: [...prevState.contracts, newContract]
-      }));
-    }
-  };
+  //   if (files && files.length > 0) {
+  //     const file = files[0];
+  //     const newContract: Contract = {
+  //       name: file.name,
+  //       createdAt: new Date().toISOString()
+  //     };
+  //     setFormData((prevState) => ({
+  //       ...prevState,
+  //       contracts: [...prevState.contracts, newContract]
+  //     }));
+  //   }
+  // };
 
   const handleTagInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTagInput(e.target.value);
@@ -561,7 +561,7 @@ const StakeHolderForm: React.FC = () => {
 
         <RightSection>
           <RightSideFormContainer>
-            <TwoColumns>
+            {/* <TwoColumns>
               <InputContainer>
                 <StyledLabel2 htmlFor="contract-upload">Contract</StyledLabel2>
                 <InputIconContainer>
@@ -595,7 +595,7 @@ const StakeHolderForm: React.FC = () => {
                   readOnly
                 />
               </InputContainer>
-            </TwoColumns>
+            </TwoColumns> */}
 
             <InputContainer>
               <StyledLabel2>Contract Date</StyledLabel2>

@@ -348,11 +348,11 @@ const StakeHolderForm = () => {
   const [tagInput, setTagInput] = useState<string>('');
   const [formData, setFormData] = useState<StakeholderData | any>(null);
   const [keywords, setKeywords] = useState<string[]>(formData?.keywords || []);
-  const [uploadedImage, setUploadedImage] = useState<string>('');
-  const [contractInput, setContractInput] = useState<string>('');
+  const [setUploadedImage] = useState<string>('');
+  // const [contractInput, setContractInput] = useState<string>('');
   const [tags, setTags] = useState<string[]>(formData?.keywords || []);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-
+  // console.log(formData);
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
 
@@ -456,21 +456,21 @@ const StakeHolderForm = () => {
   const backPage = () => {
     router.push('/backoffice');
   };
-  const handleContractsUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
+  // const handleContractsUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const files = e.target.files;
 
-    if (files && files.length > 0) {
-      const file = files[0];
-      const newContract: Contract = {
-        name: file.name,
-        createdAt: new Date().toISOString()
-      };
-      setFormData((prevState: StakeholderData | any) => ({
-        ...prevState,
-        contracts: [...prevState.contracts, newContract]
-      }));
-    }
-  };
+  //   if (files && files.length > 0) {
+  //     const file = files[0];
+  //     const newContract: Contract = {
+  //       name: file.name,
+  //       createdAt: new Date().toISOString()
+  //     };
+  //     setFormData((prevState: StakeholderData | any) => ({
+  //       ...prevState,
+  //       contracts: [...prevState.contracts, newContract]
+  //     }));
+  //   }
+  // };
   const handleRadioChange = (e: any) => {
     setFormData({
       ...formData,
@@ -490,19 +490,19 @@ const StakeHolderForm = () => {
       }
     }
   };
-  const addContract = () => {
-    if (contractInput.trim() !== '') {
-      const newContract: Contract = {
-        name: contractInput.trim(),
-        createdAt: new Date().toISOString()
-      };
-      setFormData((prevState: StakeholderData | any) => ({
-        ...prevState,
-        contracts: [...prevState.contracts, newContract]
-      }));
-      setContractInput('');
-    }
-  };
+  // const addContract = () => {
+  //   if (contractInput.trim() !== '') {
+  //     const newContract: Contract = {
+  //       name: contractInput.trim(),
+  //       createdAt: new Date().toISOString()
+  //     };
+  //     setFormData((prevState: StakeholderData | any) => ({
+  //       ...prevState,
+  //       contracts: [...prevState.contracts, newContract]
+  //     }));
+  //     setContractInput('');
+  //   }
+  // };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -591,7 +591,7 @@ const StakeHolderForm = () => {
 
         <RightSection>
           <RightSideFormContainer>
-            <TwoColumns>
+            {/* <TwoColumns>
               <InputContainer>
                 <StyledLabel2 htmlFor="contract-upload">Contract</StyledLabel2>
                 <InputIconContainer>
@@ -632,7 +632,7 @@ const StakeHolderForm = () => {
                   </button>
                 </div>
               </InputContainer>
-            </TwoColumns>
+            </TwoColumns> */}
 
             <InputContainer>
               <StyledLabel2>Contract Date</StyledLabel2>
@@ -727,7 +727,7 @@ const StakeHolderForm = () => {
                 <HiddenInput
                   type="file"
                   ref={fileInputRef}
-                  id="logo-upload"
+                  id="logo"
                   name="logo"
                   style={{ display: 'none' }}
                   onChange={handleFileChange}
