@@ -38,14 +38,34 @@ export const MenuLinks = styled.div<MenuLinksProps>`
   @media (max-width: 1023px) {
     display: ${(props) => (props.open ? 'block' : 'none')};
   }
+  @media (max-width: 768px) {
+    a {
+      display: none;
+    }
+    i {
+      display: none;
+    }
+  }
 `;
 export const StyledLink = styled.a<any>`
   border-bottom: 3px solid transparent;
   transition: border-bottom-color 0.3s ease-in;
-
   border-bottom-color: ${(props) => (props.active ? 'currentColor' : 'transparent')};
 
   &:hover {
     border-bottom-color: currentColor;
   }
+`;
+
+export const Sidebar = styled.div<{ isOpen: boolean }>`
+  transform: ${(props) => (props.isOpen ? 'translateX(0)' : 'translateX(-100%)')};
+  transition: transform 0.3s ease-in-out;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #ea5b0b;
+  z-index: 1000;
+  padding: 1rem;
 `;
