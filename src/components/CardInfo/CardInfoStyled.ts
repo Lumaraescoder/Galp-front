@@ -74,7 +74,7 @@ export const CardText = styled.p`
     color: #d1d5db;
   }
   @media (max-width: 768px) {
-    font-size: 14px;
+    font-size: 13px;
 
     &.dark {
       color: #d1d5db;

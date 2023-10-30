@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import useSWR from 'swr';
+import useSWR, { mutate } from 'swr';
 
 import {
   AvatarWrapper,
@@ -18,6 +18,9 @@ import {
   UserName
 } from './TableStyled';
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
+interface UserData {
+  _id: string;
+}
 
 const Table = () => {
   const { data, error } = useSWR('https://galp-api.vercel.app/stakeholders', fetcher);
@@ -25,13 +28,24 @@ const Table = () => {
   if (error) return <div>Failed to load</div>;
   if (!data) return <div>Loading...</div>;
 
-  function shortenString(originalString: string, maxLength: number) {
-    if (originalString.length <= maxLength) {
-      return originalString; // Retorna a string original se for menor ou igual ao comprimento máximo desejado
-    } else {
-      return originalString.substring(0, maxLength); // Corta a string e adiciona "..." ao final
+  const deleteUser = async (userId: string) => {
+    try {
+      const response = await fetch(`https://galp-api.vercel.app/stakeholders/${userId}`, {
+        method: 'DELETE'
+      });
+
+      if (!response.ok) {
+        throw new Error('Server-side deletion failed.');
+      }
+
+      const updatedData: UserData[] = data.filter((user: UserData) => user._id !== userId);
+
+      mutate('https://galp-api.vercel.app/stakeholders', updatedData, false);
+    } catch (error) {
+      console.error('Error deleting user:', error);
     }
-  }
+  };
+
   const renderTableRows = data.map((user: any, index: any): any => (
     <tr key={index} className="hover:bg-gray-50">
       <StyledTH>
@@ -42,17 +56,9 @@ const Table = () => {
           <UserName>{user.business}</UserName>
         </UserInfo>
       </StyledTH>
-
       <StyledTableCell>{user.businesstype}</StyledTableCell>
-      {user.contracts.map((contract: { createdAt: any }, index: React.Key | null | undefined) => (
-        <tr key={index}>
-          <StyledTableCell>
-            {contract.createdAt ? shortenString(contract.createdAt, 10) : ''}
-          </StyledTableCell>
-        </tr>
-      ))}
+      <StyledTableCell>{user.contractDate}</StyledTableCell>
       <StyledTableCell>{user.editedby}</StyledTableCell>
-
       <TableCell>
         <FlexDiv></FlexDiv>
       </TableCell>
@@ -69,7 +75,27 @@ const Table = () => {
               </StyledSvg>
             </StyledLink>
           </Link>
-          <StyledLink href="#" title="Excluir"></StyledLink>
+          <FlexDiv>
+            <button
+              onClick={() => deleteUser(user._id)}
+              className="ml-2 rounded p-1 hover:bg-gray-300"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 text-red-500"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+          </FlexDiv>
         </FlexDiv>
       </TableCell>
     </tr>

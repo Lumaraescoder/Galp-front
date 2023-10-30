@@ -1,6 +1,8 @@
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
+
+import { UploadButton } from './AddStackeHolderStyled';
 
 const appearFromLeft = keyframes`
   from {
@@ -226,9 +228,12 @@ export const StyledLabel2 = styled.label`
 
 export const StyledInput2 = styled.input`
   width: 100%;
-  padding: 12px 15px;
+  padding: 4px 8px !important;
   border: none;
   background-color: #f5f5f5;
+  height: 44px !important;
+  border-radius: 5px;
+  color: grey;
   ::placeholder {
     color: black !important;
     opacity: 1;
@@ -284,56 +289,178 @@ export const InputIconContainer = styled.div`
 export const StyledInputWithIcon = styled(StyledInputFull)`
   padding-left: 40px;
 `;
+const TagContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 8px;
+`;
 
-const StakeHolderForm = () => {
+const AddIcon = styled.i`
+  position: absolute;
+  top: 50%;
+  color: #ea5b0b;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 31px;
+`;
+const StyledTagInputContainer = styled.div`
+  position: relative;
+`;
+const TagButton = styled.button`
+  display: flex;
+  align-items: center;
+  border-radius: 50px;
+  background-color: #ea5b0b;
+  padding: 4px 10px;
+  margin: 12px 5px;
+  font-size: 22px;
+  height: 35px;
+  cursor: pointer;
+  color: white;
+  border: none;
+  outline: none;
+
+  &:hover {
+    background-color: #dc2626;
+  }
+
+  svg {
+    margin-left: 5px;
+  }
+`;
+type Contract = {
+  name: string;
+  createdAt: string;
+};
+
+type FormData = {
+  keywords: string[];
+  description: string;
+  business: string;
+  stakeholder: string;
+  location: string;
+  ceo: string;
+  contact: string;
+  cashflow: string;
+  logo: string | File;
+  email: string;
+  cellphone: string;
+  contracts: Contract[];
+  stakeholderType: string;
+  businesstype: string;
+  role: string;
+  contractDate: string;
+  editedby: string;
+};
+
+const StakeHolderForm: React.FC = () => {
   const router = useRouter();
-  const [formData, setFormData] = useState<any>({
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [tagInput, setTagInput] = useState<string>('');
+  const [tags, setTags] = useState<string[]>([]);
+  const [uploadedImage, setUploadedImage] = useState<string>('');
+  const [formData, setFormData] = useState<FormData>({
     stakeholder: '',
     business: '',
     location: '',
     ceo: '',
     contact: '',
-    contracts: [],
+    cashflow: '',
+    logo: '',
+    email: '',
+    cellphone: '',
     description: '',
-    logoUpload: null,
-    stakeholderType: 'company'
+    businesstype: '',
+    contracts: [],
+    contractDate: '',
+    keywords: [],
+    stakeholderType: 'company',
+    role: '',
+    editedby: ''
   });
 
-  const handleInputChange = (e: any) => {
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0];
+      if (file) {
+        const newImageUrl = URL.createObjectURL(file);
+        setUploadedImage(newImageUrl);
+        setFormData((prevState) => ({
+          ...prevState,
+          logo: file
+        }));
+      }
+    }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData((prevState: any) => ({
+    setFormData((prevState) => ({
       ...prevState,
       [name]: value
     }));
   };
+  const handleContractsUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
 
-  const handleSubmit = async (event: any) => {
-    event.preventDefault();
-
-    const apiUrl = 'https://galp-api.vercel.app/stakeholders';
-
-    try {
-      const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
-      if (!response.ok) {
-        throw new Error('Erro ao criar o Stakeholder');
-      } else {
-        router.push('/backoffice');
-      }
-
-      const data = await response.json();
-
-      router.push(`/stakeholders/${data.id}`);
-    } catch (error) {
-      console.error('Houve um problema com a requisição fetch:', error);
+    if (files && files.length > 0) {
+      const file = files[0];
+      const newContract: Contract = {
+        name: file.name,
+        createdAt: new Date().toISOString()
+      };
+      setFormData((prevState) => ({
+        ...prevState,
+        contracts: [...prevState.contracts, newContract]
+      }));
     }
   };
 
+  const handleTagInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTagInput(e.target.value);
+  };
+
+  const deleteTag = (tagToDelete: string) => {
+    const newTags = tags.filter((tag) => tag !== tagToDelete);
+    setTags(newTags);
+    setFormData((prevState) => ({
+      ...prevState,
+      keywords: newTags
+    }));
+  };
+
+  const addTag = () => {
+    if (tagInput.trim() !== '') {
+      const newTagsList = [...tags, tagInput.trim()];
+      setTags(newTagsList);
+      setTagInput('');
+      setFormData((prevState) => ({
+        ...prevState,
+        keywords: newTagsList
+      }));
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const apiUrl = 'https://galp-api.vercel.app/stakeholders';
+
+    try {
+      const data = new FormData(e.currentTarget);
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        body: data
+      });
+
+      if (!response.ok) {
+        throw new Error('Error creating Stakeholder');
+      }
+      router.push('/backoffice');
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
   const backPage = () => {
     router.push('/backoffice');
   };
@@ -356,7 +483,7 @@ const StakeHolderForm = () => {
                 id="company"
                 value="company"
                 checked={formData.stakeholderType === 'company'}
-                // onChange={handleRadioChange}
+                onChange={handleInputChange}
               />
               <label htmlFor="company"> &nbsp;Company</label>
             </LabelLeft>
@@ -367,7 +494,7 @@ const StakeHolderForm = () => {
                 id="people"
                 value="people"
                 checked={formData.stakeholderType === 'people'}
-                // onChange={handleRadioChange}
+                onChange={handleInputChange}
               />
               <label htmlFor="people"> &nbsp;People</label>
             </LabelRight>
@@ -392,7 +519,6 @@ const StakeHolderForm = () => {
             placeholder="Enter business name"
           />
 
-          {/* Input para a localização */}
           <StyledLabel htmlFor="location">Location</StyledLabel>
           <StyledInput
             id="location"
@@ -403,24 +529,24 @@ const StakeHolderForm = () => {
             placeholder="Enter location"
           />
 
-          <StyledLabel htmlFor="ceo">E-mail</StyledLabel>
+          <StyledLabel htmlFor="email">E-mail</StyledLabel>
           <StyledInput
             id="ceo"
-            type="text"
-            name="ceo"
+            type="email"
+            name="email"
             value={formData.email}
             onChange={handleInputChange}
-            placeholder="Enter CEO's name"
+            placeholder="Enter CEO's email"
           />
 
-          <StyledLabel htmlFor="contact">Role</StyledLabel>
+          <StyledLabel htmlFor="contact">Number</StyledLabel>
           <StyledInput
             id="contact"
             type="text"
-            name="contact"
-            value={formData.role}
+            name="cellphone"
+            value={formData.cellphone}
             onChange={handleInputChange}
-            placeholder="Enter Role"
+            placeholder="Enter Telephone Number"
           />
         </LeftSection>
 
@@ -428,28 +554,86 @@ const StakeHolderForm = () => {
           <RightSideFormContainer>
             <TwoColumns>
               <InputContainer>
-                <StyledLabel2 htmlFor="contract-upload">Contract </StyledLabel2>
+                <StyledLabel2 htmlFor="contract-upload">Contract</StyledLabel2>
                 <InputIconContainer>
-                  <Icon className="fa fa-cloud-upload" aria-hidden="true"></Icon>
-                  <StyledInputWithIcon
+                  <UploadButton htmlFor="contract-upload" className="upload-button">
+                    <Icon className="fa fa-cloud-upload" aria-hidden="true"></Icon>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Upload Contract
+                  </UploadButton>
+                  <input
                     id="contract-upload"
-                    name="contractUpload"
-                    type="text"
-                    placeholder="Upload Contract"
+                    name="contracts[0][url]"
+                    type="file"
+                    placeholder="Contract"
+                    accept=".pdf, .doc, .docx"
+                    onChange={handleContractsUpload}
+                    style={{ display: 'none' }}
                   />
                 </InputIconContainer>
               </InputContainer>
 
               <InputContainer>
-                <StyledLabel2>&nbsp;</StyledLabel2>
-
-                <StyledInputFullRight name="contractName" type="text" placeholder="contract.pdf" />
+                <StyledLabel2>Contract Name</StyledLabel2>
+                <StyledInputFullRight
+                  name="contractName"
+                  type="text"
+                  placeholder="contract.pdf"
+                  value={
+                    formData.contracts.length > 0
+                      ? formData.contracts[formData.contracts.length - 1].name
+                      : ''
+                  }
+                  readOnly
+                />
               </InputContainer>
             </TwoColumns>
 
             <InputContainer>
               <StyledLabel2>Contract Date</StyledLabel2>
-              <StyledInput2 name="contractDate" type="date" />
+              <StyledInput2
+                name="contractDate"
+                type="date"
+                value={formData.contractDate}
+                onChange={handleInputChange}
+              />
+            </InputContainer>
+
+            <InputContainer>
+              <StyledLabel2 htmlFor="tags">Tags</StyledLabel2>
+              <StyledTagInputContainer>
+                <StyledInput
+                  id="tags"
+                  name="tags"
+                  type="text"
+                  placeholder="Add tags to filter list"
+                  value={tagInput}
+                  onChange={handleTagInputChange}
+                />
+                <AddIcon className="fa fa-plus-circle" aria-hidden="true" onClick={addTag} />
+              </StyledTagInputContainer>
+              <TagContainer>
+                {tags.map((tag, index) => (
+                  <TagButton
+                    key={index}
+                    onClick={() => deleteTag(tag)}
+                    className="flex items-center rounded-full bg-red-500 px-3 py-1 text-xs font-medium text-white hover:bg-red-600"
+                  >
+                    {tag}
+                    <svg
+                      className="ml-2 h-5 w-5"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm0 2a10 10 0 100-20 10 10 0 000 20zM8.293 5.293a1 1 0 011.414 0L12 7.586l2.293-2.293a1 1 0 011.414 1.414L13.414 9l2.293 2.293a1 1 0 01-1.414 1.414L12 10.414l-2.293 2.293a1 1 0 01-1.414-1.414L10.586 9 8.293 6.707a1 1 0 010-1.414z"
+                        clipRule="evenodd"
+                      ></path>
+                    </svg>
+                  </TagButton>
+                ))}
+              </TagContainer>
             </InputContainer>
 
             <InputContainer>
@@ -459,18 +643,27 @@ const StakeHolderForm = () => {
                 name="description"
                 placeholder="Describe the details..."
                 value={formData.description}
+                onChange={handleInputChange}
               ></StyledTextArea>
             </InputContainer>
 
             <InputContainer as={LogoUploads}>
               <StyledLabel2 as="div">
-                <LogoButton>
+                <LogoButton onClick={() => fileInputRef.current?.click()}>
                   <IconButton className="fa fa-cloud-upload" aria-hidden="true"></IconButton>
                   &nbsp; Upload Logo
                 </LogoButton>
-                <HiddenInput id="logo-upload" name="logoUpload" type="file" />
+
+                <HiddenInput
+                  type="file"
+                  ref={fileInputRef}
+                  id="logo-upload"
+                  name="logo"
+                  style={{ display: 'none' }}
+                  onChange={handleFileChange}
+                />
               </StyledLabel2>
-              <UploadedLogo src="images/galp.png" alt="Uploaded Logo" />
+              <UploadedLogo src={uploadedImage || 'images/Galp.png'} />
             </InputContainer>
 
             <ButtonsContainer>

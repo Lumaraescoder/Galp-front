@@ -1,7 +1,9 @@
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { StakeholderData } from 'src/types/types';
 import styled, { keyframes } from 'styled-components';
+
+import Spinner from '@/components/Spinner/Spinner';
 
 const appearFromLeft = keyframes`
   from {
@@ -285,24 +287,84 @@ export const InputIconContainer = styled.div`
 export const StyledInputWithIcon = styled(StyledInputFull)`
   padding-left: 40px;
 `;
+const TagContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 8px;
+`;
 
+const AddIcon = styled.i`
+  position: absolute;
+  top: 50%;
+  color: #ea5b0b;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 31px;
+`;
+const StyledTagInputContainer = styled.div`
+  position: relative;
+`;
+const TagButton = styled.button`
+  display: flex;
+  align-items: center;
+  border-radius: 50px;
+  background-color: #ea5b0b;
+  padding: 4px 10px;
+  margin: 12px 5px;
+  font-size: 22px;
+  height: 35px;
+  cursor: pointer;
+  color: white;
+  border: none;
+  outline: none;
+
+  &:hover {
+    background-color: #dc2626;
+  }
+
+  svg {
+    margin-left: 5px;
+  }
+`;
+export const UploadButton = styled.label`
+  display: inline-block;
+  background-color: white;
+  color: grey;
+  background-color: #f5f5f5;
+  padding: 3px 16px;
+  cursor: pointer;
+  height: 36px;
+`;
+type Contract = {
+  name: string;
+  createdAt: string;
+};
 const StakeHolderForm = () => {
   const router = useRouter();
   const { id } = router.query;
 
   const [isLoading, setIsLoading] = useState(true);
-
+  const [tagInput, setTagInput] = useState<string>('');
   const [formData, setFormData] = useState<StakeholderData | any>(null);
+  const [keywords, setKeywords] = useState<string[]>(formData?.keywords || []);
+  const [uploadedImage, setUploadedImage] = useState<string>('');
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const [tags, setTags] = useState<string[]>(formData?.keywords || []);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
+
     setFormData((prevState: any) => {
       if (!prevState) return null;
 
       return { ...prevState, [name]: value };
     });
   };
-
+  const handleTagInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTagInput(e.target.value);
+  };
   useEffect(() => {
     const fetchStakeholderData = async () => {
       if (!id) return;
@@ -310,7 +372,6 @@ const StakeHolderForm = () => {
       try {
         const response = await fetch(`https://galp-api.vercel.app/stakeholders/${id}`);
         const data = await response.json();
-
         setFormData({
           stakeholder: data.stakeholder || '',
           business: data.business || '',
@@ -320,7 +381,9 @@ const StakeHolderForm = () => {
           contact: data.contact || '',
           cashflow: data.cashflow || '',
           logo: data.logo || '',
+          contractDate: data.contractDate || '',
           email: data.email || '',
+          keywords: data.keywords || [],
           cellphone: data.cellphone || '',
           contracts: data.contracts || [],
           stakeholderType: data.stakeholderType || '',
@@ -339,10 +402,28 @@ const StakeHolderForm = () => {
     fetchStakeholderData();
   }, [id]);
   if (isLoading) {
-    return <div>Carregando...</div>;
+    return <Spinner />;
   }
+
+  const addTag = () => {
+    if (tagInput.trim() !== '') {
+      const newTagsList = [...tags, tagInput.trim()];
+      setTags(newTagsList);
+      setKeywords((prevKeywords) => [...prevKeywords, tagInput.trim()]);
+      setTagInput('');
+    }
+  };
+
+  const deleteTag = (tagToDelete: string) => {
+    const newTags = tags.filter((tag) => tag !== tagToDelete);
+    setTags(newTags);
+
+    setKeywords((prevKeywords) => prevKeywords.filter((keyword) => keyword !== tagToDelete));
+  };
   const handleSubmit = async (event: any) => {
     event.preventDefault();
+    setKeywords(keywords);
+    const updatedFormData = { ...formData, keywords: keywords };
 
     const apiUrl = `https://galp-api.vercel.app/stakeholders/${id}`;
 
@@ -352,12 +433,16 @@ const StakeHolderForm = () => {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(updatedFormData)
       });
       if (!response.ok) {
         throw new Error('Erro ao atualizar o stakeholder');
       } else {
-        router.push('/backoffice');
+        const newData = await response.json();
+
+        setFormData(newData);
+        setTags([]);
+        setTagInput('');
       }
     } catch (error) {
       console.error('Houve um problema com a requisição fetch:', error);
@@ -367,12 +452,39 @@ const StakeHolderForm = () => {
   const backPage = () => {
     router.push('/backoffice');
   };
+  const handleContractsUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
 
+    if (files && files.length > 0) {
+      const file = files[0];
+      const newContract: Contract = {
+        name: file.name,
+        createdAt: new Date().toISOString()
+      };
+      setFormData((prevState: StakeholderData | any) => ({
+        ...prevState,
+        contracts: [...prevState.contracts, newContract]
+      }));
+    }
+  };
   const handleRadioChange = (e: any) => {
     setFormData({
       ...formData,
       stakeholderType: e.target.value
     });
+  };
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0];
+      if (file) {
+        const newImageUrl = URL.createObjectURL(file);
+        setUploadedImage(newImageUrl);
+        setFormData((prevState: StakeholderData | any) => ({
+          ...prevState,
+          logo: file
+        }));
+      }
+    }
   };
 
   return (
@@ -429,7 +541,6 @@ const StakeHolderForm = () => {
             placeholder="Enter business name"
           />
 
-          {/* Input para a localização */}
           <StyledLabel htmlFor="location">Location</StyledLabel>
           <StyledInput
             id="location"
@@ -440,24 +551,24 @@ const StakeHolderForm = () => {
             placeholder="Enter location"
           />
 
-          <StyledLabel htmlFor="ceo">E-mail</StyledLabel>
+          <StyledLabel htmlFor="email">E-mail</StyledLabel>
           <StyledInput
-            id="ceo"
+            id="email"
             type="text"
-            name="ceo"
+            name="email"
             value={formData.email}
             onChange={handleInputChange}
             placeholder="Enter CEO's name"
           />
 
-          <StyledLabel htmlFor="contact">Role</StyledLabel>
+          <StyledLabel htmlFor="contact">Number</StyledLabel>
           <StyledInput
-            id="contact"
+            id="cellphone"
             type="text"
-            name="contact"
-            value={formData.role}
+            name="cellphone"
+            value={formData.cellphone}
             onChange={handleInputChange}
-            placeholder="Enter Role"
+            placeholder="Enter Telephone Number"
           />
         </LeftSection>
 
@@ -465,37 +576,112 @@ const StakeHolderForm = () => {
           <RightSideFormContainer>
             <TwoColumns>
               <InputContainer>
-                <StyledLabel2 htmlFor="contract-upload">Contract </StyledLabel2>
+                <StyledLabel2 htmlFor="contract-upload">Contract</StyledLabel2>
                 <InputIconContainer>
-                  <Icon className="fa fa-cloud-upload" aria-hidden="true"></Icon>
-                  <StyledInputWithIcon
+                  <UploadButton htmlFor="contract-upload" className="upload-button">
+                    <Icon className="fa fa-cloud-upload" aria-hidden="true"></Icon>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Upload Contract
+                  </UploadButton>
+                  <input
                     id="contract-upload"
-                    name="contractUpload"
-                    type="text"
-                    placeholder="Upload Contract"
+                    name="contracts[0][url]"
+                    type="file"
+                    placeholder="Contract"
+                    accept=".pdf, .doc, .docx"
+                    onChange={handleContractsUpload}
+                    style={{ display: 'none' }}
                   />
                 </InputIconContainer>
               </InputContainer>
 
               <InputContainer>
-                <StyledLabel2>&nbsp;</StyledLabel2>
-
-                <StyledInputFullRight name="contractName" type="text" placeholder="contract.pdf" />
+                <StyledLabel2>Contract Name</StyledLabel2>
+                <StyledInputFullRight
+                  name="contracts[0][name]"
+                  type="text"
+                  value={
+                    formData.contracts.length > 0
+                      ? formData.contracts[formData.contracts.length - 1].name
+                      : ''
+                  }
+                  readOnly
+                />
               </InputContainer>
             </TwoColumns>
 
-            {formData.contracts.map((contract: any, index: any) => (
-              <InputContainer key={index}>
-                <StyledLabel2 htmlFor={`contract-date-${index}`}>Contract Date</StyledLabel2>
-                <StyledInput2
-                  id={`contract-date-${index}`}
-                  name="contractDate"
-                  type="date"
-                  value={contract.createdAt}
-                />
-              </InputContainer>
-            ))}
+            <InputContainer>
+              <StyledLabel2>Contract Date</StyledLabel2>
+              <StyledInput2
+                name="contractDate"
+                type="date"
+                value={formData.contractDate}
+                onChange={handleInputChange}
+              />
+            </InputContainer>
 
+            <InputContainer>
+              <StyledLabel2 htmlFor="tags">Tags</StyledLabel2>
+              <StyledTagInputContainer>
+                <StyledInput
+                  id="tags"
+                  name="tags"
+                  type="text"
+                  placeholder="Add tags to filter list"
+                  value={tagInput}
+                  onChange={handleTagInputChange}
+                />
+                <AddIcon className="fa fa-plus-circle" aria-hidden="true" onClick={addTag} />
+              </StyledTagInputContainer>
+              <TagContainer>
+                {tags.map((tag, index) => (
+                  <TagButton
+                    key={index}
+                    onClick={() => deleteTag(tag)}
+                    className="flex items-center rounded-full bg-red-500 px-3 py-1 text-xs font-medium text-white hover:bg-red-600"
+                  >
+                    {tag}
+                    <svg
+                      className="ml-2 h-5 w-5"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm0 2a10 10 0 100-20 10 10 0 000 20zM8.293 5.293a1 1 0 011.414 0L12 7.586l2.293-2.293a1 1 0 011.414 1.414L13.414 9l2.293 2.293a1 1 0 01-1.414 1.414L12 10.414l-2.293 2.293a1 1 0 01-1.414-1.414L10.586 9 8.293 6.707a1 1 0 010-1.414z"
+                        clipRule="evenodd"
+                      ></path>
+                    </svg>
+                  </TagButton>
+                ))}
+
+                {formData.keywords && formData.keywords.length > 0 && (
+                  <>
+                    {formData.keywords.map((tag: any, index: any) => (
+                      <TagButton
+                        key={index}
+                        onClick={() => deleteTag(tag)}
+                        className="flex items-center rounded-full bg-red-500 px-3 py-1 text-xs font-medium text-white hover:bg-red-600"
+                      >
+                        {tag}
+                        <svg
+                          className="ml-2 h-5 w-5"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm0 2a10 10 0 100-20 10 10 0 000 20zM8.293 5.293a1 1 0 011.414 0L12 7.586l2.293-2.293a1 1 0 011.414 1.414L13.414 9l2.293 2.293a1 1 0 01-1.414 1.414L12 10.414l-2.293 2.293a1 1 0 01-1.414-1.414L10.586 9 8.293 6.707a1 1 0 010-1.414z"
+                            clipRule="evenodd"
+                          ></path>
+                        </svg>
+                      </TagButton>
+                    ))}
+                  </>
+                )}
+              </TagContainer>
+            </InputContainer>
             <InputContainer>
               <StyledLabel2 htmlFor="description">Description</StyledLabel2>
               <StyledTextArea
@@ -503,18 +689,26 @@ const StakeHolderForm = () => {
                 name="description"
                 placeholder="Describe the details..."
                 value={formData.description}
+                onChange={handleInputChange}
               ></StyledTextArea>
             </InputContainer>
-
             <InputContainer as={LogoUploads}>
               <StyledLabel2 as="div">
-                <LogoButton>
+                <LogoButton onClick={() => fileInputRef.current?.click()}>
                   <IconButton className="fa fa-cloud-upload" aria-hidden="true"></IconButton>
                   &nbsp; Upload Logo
                 </LogoButton>
-                <HiddenInput id="logo-upload" name="logoUpload" type="file" />
+
+                <HiddenInput
+                  type="file"
+                  ref={fileInputRef}
+                  id="logo-upload"
+                  name="logo"
+                  style={{ display: 'none' }}
+                  onChange={handleFileChange}
+                />
               </StyledLabel2>
-              <UploadedLogo src={formData.logo} alt="Uploaded Logo" />
+              <UploadedLogo src={uploadedImage || 'images/Galp.png'} />
             </InputContainer>
 
             <ButtonsContainer>

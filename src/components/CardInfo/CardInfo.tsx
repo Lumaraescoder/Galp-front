@@ -54,15 +54,15 @@ const CardList: React.FC<Props> = ({ searchQuery }) => {
   if (error) return <div>Failed to load</div>;
   if (!stakeholders) return <Spinner />;
 
-  const displayedStakeholders = stakeholders
-    ? stakeholders.filter((stakeholder) => {
-        return (
-          stakeholder &&
-          stakeholder.business &&
-          stakeholder.business.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-      })
-    : [];
+  const displayedStakeholders = stakeholders.filter((stakeholder) => {
+    const businessMatch = stakeholder.business.toLowerCase().includes(searchQuery.toLowerCase());
+
+    const keywordMatch = stakeholder.keywords.some((keyword) =>
+      keyword.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    return businessMatch || keywordMatch;
+  });
 
   return (
     <Container>
