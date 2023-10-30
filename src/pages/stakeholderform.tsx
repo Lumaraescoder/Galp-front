@@ -659,7 +659,7 @@ const StakeHolderForm = () => {
 
                 {formData.keywords && formData.keywords.length > 0 && (
                   <>
-                    {formData.keywords.map((tag, index) => (
+                    {formData.keywords.map((tag: any, index: any) => (
                       <TagButton
                         key={index}
                         onClick={() => deleteTag(tag)}
