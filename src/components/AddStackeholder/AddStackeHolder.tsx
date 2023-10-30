@@ -295,15 +295,6 @@ const TagContainer = styled.div`
   margin-top: 8px;
 `;
 
-const Tag = styled.div`
-  background-color: ${(props) => props.color || '#333'};
-  color: white;
-  margin-top: 10px;
-  padding: 4px 8px;
-  margin-right: 8px;
-  margin-bottom: 8px;
-  border-radius: 18px;
-`;
 const AddIcon = styled.i`
   position: absolute;
   top: 50%;
@@ -352,7 +343,7 @@ type FormData = {
   ceo: string;
   contact: string;
   cashflow: string;
-  logo: string;
+  logo: string | File;
   email: string;
   cellphone: string;
   contracts: Contract[];
@@ -365,9 +356,10 @@ type FormData = {
 
 const StakeHolderForm: React.FC = () => {
   const router = useRouter();
-  const [tagInput, setTagInput] = useState(''); // Estado para o campo de entrada de tag
-  const [tags, setTags] = useState([]);
-  const [uploadedImage, setUploadedImage] = useState('');
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [tagInput, setTagInput] = useState<string>('');
+  const [tags, setTags] = useState<string[]>([]);
+  const [uploadedImage, setUploadedImage] = useState<string>('');
   const [formData, setFormData] = useState<FormData>({
     stakeholder: '',
     business: '',
@@ -387,29 +379,33 @@ const StakeHolderForm: React.FC = () => {
     role: '',
     editedby: ''
   });
-  console.log(formData);
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const newImageUrl = URL.createObjectURL(file);
-      setUploadedImage(newImageUrl);
-      setFormData((prevState) => ({
-        ...prevState,
-        logo: file
-      }));
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0];
+      if (file) {
+        const newImageUrl = URL.createObjectURL(file);
+        setUploadedImage(newImageUrl);
+        setFormData((prevState) => ({
+          ...prevState,
+          logo: file
+        }));
+      }
     }
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
       [name]: value
     }));
   };
-  const handleContractsUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
+  const handleContractsUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+
+    if (files && files.length > 0) {
+      const file = files[0];
       const newContract: Contract = {
         name: file.name,
         createdAt: new Date().toISOString()
@@ -421,11 +417,11 @@ const StakeHolderForm: React.FC = () => {
     }
   };
 
-  const handleTagInputChange = (e) => {
+  const handleTagInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTagInput(e.target.value);
   };
 
-  const deleteTag = (tagToDelete) => {
+  const deleteTag = (tagToDelete: string) => {
     const newTags = tags.filter((tag) => tag !== tagToDelete);
     setTags(newTags);
     setFormData((prevState) => ({
@@ -445,15 +441,13 @@ const StakeHolderForm: React.FC = () => {
       }));
     }
   };
-  const fileInputRef = useRef(null);
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    console.log(event);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     const apiUrl = 'https://galp-api.vercel.app/stakeholders';
 
     try {
-      const data = new FormData(event.currentTarget);
-      console.log(data);
+      const data = new FormData(e.currentTarget);
       const response = await fetch(apiUrl, {
         method: 'POST',
         body: data
@@ -462,9 +456,7 @@ const StakeHolderForm: React.FC = () => {
       if (!response.ok) {
         throw new Error('Error creating Stakeholder');
       }
-
-      const responseData = await response.json();
-      console.log(responseData);
+      router.push('/backoffice');
     } catch (error) {
       console.error('Error:', error);
     }
@@ -628,7 +620,6 @@ const StakeHolderForm: React.FC = () => {
                   >
                     {tag}
                     <svg
-                      onClick={deleteTag}
                       className="ml-2 h-5 w-5"
                       fill="currentColor"
                       viewBox="0 0 20 20"
@@ -658,11 +649,7 @@ const StakeHolderForm: React.FC = () => {
 
             <InputContainer as={LogoUploads}>
               <StyledLabel2 as="div">
-                <LogoButton
-                  onClick={() => {
-                    fileInputRef.current && fileInputRef.current.click();
-                  }}
-                >
+                <LogoButton onClick={() => fileInputRef.current?.click()}>
                   <IconButton className="fa fa-cloud-upload" aria-hidden="true"></IconButton>
                   &nbsp; Upload Logo
                 </LogoButton>
