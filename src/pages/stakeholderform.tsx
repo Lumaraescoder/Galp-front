@@ -354,7 +354,7 @@ const StakeHolderForm = () => {
   const [tags, setTags] = useState<string[]>(formData?.keywords || []);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
 
     setFormData((prevState: any) => {
@@ -411,21 +411,15 @@ const StakeHolderForm = () => {
     if (tagInput.trim() !== '') {
       const newTagsList = [...tags, tagInput.trim()];
       setTags(newTagsList);
-
-      // Update the keywords state
       setKeywords((prevKeywords) => [...prevKeywords, tagInput.trim()]);
-
-      // Clear the tag input
       setTagInput('');
     }
   };
 
   const deleteTag = (tagToDelete: string) => {
-    // Remove the tag from the tags state
     const newTags = tags.filter((tag) => tag !== tagToDelete);
     setTags(newTags);
 
-    // Remove the tag from the keywords state
     setKeywords((prevKeywords) => prevKeywords.filter((keyword) => keyword !== tagToDelete));
   };
   const handleSubmit = async (event: any) => {
@@ -446,12 +440,9 @@ const StakeHolderForm = () => {
       if (!response.ok) {
         throw new Error('Erro ao atualizar o stakeholder');
       } else {
-        // Assuming the API returns updated data in response.json()
         const newData = await response.json();
 
         setFormData(newData);
-
-        // Reset the tags and tagInput state
         setTags([]);
         setTagInput('');
       }
@@ -472,7 +463,7 @@ const StakeHolderForm = () => {
         name: file.name,
         createdAt: new Date().toISOString()
       };
-      setFormData((prevState) => ({
+      setFormData((prevState: StakeholderData | any) => ({
         ...prevState,
         contracts: [...prevState.contracts, newContract]
       }));
@@ -490,7 +481,7 @@ const StakeHolderForm = () => {
       if (file) {
         const newImageUrl = URL.createObjectURL(file);
         setUploadedImage(newImageUrl);
-        setFormData((prevState) => ({
+        setFormData((prevState: StakeholderData | any) => ({
           ...prevState,
           logo: file
         }));
@@ -645,51 +636,49 @@ const StakeHolderForm = () => {
               </StyledTagInputContainer>
               <TagContainer>
                 {tags.map((tag, index) => (
-                  <div
+                  <TagButton
                     key={index}
+                    onClick={() => deleteTag(tag)}
                     className="flex items-center rounded-full bg-red-500 px-3 py-1 text-xs font-medium text-white hover:bg-red-600"
                   >
                     {tag}
-                    <button onClick={() => deleteTag(tag)}>
-                      <svg
-                        className="ml-2 h-5 w-5"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm0 2a10 10 0 100-20 10 10 0 000 20zM8.293 5.293a1 1 0 011.414 0L12 7.586l2.293-2.293a1 1 0 011.414 1.414L13.414 9l2.293 2.293a1 1 0 01-1.414 1.414L12 10.414l-2.293 2.293a1 1 0 01-1.414-1.414L10.586 9 8.293 6.707a1 1 0 010-1.414z"
-                          clipRule="evenodd"
-                        ></path>
-                      </svg>
-                    </button>
-                  </div>
+                    <svg
+                      className="ml-2 h-5 w-5"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm0 2a10 10 0 100-20 10 10 0 000 20zM8.293 5.293a1 1 0 011.414 0L12 7.586l2.293-2.293a1 1 0 011.414 1.414L13.414 9l2.293 2.293a1 1 0 01-1.414 1.414L12 10.414l-2.293 2.293a1 1 0 01-1.414-1.414L10.586 9 8.293 6.707a1 1 0 010-1.414z"
+                        clipRule="evenodd"
+                      ></path>
+                    </svg>
+                  </TagButton>
                 ))}
 
                 {formData.keywords && formData.keywords.length > 0 && (
                   <>
                     {formData.keywords.map((tag, index) => (
-                      <div
+                      <TagButton
                         key={index}
+                        onClick={() => deleteTag(tag)}
                         className="flex items-center rounded-full bg-red-500 px-3 py-1 text-xs font-medium text-white hover:bg-red-600"
                       >
                         {tag}
-                        <button onClick={() => deleteTag(tag)}>
-                          <svg
-                            className="ml-2 h-5 w-5"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M10 18a8 8 0 100-16 8 8 0 000 16zm0 2a10 10 0 100-20 10 10 0 000 20zM8.293 5.293a1 1 0 011.414 0L12 7.586l2.293-2.293a1 1 0 011.414 1.414L13.414 9l2.293 2.293a1 1 0 01-1.414 1.414L12 10.414l-2.293 2.293a1 1 0 01-1.414-1.414L10.586 9 8.293 6.707a1 1 0 010-1.414z"
-                              clipRule="evenodd"
-                            ></path>
-                          </svg>
-                        </button>
-                      </div>
+                        <svg
+                          className="ml-2 h-5 w-5"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm0 2a10 10 0 100-20 10 10 0 000 20zM8.293 5.293a1 1 0 011.414 0L12 7.586l2.293-2.293a1 1 0 011.414 1.414L13.414 9l2.293 2.293a1 1 0 01-1.414 1.414L12 10.414l-2.293 2.293a1 1 0 01-1.414-1.414L10.586 9 8.293 6.707a1 1 0 010-1.414z"
+                            clipRule="evenodd"
+                          ></path>
+                        </svg>
+                      </TagButton>
                     ))}
                   </>
                 )}
