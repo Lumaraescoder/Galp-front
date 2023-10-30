@@ -2,8 +2,6 @@ import { useRouter } from 'next/router';
 import React, { useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 
-import { UploadButton } from './AddStackeHolderStyled';
-
 const appearFromLeft = keyframes`
   from {
     opacity: 0;
@@ -379,6 +377,7 @@ const StakeHolderForm: React.FC = () => {
     role: '',
     editedby: ''
   });
+  const [keywords, setKeywords] = useState<string[]>(formData?.keywords || []);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -401,21 +400,21 @@ const StakeHolderForm: React.FC = () => {
       [name]: value
     }));
   };
-  const handleContractsUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
+  // const handleContractsUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const files = e.target.files;
 
-    if (files && files.length > 0) {
-      const file = files[0];
-      const newContract: Contract = {
-        name: file.name,
-        createdAt: new Date().toISOString()
-      };
-      setFormData((prevState) => ({
-        ...prevState,
-        contracts: [...prevState.contracts, newContract]
-      }));
-    }
-  };
+  //   if (files && files.length > 0) {
+  //     const file = files[0];
+  //     const newContract: Contract = {
+  //       name: file.name,
+  //       createdAt: new Date().toISOString()
+  //     };
+  //     setFormData((prevState) => ({
+  //       ...prevState,
+  //       contracts: [...prevState.contracts, newContract]
+  //     }));
+  //   }
+  // };
 
   const handleTagInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTagInput(e.target.value);
@@ -424,9 +423,13 @@ const StakeHolderForm: React.FC = () => {
   const deleteTag = (tagToDelete: string) => {
     const newTags = tags.filter((tag) => tag !== tagToDelete);
     setTags(newTags);
-    setFormData((prevState) => ({
-      ...prevState,
-      keywords: newTags
+
+    const newKeywords = keywords.filter((keyword) => keyword !== tagToDelete);
+    setKeywords(newKeywords);
+
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      keywords: newKeywords
     }));
   };
 
@@ -434,11 +437,15 @@ const StakeHolderForm: React.FC = () => {
     if (tagInput.trim() !== '') {
       const newTagsList = [...tags, tagInput.trim()];
       setTags(newTagsList);
-      setTagInput('');
-      setFormData((prevState) => ({
-        ...prevState,
-        keywords: newTagsList
+
+      setKeywords((prevKeywords) => [...prevKeywords, tagInput.trim()]);
+
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        keywords: [...prevFormData.keywords, tagInput.trim()]
       }));
+
+      setTagInput('');
     }
   };
 
@@ -552,7 +559,7 @@ const StakeHolderForm: React.FC = () => {
 
         <RightSection>
           <RightSideFormContainer>
-            <TwoColumns>
+            {/* <TwoColumns>
               <InputContainer>
                 <StyledLabel2 htmlFor="contract-upload">Contract</StyledLabel2>
                 <InputIconContainer>
@@ -586,7 +593,7 @@ const StakeHolderForm: React.FC = () => {
                   readOnly
                 />
               </InputContainer>
-            </TwoColumns>
+            </TwoColumns> */}
 
             <InputContainer>
               <StyledLabel2>Contract Date</StyledLabel2>

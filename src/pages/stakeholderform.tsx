@@ -336,10 +336,7 @@ export const UploadButton = styled.label`
   cursor: pointer;
   height: 36px;
 `;
-type Contract = {
-  name: string;
-  createdAt: string;
-};
+
 const StakeHolderForm = () => {
   const router = useRouter();
   const { id } = router.query;
@@ -349,10 +346,10 @@ const StakeHolderForm = () => {
   const [formData, setFormData] = useState<StakeholderData | any>(null);
   const [keywords, setKeywords] = useState<string[]>(formData?.keywords || []);
   const [uploadedImage, setUploadedImage] = useState<string>('');
-
   const [tags, setTags] = useState<string[]>(formData?.keywords || []);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-
+  // const [contractInput, setContractInput] = useState<string>('');
+  // console.log(formData);
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
 
@@ -365,6 +362,7 @@ const StakeHolderForm = () => {
   const handleTagInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTagInput(e.target.value);
   };
+
   useEffect(() => {
     const fetchStakeholderData = async () => {
       if (!id) return;
@@ -372,6 +370,9 @@ const StakeHolderForm = () => {
       try {
         const response = await fetch(`https://galp-api.vercel.app/stakeholders/${id}`);
         const data = await response.json();
+        setFormData(data);
+        setKeywords(data.keywords || []);
+
         setFormData({
           stakeholder: data.stakeholder || '',
           business: data.business || '',
@@ -452,19 +453,17 @@ const StakeHolderForm = () => {
   const backPage = () => {
     router.push('/backoffice');
   };
-  const handleContractsUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-
-    if (files && files.length > 0) {
-      const file = files[0];
-      const newContract: Contract = {
-        name: file.name,
-        createdAt: new Date().toISOString()
-      };
-      setFormData((prevState: StakeholderData | any) => ({
-        ...prevState,
-        contracts: [...prevState.contracts, newContract]
-      }));
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0];
+      if (file) {
+        const newImageUrl = URL.createObjectURL(file);
+        setUploadedImage(newImageUrl);
+        setFormData((prevState: any) => ({
+          ...prevState,
+          logo: file
+        }));
+      }
     }
   };
   const handleRadioChange = (e: any) => {
@@ -473,19 +472,36 @@ const StakeHolderForm = () => {
       stakeholderType: e.target.value
     });
   };
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      const file = e.target.files[0];
-      if (file) {
-        const newImageUrl = URL.createObjectURL(file);
-        setUploadedImage(newImageUrl);
-        setFormData((prevState: StakeholderData | any) => ({
-          ...prevState,
-          logo: file
-        }));
-      }
-    }
-  };
+
+  // const handleContractsUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const files = e.target.files;
+
+  //   if (files && files.length > 0) {
+  //     const file = files[0];
+  //     const newContract: Contract = {
+  //       name: file.name,
+  //       createdAt: new Date().toISOString()
+  //     };
+  //     setFormData((prevState: StakeholderData | any) => ({
+  //       ...prevState,
+  //       contracts: [...prevState.contracts, newContract]
+  //     }));
+  //   }
+  // };
+
+  // const addContract = () => {
+  //   if (contractInput.trim() !== '') {
+  //     const newContract: Contract = {
+  //       name: contractInput.trim(),
+  //       createdAt: new Date().toISOString()
+  //     };
+  //     setFormData((prevState: StakeholderData | any) => ({
+  //       ...prevState,
+  //       contracts: [...prevState.contracts, newContract]
+  //     }));
+  //     setContractInput('');
+  //   }
+  // };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -574,7 +590,7 @@ const StakeHolderForm = () => {
 
         <RightSection>
           <RightSideFormContainer>
-            <TwoColumns>
+            {/* <TwoColumns>
               <InputContainer>
                 <StyledLabel2 htmlFor="contract-upload">Contract</StyledLabel2>
                 <InputIconContainer>
@@ -596,18 +612,26 @@ const StakeHolderForm = () => {
 
               <InputContainer>
                 <StyledLabel2>Contract Name</StyledLabel2>
-                <StyledInputFullRight
-                  name="contracts[0][name]"
-                  type="text"
-                  value={
-                    formData.contracts.length > 0
-                      ? formData.contracts[formData.contracts.length - 1].name
-                      : ''
-                  }
-                  readOnly
-                />
+                <div className="relative flex items-center">
+                  <StyledInputFullRight
+                    name="contracts[0][name]"
+                    type="text"
+                    value={
+                      formData.contracts.length > 0
+                        ? formData.contracts[formData.contracts.length - 1].name
+                        : ''
+                    }
+                    readOnly
+                  />
+                  <button
+                    className="absolute right-2 rounded-full bg-gray-200 p-1 hover:bg-gray-300"
+                    onClick={addContract}
+                  >
+                    <AddIcon className="fa fa-plus-circl"></AddIcon>
+                  </button>
+                </div>
               </InputContainer>
-            </TwoColumns>
+            </TwoColumns> */}
 
             <InputContainer>
               <StyledLabel2>Contract Date</StyledLabel2>
@@ -702,7 +726,7 @@ const StakeHolderForm = () => {
                 <HiddenInput
                   type="file"
                   ref={fileInputRef}
-                  id="logo-upload"
+                  id="logo"
                   name="logo"
                   style={{ display: 'none' }}
                   onChange={handleFileChange}
