@@ -84,6 +84,7 @@ const WelcomeStack = styled.p`
 const Wrapper = styled.div`
   max-width: 1400px;
   margin: 0 auto;
+  height: 870px;
   padding: 40px 20px;
 `;
 
