@@ -66,6 +66,8 @@ export type StakeholderData = {
   contact: string;
   cashflow: string;
   logo: string;
+  contractDate: string;
+  keywords: string[];
   email: string;
   cellphone: string;
   contracts: Array<{

@@ -25,13 +25,6 @@ const Table = () => {
   if (error) return <div>Failed to load</div>;
   if (!data) return <div>Loading...</div>;
 
-  function shortenString(originalString: string, maxLength: number) {
-    if (originalString.length <= maxLength) {
-      return originalString; // Retorna a string original se for menor ou igual ao comprimento máximo desejado
-    } else {
-      return originalString.substring(0, maxLength); // Corta a string e adiciona "..." ao final
-    }
-  }
   const deleteUser = async (userId) => {
     try {
       const response = await fetch(`https://galp-api.vercel.app/stakeholders/${userId}`, {
@@ -42,10 +35,8 @@ const Table = () => {
         throw new Error('Server-side deletion failed.');
       }
 
-      // Filter out the deleted user from the local data array
-      const updatedData = data.filter((user) => user._id !== userId);
+      const updatedData = data.filter((user: string) => user._id !== userId);
 
-      // Update the local state with the updated data
       mutate('https://galp-api.vercel.app/stakeholders', updatedData, false);
     } catch (error) {
       console.error('Error deleting user:', error);
@@ -62,17 +53,9 @@ const Table = () => {
           <UserName>{user.business}</UserName>
         </UserInfo>
       </StyledTH>
-
       <StyledTableCell>{user.businesstype}</StyledTableCell>
-      {user.contracts.map((contract: { createdAt: any }, index: React.Key | null | undefined) => (
-        <tr key={index}>
-          <StyledTableCell>
-            {contract.createdAt ? shortenString(contract.createdAt, 10) : ''}
-          </StyledTableCell>
-        </tr>
-      ))}
+      <StyledTableCell>{user.contractDate}</StyledTableCell>
       <StyledTableCell>{user.editedby}</StyledTableCell>
-
       <TableCell>
         <FlexDiv></FlexDiv>
       </TableCell>

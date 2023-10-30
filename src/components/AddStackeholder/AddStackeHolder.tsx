@@ -663,7 +663,7 @@ const StakeHolderForm: React.FC = () => {
                   onChange={handleFileChange}
                 />
               </StyledLabel2>
-              <UploadedLogo src={uploadedImage || 'images/Galp.png'} alt="Uploaded Logo" />
+              <UploadedLogo src={uploadedImage || 'images/Galp.png'} />
             </InputContainer>
 
             <ButtonsContainer>
