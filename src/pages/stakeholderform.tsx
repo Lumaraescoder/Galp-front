@@ -350,7 +350,6 @@ const StakeHolderForm = () => {
   const [keywords, setKeywords] = useState<string[]>(formData?.keywords || []);
   const [uploadedImage, setUploadedImage] = useState<string>('');
 
-  console.log(formData);
   const [tags, setTags] = useState<string[]>(formData?.keywords || []);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -373,7 +372,6 @@ const StakeHolderForm = () => {
       try {
         const response = await fetch(`https://galp-api.vercel.app/stakeholders/${id}`);
         const data = await response.json();
-        console.log(data);
         setFormData({
           stakeholder: data.stakeholder || '',
           business: data.business || '',
