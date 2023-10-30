@@ -2,8 +2,6 @@ import { useRouter } from 'next/router';
 import React, { useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 
-import { UploadButton } from './AddStackeHolderStyled';
-
 const appearFromLeft = keyframes`
   from {
     opacity: 0;

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import useSWR, { mutate } from 'swr';
+import useSWR from 'swr';
 
 import {
   AvatarWrapper,
@@ -18,9 +18,9 @@ import {
   UserName
 } from './TableStyled';
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
-interface UserData {
-  _id: string;
-}
+// interface UserData {
+//   _id: string;
+// }
 
 const Table = () => {
   const { data, error } = useSWR('https://galp-api.vercel.app/stakeholders', fetcher);

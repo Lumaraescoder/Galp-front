@@ -336,10 +336,7 @@ export const UploadButton = styled.label`
   cursor: pointer;
   height: 36px;
 `;
-type Contract = {
-  name: string;
-  createdAt: string;
-};
+
 const StakeHolderForm = () => {
   const router = useRouter();
   const { id } = router.query;
@@ -348,10 +345,10 @@ const StakeHolderForm = () => {
   const [tagInput, setTagInput] = useState<string>('');
   const [formData, setFormData] = useState<StakeholderData | any>(null);
   const [keywords, setKeywords] = useState<string[]>(formData?.keywords || []);
-  const [setUploadedImage] = useState<string>('');
-  // const [contractInput, setContractInput] = useState<string>('');
+  const [uploadedImage, setUploadedImage] = useState<string>('');
   const [tags, setTags] = useState<string[]>(formData?.keywords || []);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  // const [contractInput, setContractInput] = useState<string>('');
   // console.log(formData);
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -456,6 +453,26 @@ const StakeHolderForm = () => {
   const backPage = () => {
     router.push('/backoffice');
   };
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0];
+      if (file) {
+        const newImageUrl = URL.createObjectURL(file);
+        setUploadedImage(newImageUrl);
+        setFormData((prevState: any) => ({
+          ...prevState,
+          logo: file
+        }));
+      }
+    }
+  };
+  const handleRadioChange = (e: any) => {
+    setFormData({
+      ...formData,
+      stakeholderType: e.target.value
+    });
+  };
+
   // const handleContractsUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
   //   const files = e.target.files;
 
@@ -471,25 +488,7 @@ const StakeHolderForm = () => {
   //     }));
   //   }
   // };
-  const handleRadioChange = (e: any) => {
-    setFormData({
-      ...formData,
-      stakeholderType: e.target.value
-    });
-  };
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      const file = e.target.files[0];
-      if (file) {
-        const newImageUrl = URL.createObjectURL(file);
-        setUploadedImage(newImageUrl);
-        setFormData((prevState: StakeholderData | any) => ({
-          ...prevState,
-          logo: file
-        }));
-      }
-    }
-  };
+
   // const addContract = () => {
   //   if (contractInput.trim() !== '') {
   //     const newContract: Contract = {
@@ -733,7 +732,7 @@ const StakeHolderForm = () => {
                   onChange={handleFileChange}
                 />
               </StyledLabel2>
-              <UploadedLogo src={formData.logo || 'images/Galp.png'} />
+              <UploadedLogo src={uploadedImage || 'images/Galp.png'} />
             </InputContainer>
 
             <ButtonsContainer>
