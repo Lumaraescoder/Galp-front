@@ -379,6 +379,7 @@ const StakeHolderForm: React.FC = () => {
     role: '',
     editedby: ''
   });
+  const [keywords, setKeywords] = useState<string[]>(formData?.keywords || []);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -424,9 +425,13 @@ const StakeHolderForm: React.FC = () => {
   const deleteTag = (tagToDelete: string) => {
     const newTags = tags.filter((tag) => tag !== tagToDelete);
     setTags(newTags);
-    setFormData((prevState) => ({
-      ...prevState,
-      keywords: newTags
+
+    const newKeywords = keywords.filter((keyword) => keyword !== tagToDelete);
+    setKeywords(newKeywords);
+
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      keywords: newKeywords
     }));
   };
 
@@ -434,11 +439,15 @@ const StakeHolderForm: React.FC = () => {
     if (tagInput.trim() !== '') {
       const newTagsList = [...tags, tagInput.trim()];
       setTags(newTagsList);
-      setTagInput('');
-      setFormData((prevState) => ({
-        ...prevState,
-        keywords: newTagsList
+
+      setKeywords((prevKeywords) => [...prevKeywords, tagInput.trim()]);
+
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        keywords: [...prevFormData.keywords, tagInput.trim()]
       }));
+
+      setTagInput('');
     }
   };
 

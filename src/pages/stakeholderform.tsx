@@ -365,6 +365,7 @@ const StakeHolderForm = () => {
   const handleTagInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTagInput(e.target.value);
   };
+
   useEffect(() => {
     const fetchStakeholderData = async () => {
       if (!id) return;
@@ -372,6 +373,9 @@ const StakeHolderForm = () => {
       try {
         const response = await fetch(`https://galp-api.vercel.app/stakeholders/${id}`);
         const data = await response.json();
+        setFormData(data);
+        setKeywords(data.keywords || []);
+
         setFormData({
           stakeholder: data.stakeholder || '',
           business: data.business || '',
@@ -423,6 +427,7 @@ const StakeHolderForm = () => {
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     setKeywords(keywords);
+
     const updatedFormData = { ...formData, keywords: keywords };
 
     const apiUrl = `https://galp-api.vercel.app/stakeholders/${id}`;
