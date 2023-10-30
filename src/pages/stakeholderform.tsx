@@ -349,7 +349,7 @@ const StakeHolderForm = () => {
   const [formData, setFormData] = useState<StakeholderData | any>(null);
   const [keywords, setKeywords] = useState<string[]>(formData?.keywords || []);
   const [uploadedImage, setUploadedImage] = useState<string>('');
-
+  const [contractInput, setContractInput] = useState<string>('');
   const [tags, setTags] = useState<string[]>(formData?.keywords || []);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -427,7 +427,6 @@ const StakeHolderForm = () => {
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     setKeywords(keywords);
-
     const updatedFormData = { ...formData, keywords: keywords };
 
     const apiUrl = `https://galp-api.vercel.app/stakeholders/${id}`;
@@ -489,6 +488,19 @@ const StakeHolderForm = () => {
           logo: file
         }));
       }
+    }
+  };
+  const addContract = () => {
+    if (contractInput.trim() !== '') {
+      const newContract: Contract = {
+        name: contractInput.trim(),
+        createdAt: new Date().toISOString()
+      };
+      setFormData((prevState: StakeholderData | any) => ({
+        ...prevState,
+        contracts: [...prevState.contracts, newContract]
+      }));
+      setContractInput('');
     }
   };
 
@@ -601,16 +613,24 @@ const StakeHolderForm = () => {
 
               <InputContainer>
                 <StyledLabel2>Contract Name</StyledLabel2>
-                <StyledInputFullRight
-                  name="contracts[0][name]"
-                  type="text"
-                  value={
-                    formData.contracts.length > 0
-                      ? formData.contracts[formData.contracts.length - 1].name
-                      : ''
-                  }
-                  readOnly
-                />
+                <div className="relative flex items-center">
+                  <StyledInputFullRight
+                    name="contracts[0][name]"
+                    type="text"
+                    value={
+                      formData.contracts.length > 0
+                        ? formData.contracts[formData.contracts.length - 1].name
+                        : ''
+                    }
+                    readOnly
+                  />
+                  <button
+                    className="absolute right-2 rounded-full bg-gray-200 p-1 hover:bg-gray-300"
+                    onClick={addContract}
+                  >
+                    <AddIcon className="fa fa-plus-circl"></AddIcon>
+                  </button>
+                </div>
               </InputContainer>
             </TwoColumns>
 
@@ -713,7 +733,7 @@ const StakeHolderForm = () => {
                   onChange={handleFileChange}
                 />
               </StyledLabel2>
-              <UploadedLogo src={uploadedImage || 'images/Galp.png'} />
+              <UploadedLogo src={formData.logo || 'images/Galp.png'} />
             </InputContainer>
 
             <ButtonsContainer>
