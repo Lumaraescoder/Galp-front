@@ -25,7 +25,7 @@ const Table = () => {
   if (error) return <div>Failed to load</div>;
   if (!data) return <div>Loading...</div>;
 
-  const deleteUser = async (userId) => {
+  const deleteUser = async (userId: any) => {
     try {
       const response = await fetch(`https://galp-api.vercel.app/stakeholders/${userId}`, {
         method: 'DELETE'
