@@ -11,13 +11,7 @@ import {
   IconUser
 } from './StrackeholderStyled';
 
-const StacekHolder: React.FC<StacekHolderProps> = ({
-  company,
-  stakeholder,
-  address,
-  email,
-  cellphone
-}) => {
+const StacekHolder: React.FC<StacekHolderProps> = ({ company, ceo, address, email, cellphone }) => {
   return (
     <CardContainers>
       <CardHeader>
@@ -31,8 +25,8 @@ const StacekHolder: React.FC<StacekHolderProps> = ({
         <CardValue>{company}</CardValue>
       </CardItem>
       <CardItem>
-        <CardLabel>Stakeholder:</CardLabel>
-        <CardValue>{stakeholder}</CardValue>
+        <CardLabel>CEO:</CardLabel>
+        <CardValue>{ceo}</CardValue>
       </CardItem>
       <CardItem>
         <CardLabel>Address:</CardLabel>

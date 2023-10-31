@@ -49,11 +49,12 @@ export interface CompanyInfo {
 
 export interface StacekHolderProps {
   company: string;
-  stakeholder: string;
+  stakeholder?: string;
   address: string;
   location: string;
   email: string;
   cellphone: string;
+  ceo?: string;
 }
 
 export type StakeholderData = {
