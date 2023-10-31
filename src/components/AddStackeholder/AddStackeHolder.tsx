@@ -453,13 +453,15 @@ const StakeHolderForm: React.FC = () => {
     e.preventDefault();
     const apiUrl = 'https://galp-api.vercel.app/stakeholders';
 
-    setFormData((prevState) => ({
-      ...prevState,
-      editedby: 'João Ribeiro'
-    }));
+    const today = new Date();
+    const formattedDate = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(
+      2,
+      '0'
+    )}-${String(today.getDate()).padStart(2, '0')}`;
 
     try {
       const data = new FormData(e.currentTarget);
+      data.set('contractDate', formattedDate);
       data.set('editedby', 'João Ribeiro');
 
       const response = await fetch(apiUrl, {
@@ -551,7 +553,7 @@ const StakeHolderForm: React.FC = () => {
             name="email"
             value={formData.email}
             onChange={handleInputChange}
-            placeholder="Enter CEO's email"
+            placeholder="Enter Stakeholder E-mail"
           />
 
           <StyledLabel htmlFor="contact">Number</StyledLabel>
@@ -603,7 +605,7 @@ const StakeHolderForm: React.FC = () => {
               </InputContainer>
             </TwoColumns> */}
 
-            <InputContainer>
+            {/* <InputContainer>
               <StyledLabel2>Contract Date</StyledLabel2>
               <StyledInput2
                 name="contractDate"
@@ -611,7 +613,7 @@ const StakeHolderForm: React.FC = () => {
                 value={formData.contractDate}
                 onChange={handleInputChange}
               />
-            </InputContainer>
+            </InputContainer> */}
 
             <InputContainer>
               <StyledLabel2 htmlFor="tags">Tags</StyledLabel2>
