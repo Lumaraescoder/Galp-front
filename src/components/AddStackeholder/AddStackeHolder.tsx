@@ -1,17 +1,6 @@
 import { useRouter } from 'next/router';
 import React, { useRef, useState } from 'react';
-import styled, { keyframes } from 'styled-components';
-
-const appearFromLeft = keyframes`
-  from {
-    opacity: 0;
-    transform: translateX(-100%);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-`;
+import styled from 'styled-components';
 
 const StyledInput = styled.input`
   width: 100%;
@@ -43,7 +32,6 @@ const Container = styled.div`
 
 const LeftSection = styled.div`
   flex: 1;
-  animation: ${appearFromLeft} 1s ease;
 
   @media (max-width: 768px) {
     max-width: 100%;
@@ -98,22 +86,12 @@ const WelcomeStack = styled.p`
 const StrackeHolderType = styled.div`
   margin-top: 29px;
 `;
-export const appearFromRight = keyframes`
-  from {
-    opacity: 0;
-    transform: translateX(100%);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-`;
+
 export const RightSection = styled.div`
   flex: 0 0 100%;
   border-radius: 3px;
   margin-left: 60px;
   margin-top: 207px;
-  animation: ${appearFromRight} 1s ease;
   animation-delay: 1.5;
   font-size: 22px;
   @media (min-width: 768px) {

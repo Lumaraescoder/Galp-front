@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import { StakeholderData } from 'src/types/types';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 import Spinner from '@/components/Spinner/Spinner';
 
@@ -89,22 +89,12 @@ const WelcomeStack = styled.p`
 const StrackeHolderType = styled.div`
   margin-top: 29px;
 `;
-export const appearFromRight = keyframes`
-  from {
-    opacity: 0;
-    transform: translateX(100%);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-`;
+
 export const RightSection = styled.div`
   flex: 0 0 100%;
   border-radius: 3px;
   margin-left: 60px;
   margin-top: 207px;
-  animation: ${appearFromRight} 1s ease;
   animation-delay: 1.5;
   font-size: 22px;
   @media (min-width: 768px) {
