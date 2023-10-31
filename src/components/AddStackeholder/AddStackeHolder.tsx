@@ -553,7 +553,7 @@ const StakeHolderForm: React.FC = () => {
             name="email"
             value={formData.email}
             onChange={handleInputChange}
-            placeholder="Enter Stakeholder email"
+            placeholder="Enter Stakeholder E-mail"
           />
 
           <StyledLabel htmlFor="contact">Number</StyledLabel>
