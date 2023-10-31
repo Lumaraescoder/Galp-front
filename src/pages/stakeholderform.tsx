@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import { StakeholderData } from 'src/types/types';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 import Spinner from '@/components/Spinner/Spinner';
 
