@@ -453,19 +453,19 @@ const StakeHolderForm = () => {
   const backPage = () => {
     router.push('/backoffice');
   };
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      const file = e.target.files[0];
-      if (file) {
-        const newImageUrl = URL.createObjectURL(file);
-        setUploadedImage(newImageUrl);
-        setFormData((prevState: any) => ({
-          ...prevState,
-          logo: file
-        }));
-      }
-    }
-  };
+  // const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (e.target.files && e.target.files.length > 0) {
+  //     const file = e.target.files[0];
+  //     if (file) {
+  //       const newImageUrl = URL.createObjectURL(file);
+  //       setUploadedImage(newImageUrl);
+  //       setFormData((prevState: any) => ({
+  //         ...prevState,
+  //         logo: file
+  //       }));
+  //     }
+  //   }
+  // };
   const handleRadioChange = (e: any) => {
     setFormData({
       ...formData,
@@ -729,7 +729,7 @@ const StakeHolderForm = () => {
                   id="logo"
                   name="logo"
                   style={{ display: 'none' }}
-                  onChange={handleFileChange}
+                  // onChange={handleFileChange}
                 />
               </StyledLabel2>
               <UploadedLogo src={formData.logo || 'images/Galp.png'} />
