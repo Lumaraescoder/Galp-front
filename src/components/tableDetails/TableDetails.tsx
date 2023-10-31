@@ -8,25 +8,25 @@ export const TableDetails = () => {
       name: 'John Doe',
       role: 'Manager',
       department: 'Sales',
-      email: 'john.doe@test.com'
+      email: 'john.doe@gmail.com'
     },
     {
       name: 'Jane Smith',
       role: 'Engineer',
       department: 'Engineering',
-      email: 'jane.smith@test.com'
+      email: 'jane.smith@gmail.com'
     },
     {
       name: 'Michael Johnson',
       role: 'Developer',
       department: 'IT',
-      email: 'michael.johnson@@test.com'
+      email: 'michael.johnson@gmail.com'
     },
     {
       name: 'Sarah Williams',
       role: 'Analyst',
       department: 'Finance',
-      email: 'sarah.williams@test.com'
+      email: 'sarah.williams@gmail.com'
     }
   ];
 
