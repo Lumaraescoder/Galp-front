@@ -732,7 +732,7 @@ const StakeHolderForm = () => {
                   onChange={handleFileChange}
                 />
               </StyledLabel2>
-              <UploadedLogo src={uploadedImage || 'images/Galp.png'} />
+              <UploadedLogo src={formData.logo || 'images/Galp.png'} />
             </InputContainer>
 
             <ButtonsContainer>
