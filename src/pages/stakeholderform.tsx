@@ -537,22 +537,22 @@ const StakeHolderForm = () => {
               <label htmlFor="people"> &nbsp;People</label>
             </LabelRight>
           </Flex>
-          <StyledLabel htmlFor="stakeholder-name">Stakeholder</StyledLabel>
-          <StyledInput
-            id="stakeholder-name"
-            type="text"
-            name="stakeholder"
-            value={formData.stakeholder}
-            onChange={handleInputChange}
-            placeholder="Enter stakeholder's name"
-          />
-
-          <StyledLabel htmlFor="business-name">Business</StyledLabel>
+          <StyledLabel htmlFor="business-name">Stakeholder</StyledLabel>
           <StyledInput
             id="business-name"
             type="text"
             name="business"
             value={formData.business}
+            onChange={handleInputChange}
+            placeholder="Enter business name"
+          />
+          {/* i should change this data */}
+          <StyledLabel htmlFor="business-name">Business</StyledLabel>
+          <StyledInput
+            id="businesstype-name"
+            type="text"
+            name="businesstype"
+            value={formData.businesstype}
             onChange={handleInputChange}
             placeholder="Enter business name"
           />

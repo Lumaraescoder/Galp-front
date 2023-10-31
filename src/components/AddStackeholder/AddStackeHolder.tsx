@@ -453,8 +453,15 @@ const StakeHolderForm: React.FC = () => {
     e.preventDefault();
     const apiUrl = 'https://galp-api.vercel.app/stakeholders';
 
+    setFormData((prevState) => ({
+      ...prevState,
+      editedby: 'João Ribeiro'
+    }));
+
     try {
       const data = new FormData(e.currentTarget);
+      data.set('editedby', 'João Ribeiro');
+
       const response = await fetch(apiUrl, {
         method: 'POST',
         body: data
@@ -468,6 +475,7 @@ const StakeHolderForm: React.FC = () => {
       console.error('Error:', error);
     }
   };
+
   const backPage = () => {
     router.push('/backoffice');
   };
@@ -506,22 +514,22 @@ const StakeHolderForm: React.FC = () => {
               <label htmlFor="people"> &nbsp;People</label>
             </LabelRight>
           </Flex>
-          <StyledLabel htmlFor="stakeholder-name">Stakeholder</StyledLabel>
+          <StyledLabel htmlFor="business-name">Stakeholder</StyledLabel>
           <StyledInput
             id="stakeholder-name"
             type="text"
-            name="stakeholder"
-            value={formData.stakeholder}
+            name="business"
+            value={formData.business}
             onChange={handleInputChange}
             placeholder="Enter stakeholder's name"
           />
 
-          <StyledLabel htmlFor="business-name">Business</StyledLabel>
+          <StyledLabel htmlFor="businesstype-name">Business</StyledLabel>
           <StyledInput
-            id="business-name"
+            id="businesstype-name"
             type="text"
-            name="business"
-            value={formData.business}
+            name="businesstype"
+            value={formData.businesstype}
             onChange={handleInputChange}
             placeholder="Enter business name"
           />
