@@ -345,7 +345,7 @@ const StakeHolderForm = () => {
   const [tagInput, setTagInput] = useState<string>('');
   const [formData, setFormData] = useState<StakeholderData | any>(null);
   const [keywords, setKeywords] = useState<string[]>(formData?.keywords || []);
-  const [uploadedImage, setUploadedImage] = useState<string>('');
+  // const [setUploadedImage] = useState<string>('');
   const [tags, setTags] = useState<string[]>(formData?.keywords || []);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   // const [contractInput, setContractInput] = useState<string>('');
@@ -453,19 +453,19 @@ const StakeHolderForm = () => {
   const backPage = () => {
     router.push('/backoffice');
   };
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      const file = e.target.files[0];
-      if (file) {
-        const newImageUrl = URL.createObjectURL(file);
-        setUploadedImage(newImageUrl);
-        setFormData((prevState: any) => ({
-          ...prevState,
-          logo: file
-        }));
-      }
-    }
-  };
+  // const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (e.target.files && e.target.files.length > 0) {
+  //     const file = e.target.files[0];
+  //     if (file) {
+  //       const newImageUrl = URL.createObjectURL(file);
+  //       setUploadedImage(newImageUrl);
+  //       setFormData((prevState: any) => ({
+  //         ...prevState,
+  //         logo: file
+  //       }));
+  //     }
+  //   }
+  // };
   const handleRadioChange = (e: any) => {
     setFormData({
       ...formData,
@@ -729,10 +729,10 @@ const StakeHolderForm = () => {
                   id="logo"
                   name="logo"
                   style={{ display: 'none' }}
-                  onChange={handleFileChange}
+                  // onChange={handleFileChange}
                 />
               </StyledLabel2>
-              <UploadedLogo src={uploadedImage || 'images/Galp.png'} />
+              <UploadedLogo src={formData.logo || 'images/Galp.png'} />
             </InputContainer>
 
             <ButtonsContainer>
