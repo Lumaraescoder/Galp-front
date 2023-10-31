@@ -71,7 +71,7 @@ const StakeholderDetails: React.FC = () => {
           <ColumnContainer>
             <StacekHolder
               company={stakeholder.business}
-              stakeholder={stakeholder.stakeholder}
+              ceo={stakeholder.ceo}
               address={stakeholder.location}
               location={stakeholder.location}
               email={stakeholder.email}
