@@ -5,17 +5,6 @@ import styled, { keyframes } from 'styled-components';
 
 import Spinner from '@/components/Spinner/Spinner';
 
-const appearFromLeft = keyframes`
-  from {
-    opacity: 0;
-    transform: translateX(-100%);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-`;
-
 const StyledInput = styled.input`
   width: 100%;
   padding: 12px 15px;
@@ -46,7 +35,6 @@ const Container = styled.div`
 
 const LeftSection = styled.div`
   flex: 1;
-  animation: ${appearFromLeft} 1s ease;
 
   @media (max-width: 768px) {
     max-width: 100%;
@@ -444,6 +432,7 @@ const StakeHolderForm = () => {
         setFormData(newData);
         setTags([]);
         setTagInput('');
+        router.push('/backoffice');
       }
     } catch (error) {
       console.error('Houve um problema com a requisição fetch:', error);
@@ -574,7 +563,7 @@ const StakeHolderForm = () => {
             name="email"
             value={formData.email}
             onChange={handleInputChange}
-            placeholder="Enter CEO's name"
+            placeholder="Enter Stakeholder E-mail"
           />
 
           <StyledLabel htmlFor="contact">Number</StyledLabel>
@@ -633,7 +622,7 @@ const StakeHolderForm = () => {
               </InputContainer>
             </TwoColumns> */}
 
-            <InputContainer>
+            {/* <InputContainer>
               <StyledLabel2>Contract Date</StyledLabel2>
               <StyledInput2
                 name="contractDate"
@@ -641,7 +630,7 @@ const StakeHolderForm = () => {
                 value={formData.contractDate}
                 onChange={handleInputChange}
               />
-            </InputContainer>
+            </InputContainer> */}
 
             <InputContainer>
               <StyledLabel2 htmlFor="tags">Tags</StyledLabel2>

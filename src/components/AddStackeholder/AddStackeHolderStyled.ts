@@ -1,22 +1,10 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
-export const appearFromRight = keyframes`
-  from {
-    opacity: 0;
-    transform: translateX(100%);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-`;
 export const RightSection = styled.div`
   flex: 0 0 100%;
   border-radius: 3px;
   margin-left: 60px;
   margin-top: 207px;
-  animation: ${appearFromRight} 1s ease;
-  animation-delay: 1.5;
   @media (min-width: 768px) {
     flex: 0 0 45%;
   }
