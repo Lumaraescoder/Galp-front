@@ -345,7 +345,7 @@ const StakeHolderForm = () => {
   const [tagInput, setTagInput] = useState<string>('');
   const [formData, setFormData] = useState<StakeholderData | any>(null);
   const [keywords, setKeywords] = useState<string[]>(formData?.keywords || []);
-  const [setUploadedImage] = useState<string>('');
+  // const [setUploadedImage] = useState<string>('');
   const [tags, setTags] = useState<string[]>(formData?.keywords || []);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   // const [contractInput, setContractInput] = useState<string>('');
